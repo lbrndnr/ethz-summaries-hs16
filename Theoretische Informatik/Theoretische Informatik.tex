@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage[labelformat=empty]{caption}
+\usepackage{booktabs}
+
+\geometry{
+	a4paper,
+ 	left=20mm,
+ 	top=20mm,
+ 	bottom=20mm,
+}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\section{Alphabete, Wörter und Sprachen}
+
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=5cm, noitemsep]
+	\item[Alphabet $\Sigma$:] Eine endliche, nichtleere Menge bestehend aus \textbf{Buchstaben}
+	\item[Wort:] Ein Wort über $\Sigma$ ist eine endliche Folge von Buchstaben. ($\Sigma^*$ ist die Menge aller Wörter)
+	\item[Sprache $L$:] Eine Menge von Wörtern, also eine Teilmenge von $\Sigma^*$
+\end{description}
+
+Für ein \textbf{Wort} in $\Sigma^*$ gilt:
+\begin{equation*}
+\begin{split}
+	\textbf{Konkatenation:}\quad & \text{Kon}(x,y) = x \cdot y = xy \\
+	\textbf{Reversal:} \quad & a^R = (a_1a_2...a_n)^R = a_na_{n-1}...a_1 \\
+	\textbf{Exponent:} \quad & (abc)^3 = abcabcabc \\
+	\textbf{Vorkommen:} \quad & |x = abcabcabc|_a = 3\quad\text{(Anzahl $a$ in $x$)} \\
+	\textbf{kanonische Ordnung:} \quad & u < v \Leftrightarrow (|u| < |v|) \lor (|u| = |v| \land u = x \cdot s_i \cdot u' \land v = x \cdot s_j \cdot v') \quad\text{(mit $i < j$)} \\
+\end{split}
+\end{equation*}
+
+Für eine \textbf{Sprache} gilt:
+\begin{equation*}
+\begin{split}
+	\textbf{Konkatenation:}\quad & L_1\cdot L_2 = L_1L_2 = \{vw\ |\ v \in L_1 \land w \in L_2\} \\
+	\textbf{Exponent:}\quad & L^{i+1} = L^i\cdot L \\
+	\textbf{Kleene'schen Stern:}\quad & L^* = \bigcup_{i\in\mathbb{N}}L^i
+\end{split}
+\end{equation*}
+
+\subsection{Algorithmische Probleme}
+
+\subsubsection{Entscheidungsproblem}
+Für jedes $x \in \Sigma^*$ ist zu entscheiden, ob $x \in L$ oder $x \notin L$. Ein \textbf{Algorithmus} $A$ löst das Entscheidungsproblem $(\Sigma, L)$, falls für alle $x \in \Sigma^*$ gilt:
+\begin{equation*}
+	A(x) = \begin{cases}
+		1, \quad\text{falls $x \in L$} \\
+		0, \quad\text{falls $x \notin L$} \\
+	\end{cases}
+\end{equation*}
+
+$A$ \textbf{erkennt} somit die Sprache. $L$ ist \textbf{rekursiv}, falls so ein Algorithmus $A$ existiert.
+
+\subsubsection{Funktion (Transformation)}
+Ein \textbf{Algorithmus} $A$ berechnet eine Funktion $f: \Sigma^* \mapsto \Gamma^*$, falls
+\begin{equation*}
+	A(x) = f(x) \quad\text{für alle $x \in \Sigma^*$}
+\end{equation*}
+
+Entscheidungsprobleme sind spezielle Fälle von Funktionsberechnungen.
+
+\subsubsection{Relationsproblem}
+Sei $R \subseteq \Sigma^*\times\Gamma^*$ eine Relation, dann löst ein \textbf{Algorithmus} $A$ das Relationsproblem $R$, falls für alle $(x,y) \in R$ gilt:
+\begin{equation*}
+	(x, A(x)) \in R
+\end{equation*}
+
+\emph{Bemerkung:} Es ist nur nötig, ein einziges $y = A(x)$ von potenziel unendlich vielen $y$ zu finden.
+	
+\end{document}
