@@ -78,5 +78,35 @@ Sei $R \subseteq \Sigma^*\times\Gamma^*$ eine Relation, dann löst ein \textbf{A
 \end{equation*}
 
 \emph{Bemerkung:} Es ist nur nötig, ein einziges $y = A(x)$ von potenziel unendlich vielen $y$ zu finden.
+
+\section{Endliche Automaten}
+
+Ein endlicher Automat ist ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$:
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=2.5cm, noitemsep]
+	\item[$Q$:] Eine endliche Menge von Zuständen
+	\item[$\Sigma$:] Das Eingabealphabet
+	\item[$q_0 \in Q$:] Der Anfangszustand
+	\item[$F \subseteq Q$:] Die Menge der akzeptierenden Zustände
+	\item[$\delta$:] Die Übergangsfunktion ($\delta: (Q\times\Sigma) \mapsto Q$)
+\end{description}
+
+Weiter definiert sind folgende:
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=7.5cm, noitemsep]
+	\item[Konfiguration:] ein Element aus $(Q \times \Sigma^*)$. Befindet sich $M$ in der Konfiguration $(q, w)$ , bedeutet das, dass $M$ im Zustand $q$ ist und noch das Suffix $w$ lesen soll.
+	\item[Startkonfiguration:] Die Berechnung von $M$ auf $x$ muss in der Konfiguration $(q_0, x) \in (\{q_0\} \times \Sigma^*)$ anfangen
+	\item[Endkonfiguration:] Jedes Element in $(Q \times \{\lambda\})$
+	\item[Schritt:] Eine Relation auf Konfigurationen definiert als $(q,w) \vdash_M (p,x) \Leftrightarrow w = ax, a \in \Sigma$ und $\delta(q, a) = p$. Sie entspricht einer Anwendung der Übergangsfunktion auf die aktuelle Konfiguration.
+	\item[Berechnung $C$:] Eine endliche Folge $C = C_0,C_1,C_2,...,C_n$ von Konfigurationen, so dass $C_i \vdash_M C_{i+1}$. Weiter ist $C$ eine \textbf{Berechnung von $M$ auf eine Eingabe $x \in \Sigma^*$}, falls $C_0$ eine Startkonfiguration und $C_n$ eine Endkonfiguration ist. Ist $C_n \in (F \times \{\lambda\})$, so ist $C$ eine \textbf{akzeptierende Berechnung} (im Gegensatz zu \textbf{verwerfenden Berechnungen}).
+	\item[Akzpetierte Sprache $L(M)$:] $L(M) = \{ w \in \Sigma^*\ |$ die Berechnung auf $w$ endet in einer Endkonfiguration$\}$
+	\item[Klasse der regulären Sprachen $\mathcal{L}_{EA}$:] Die Klasse der Sprachen, die von endlichen Automaten akzeptiert werden. Jede Sprache in $\mathcal{L}_{EA}$ wird \textbf{regulär} genannt.
+\end{description}
+
+Zusätzliche sind folgende Operationen definiert:
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=4.5cm, noitemsep]
+	\item[$\vdash^*_M$:] Die \emph{reflexive} und \emph{transitive} Hülle der Schrittrelation $\vdash_M$. $(q,w) \vdash^*_M (p,u)$ ist, dass es eine Berechnung von $M$ gibt, die ausgehend von der Konfiguration $(q,w)$ zu der Konfiguration $(p,u)$ führt.
+	\item[$\hat\delta: (Q \times \Sigma^*) \mapsto Q$:] (i) $\hat\delta(q,\lambda) = q$ für alle $q\in Q$ \\
+	(ii) $\hat\delta(q, wa) = \delta(\hat\delta(q, w), a)$ \\
+	Die Aussage $\hat\delta(q, w) = p$ bedeutet, dass wenn $M$ im Zustand $q$ das Wort $w$ zu lesen beginnt, dann endet $M$ im Zustand $p$.
+\end{description}
 	
 \end{document}

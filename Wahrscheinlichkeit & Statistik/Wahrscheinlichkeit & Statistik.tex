@@ -24,6 +24,18 @@
 
 \section{Wahrscheinlichkeiten}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{2cm}|p{6cm}|p{6cm}|}
+\hline
+                   & \textbf{with repetition} & \textbf{without repetition} \\\hline
+\textbf{ordered}   & $n^k$                         							 	  & $\frac{n!}{(n-k)!}$    \\\cline{2-3}
+				   & A passcode of length $n$ with $k$ different digits           & How many ways can $k$ places be awarded to $n$ people                       \\\hline
+\textbf{unordered} & $\bigl(\begin{smallmatrix}n+k-1\\k \end{smallmatrix} \bigr)$ & $\bigl(\begin{smallmatrix}n\\k \end{smallmatrix} \bigr) = \frac{n!}{k!(n-k)!}$ \\\cline{2-3}
+				   & Distribute $k$ bananas (identical) to $n$ monkeys (identical)   & Select $k$ from $n$ objects                             \\\hline
+\end{tabular}
+\end{table}
+
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=9cm, noitemsep]
 	\item[Ereignisraum $\Omega$:] Die Menge aller m{\"o}glichen Ergebnisse
 	\item[Elementarereignis $\omega \in \Omega$:] Elemente vom Ereignisraum
@@ -36,9 +48,11 @@
 Es gelten:
 \begin{equation*}
 \begin{split}
+	P[A^c] & = 1 - P[A] \\
 	P[A \cup B] & = P[A] + P[B] - P[A \cap B] \quad\text{(Additionsregel)} \\
 	P[A \cap B] & = P[B|A] \cdot P[A] \quad\text{(Multiplikationsregel)} \\
-	P[A \backslash B] & = P[A] - P[A \cup B] \\
+	P[A \backslash B] & = P[A] - P[A \cap B] \\
+	P[A \cap B \cap C] + P[A \cap B \cap C^c] & = P[A \cap B]
 \end{split}
 \end{equation*}
 
@@ -54,7 +68,10 @@ Ist $\Omega = {\omega_1, \omega_2,...,\omega_N}$ endlich mit $|\Omega| = N$ und 
 
 Die bedingte Wahrscheinlichkeit von $B$ unter der Bedingung, dass $A$ eintritt ($A$ gegeben) ist definiert durch:
 \begin{equation*}
-	P[B|A] := \frac{P[B \cap A]}{P[A]}
+\begin{split}
+	P[B|A] & := \frac{P[B \cap A]}{P[A]} \\
+	P[B^c|A] & = 1-P[B|A] \\
+\end{split}
 \end{equation*}
 
 \emph{Veranschaulichung:} $A$ ist eingetreten. Da $A$ und $B$ von einander abh{\"a}ngen, l{\"a}sst sich somit auch die Wahrscheinlichkeit berechnen, dass $B$ eingetreten ist.
@@ -84,5 +101,23 @@ Zwei Ereignisse $A, B$ sind unabh{\"a}ngig (stochastisch), falls gilt:
 \end{equation*}
 
 \emph{Veranschaulichung:} Die Tatsache, dass eines der Ereignisse eingetreten ist, hat keinen Einfluss auf die Wahrscheinlichkeit des anderen.
+
+\section{Diskrete Zufallsvariablen und Verteilungen}
+
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=9cm, noitemsep]
+	\item[Zufallsvariable $X: \Omega \mapsto \mathbb{R}$:] Eine Grösse, deren Wert vom Zufall abhängig ist.
+	\item[Verteilungsfunktion $F_X: \mathbb{R} \mapsto \lbrack 0,1 \rbrack$:] Der Wert an der Stelle $x$  entspricht der Wahrscheinlichkeit, dass die zugehörige Zufallsvarible $X$ einen Wert kleiner oder gleich $x$ annimmt.
+	\item[Gewichtsfunktion $p_X:\mathcal{W}(X) \mapsto \lbrack 0,1 \rbrack$:] $p_X(x_k) := P[X = x_k] = P[\{\omega | X(\omega) = x_k\}]$
+	\item[Indikatorfunktion $I_A$:] $I_A(\omega) = 1$, falls $\omega \in A$, $0$ sonst. Eine diskrete Zufallsvariable, falls $\Omega$ endlich und abzählbar ist.
+\end{description}
+
+\subsection{Erwartungswert}
+
+Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfuntkion $p_X(x)$, dann ist der Erwartungswert $E[X]$ wie folgt definiert:
+\begin{equation*}
+	E[X] := \sum_{x_k \in \mathcal{W}(X)} x_kp_X(x_k)
+\end{equation*}
+
+Ist diese Reihe nicht \emph{absolut konvergent}, so existiert der Erwartungswert nicht.
 	
 \end{document}
