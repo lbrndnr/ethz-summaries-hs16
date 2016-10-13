@@ -119,5 +119,38 @@ Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfuntkion $p_X(x)$, dann ist de
 \end{equation*}
 
 Ist diese Reihe nicht \emph{absolut konvergent}, so existiert der Erwartungswert nicht.
+
+Sei weiter $Y = g(X)$ eine Zufallsvariable gemäss $g: \mathbb{R}\mapsto\mathbb{R}$ abhängig von $X$, so gilt:
+\begin{equation*}
+	E[Y] = E[g(X)] = \sum_{x_k \in \mathcal{W}(X)} g(x_k)p_X(x_k)
+\end{equation*}
+
+Für zwei Zufallsvariablen $X$ und $Y$, die jeweils einen Erwartungswert definiert haben, gilt:
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=4cm, noitemsep]
+	\item[Monotonie:] Ist $X \leq Y$ (bzw. $\forall\omega: X(\omega) \leq Y(\omega)$), so gilt auch $E[X] \leq E[Y]$
+	\item[Linearität:] Für beliebige $a,b \in \mathbb{R}$ gilt $E[aX + b] = aE[X]+b$
+	\item[Werte in $\mathbb{N}_0$:] Falls $X$ nur Werte in $\mathbb{N}_0$ annimmt, so gilt \\ $E[X] = \sum^\infty_{j=1}P[X \geq j] = \sum^\infty_{l=0}P[X > l]$
+\end{description}
+
+\subsection{Varianz}
+
+Sei $X$ eine diskrete Zufallsvariable und ist $E[X] < \infty$, so ist die \textbf{Varianz} definiert als:
+\begin{equation*}
+	\text{Var}[X] := E[(X-E[X])^2] = \sum_{x_k \in \mathcal{W}(X)}(x_k - E[X])^2 p_X(x_k)
+\end{equation*}
+
+Dementsprechend ist die \textbf{Standardabweichung} von $X$ gleich
+\begin{equation*}
+	\text{sd}(X) = \sigma(X) := \sqrt{\text{Var}[X]}
+\end{equation*}
+
+Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} der Verteilung von $X$. Für beliebiges $X$ und $Y = aX +b$ gilt:
+
+\begin{equation*}
+\begin{split}
+	\text{Var}[X] & = E[X^2] - E[X]^2 \\
+	\text{Var}[Y] & = \text{Var}[aX +b] = a^2\text{Var}[X]
+\end{split}	
+\end{equation*}
 	
 \end{document}
