@@ -100,15 +100,15 @@ Zwei Ereignisse $A, B$ sind unabh{\"a}ngig (stochastisch), falls gilt:
 \end{split}
 \end{equation*}
 
-\emph{Veranschaulichung:} Die Tatsache, dass eines der Ereignisse eingetreten ist, hat keinen Einfluss auf die Wahrscheinlichkeit des anderen.
+\emph{Veranschaulichung:} Die Tatsache, dass eines der Ereignisse eingetreten ist, hat keinen Einfluss auf die Wahrscheinlichkeit des anderen. Unabh{\"a}ngigkeit und disjunkte Mengen sind jedoch \emph{nicht} das selbe.
 
 \section{Diskrete Zufallsvariablen und Verteilungen}
 
-\begin{description}[labelindent=16pt,style=multiline,leftmargin=9cm, noitemsep]
-	\item[Zufallsvariable $X: \Omega \mapsto \mathbb{R}$:] Eine Grösse, deren Wert vom Zufall abhängig ist.
-	\item[Verteilungsfunktion $F_X: \mathbb{R} \mapsto \lbrack 0,1 \rbrack$:] Der Wert an der Stelle $x$  entspricht der Wahrscheinlichkeit, dass die zugehörige Zufallsvarible $X$ einen Wert kleiner oder gleich $x$ annimmt.
-	\item[Gewichtsfunktion $p_X:\mathcal{W}(X) \mapsto \lbrack 0,1 \rbrack$:] $p_X(x_k) := P[X = x_k] = P[\{\omega | X(\omega) = x_k\}]$
-	\item[Indikatorfunktion $I_A$:] $I_A(\omega) = 1$, falls $\omega \in A$, $0$ sonst. Eine diskrete Zufallsvariable, falls $\Omega$ endlich und abzählbar ist.
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=8cm, noitemsep]
+	\item[Zufallsvariable $X: \Omega \mapsto \mathbb{R}$:] Eine eindeutige Zuordnung, die jedem Elementarereignisses im Ereignisraum eine Zahl zuordnet.
+	\item[Verteilungsfunktion $F_X: \mathbb{R} \mapsto \lbrack 0,1 \rbrack$:] $F_X(t) := P[X \leq t] := P[\{\omega | X(\omega) \leq t\}]$ \\ Der Wert an der Stelle $x$  entspricht der Wahrscheinlichkeit, dass die zugeh{\"o}rige Zufallsvarible $X$ einen Wert kleiner oder gleich $x$ annimmt.
+	\item[Gewichtsfunktion $p_X:\mathcal{W}(X) \mapsto \lbrack 0,1 \rbrack$:] $p_X(x_k) := P[X = x_k] = P[\{\omega | X(\omega) = x_k\}]$ 
+	\item[Indikatorfunktion $I_A$:] $I_A(\omega) = 1$, falls $\omega \in A$, $0$ sonst. Eine diskrete Zufallsvariable, falls $\Omega$ endlich und abz{\"a}hlbar ist.
 \end{description}
 
 \subsection{Erwartungswert}
@@ -120,15 +120,15 @@ Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfuntkion $p_X(x)$, dann ist de
 
 Ist diese Reihe nicht \emph{absolut konvergent}, so existiert der Erwartungswert nicht.
 
-Sei weiter $Y = g(X)$ eine Zufallsvariable gemäss $g: \mathbb{R}\mapsto\mathbb{R}$ abhängig von $X$, so gilt:
+Sei weiter $Y = g(X)$ eine Zufallsvariable gem{\"a}ss $g: \mathbb{R}\mapsto\mathbb{R}$ abh{\"a}ngig von $X$, so gilt:
 \begin{equation*}
 	E[Y] = E[g(X)] = \sum_{x_k \in \mathcal{W}(X)} g(x_k)p_X(x_k)
 \end{equation*}
 
-Für zwei Zufallsvariablen $X$ und $Y$, die jeweils einen Erwartungswert definiert haben, gilt:
+F{\"u}r zwei Zufallsvariablen $X$ und $Y$, die jeweils einen Erwartungswert definiert haben, gilt:
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=4cm, noitemsep]
 	\item[Monotonie:] Ist $X \leq Y$ (bzw. $\forall\omega: X(\omega) \leq Y(\omega)$), so gilt auch $E[X] \leq E[Y]$
-	\item[Linearität:] Für beliebige $a,b \in \mathbb{R}$ gilt $E[aX + b] = aE[X]+b$
+	\item[Linearit{\"a}t:] F{\"u}r beliebige $a,b \in \mathbb{R}$ gilt $E[aX + b] = aE[X]+b$
 	\item[Werte in $\mathbb{N}_0$:] Falls $X$ nur Werte in $\mathbb{N}_0$ annimmt, so gilt \\ $E[X] = \sum^\infty_{j=1}P[X \geq j] = \sum^\infty_{l=0}P[X > l]$
 \end{description}
 
@@ -144,7 +144,7 @@ Dementsprechend ist die \textbf{Standardabweichung} von $X$ gleich
 	\text{sd}(X) = \sigma(X) := \sqrt{\text{Var}[X]}
 \end{equation*}
 
-Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} der Verteilung von $X$. Für beliebiges $X$ und $Y = aX +b$ gilt:
+Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} der Verteilung von $X$. F{\"u}r beliebiges $X$ und $Y = aX +b$ gilt:
 
 \begin{equation*}
 \begin{split}

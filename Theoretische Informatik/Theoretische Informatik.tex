@@ -81,7 +81,7 @@ Sei $R \subseteq \Sigma^*\times\Gamma^*$ eine Relation, dann l{\"o}st ein \textb
 
 \section{Endliche Automaten}
 
-Ein endlicher Automat ist ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$:
+Ein \textbf{endlicher Automat} (EA) ist ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$:
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=2.5cm, noitemsep]
 	\item[$Q$:] Eine endliche Menge von Zust{\"a}nden
 	\item[$\Sigma$:] Das Eingabealphabet
@@ -108,5 +108,56 @@ Zus{\"a}tzliche sind folgende Operationen definiert:
 	(ii) $\hat\delta(q, wa) = \delta(\hat\delta(q, w), a)$ \\
 	Die Aussage $\hat\delta(q, w) = p$ bedeutet, dass wenn $M$ im Zustand $q$ das Wort $w$ zu lesen beginnt, dann endet $M$ im Zustand $p$.
 \end{description}
+
+\subsection{Nichtexistenz}
+
+Um zu zeigen, dass eine Sprache nicht regul{\"a}r ist ($L \notin \mathcal{L}_{EA}$), gen{\"u}gt es, zu beweisen, dass es keinen Automaten gibt, der die Sprache akzeptiert.
+
+\subsubsection{Lemma 3.3}
+
+Sei $A = (Q, \Sigma, \delta_A, q_0, F)$ ein EA. Seien weiter $x,y \in \Sigma^*$ mit $x \neq y$, so dass
+\begin{equation*}
+	(q_0, x) \vdash_A^* (p, \lambda)\quad\text{und}\quad (q_0, y) \vdash_A^* (p, \lambda)
+\end{equation*}
+
+Das heisst, dass nach dem Lesen der unterschiedlichen W{\"o}rter $x$ und $y$ der EA im gleichen Zustand endet. Daraus folgt, dass der EA in Zukunft zwischen den W{\"o}rtern nicht unterscheiden kann. Anders ausgedr{\"u}ckt:
+
+\begin{equation*}
+	\hat\delta_A(q_0, x) = \hat\delta_A(q_0, y) = p \quad (x, y \in \text{Kl}[p])
+\end{equation*}
+
+F{\"u}r jedes Suffix $z \in \Sigma^*$ gilt dann, dass beide W{\"o}rter $xz$ und $yz$ entweder akzeptiert oder beide verworfen werden, ansonsten ist die Sprache nicht regul{\"a}r:
+
+\begin{equation*}
+	xz \in L(A) \Leftrightarrow yz \in L(A)
+\end{equation*}
+
+\paragraph{Vorgehen:} Um zu beweisen, dass eine Sprache nicht regul{\"a}r ist, zeigt man, dass zwei W{\"o}rter zum selben Zustand f{\"u}hren m{\"u}ssen.
+
+\subsubsection{Pumping Lemma f{\"u}r regul{\"a}re Sprachen}
+
+Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass sich jedes Wort $w \in \Sigma^*$ mit $|w| \geq n_0$ in drei Teile $x, y, z$ zerlegen l{\"a}sst, so dass $w = xyz$, wobei
+
+\begin{enumerate}[label=(\roman*), noitemsep]
+	\item $|xy| \leq n_0$
+	\item $|x| \geq 1$
+	\item entweder $\{yx^kz\ |\ k \in \mathbb{N}\} \subseteq L$ oder $\{yx^kz\ |\ k \in \mathbb{N}\} \cap L = \emptyset$
+\end{enumerate}
+
+\paragraph{Vorgehen:} W{\"a}hle ein Wort mit L{\"a}nge $|w| \geq n_0 \in \mathbb{N}$ aus, so dass keine seiner Zerlegungen die Eigenschaften (i), (ii) und (iii) erf{\"u}llt.
+
+\subsection{Methode der Kolmogorov Komplexit{\"a}t}
+
+Sei $L \subseteq \Sigma_\text{bool}^*$ eine regul{\"a}re Sprache. Sei $L_x = \{y \in \Sigma_\text{bool}^*\ |\ xy \in L\}$ f{\"u}r jedes $x \in \Sigma_\text{bool}^*$. Dann existiert eine Konstante const, so dass f{\"u}r alle $x,y \in \Sigma_\text{bool}^*$ gilt
+
+\begin{equation*}
+	K(y) \leq \lceil\log_2(n+1)\rceil + \text{const}
+\end{equation*}
+
+falls $y$ das $n$-te Wort in der Sprache $L$ ist.
 	
+\subsection{Nichtdeterminismus}	
+
+Ein \textbf{nichtdeterministischer endlicher Automat} (NEA) ist ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$.
+
 \end{document}
