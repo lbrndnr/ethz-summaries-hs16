@@ -1,19 +1,25 @@
-\documentclass[12pt, letterpaper, twoside]{article}
+\documentclass[12pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
  
 \usepackage{listings}
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{geometry}
- 
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+
  
 \geometry{
  a4paper,
- left=10mm,
- top=20mm,
+ left=20mm,
+ top=15mm,
+ bottom=25mm
  }
-
+\parindent0pt
 \graphicspath{ {images/} } 
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\M}{\mathbb{M}}
  
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -41,32 +47,32 @@
  
 \lstset{style=mystyle}
  
- 
- 
+ % -------------------------------------------------------------
 \title{Numerical Methods for CSE}
 \author{Nino Scherrer \thanks{based on NumCSE script from Prof. Dr. Hiptmaier}}
 \date{FS2016}
  
 \begin{document}
- 
+
 \begin{titlepage}
 \maketitle
 \end{titlepage}
  
- \section{General}
+ 
+ % -------------------------------------------------------------
+\section{General}
+
+\subsection{Floating Point numbers}
 
 \subsection{Dense Matrix}
 
+
 \subsection{Sparse Matrix}
-
 “almost all” entries = 0 /“only a few percent of” entries $\not =$ 0"
-
-
 
 \subsubsection{Build Matrix using Triples}
 
 \begin{lstlisting}[language=C++, caption=Triplet example]
-
 //Definition of a SparseMatrix
 SparseMatrix<double> C(n,m);
 
@@ -83,9 +89,7 @@ tripletList.push_back(triplet);
 C.setFromTriplets(tripletList.begin(), tripletList.end());
 //Compress Sparse Matrix
 C.makeCompressed();
-	
 \end{lstlisting}
-
 
 \subsubsection{Special storage formats}
 \paragraph{- COO (Triplet/Coordinate format)}
@@ -97,7 +101,179 @@ C.makeCompressed();
 
 
 
+% -------------------------------------------------------------
+% Machine Arithmetic
+% -------------------------------------------------------------
+\newpage
+\section{Machine Arithmetic}
 
+$\rightarrow$ Computers cannot compute “properly” in $\R$: \\
+(numerical computations may not respect the laws of analysis and linear algebra)\newline
+
+$\M \subset \R$ is the set of \textbf{machine numbers} (finite, discrete) \\
+$\rightarrow$ not closed under elementary arithmetic operations! \\
+
+\begin{tabular}{lll}
+	$op$: 	& 		$\R \times \R \rightarrow \R$ & 			$op \in \lbrace +, -, *, / \rbrace$	\\
+			& 		$\M \times \M \not\rightarrow \M$  											\\
+																								\\
+	$\widetilde{op}$: &  		$\M \times \M \rightarrow \M$ 	& $\Rightarrow$ $\widetilde{op} = rd \circ op \quad $ (on computers) 
+\end{tabular}
+
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{rounding_function.png}
+\end{center}
+
+\begin{tcolorbox}
+\hspace{3mm}	
+	For $\star \in \lbrace +, -, *, / \rbrace$: \quad $x \widetilde{\star} y = rd(x \star y)$  \quad \textit{where rd(...) is the rounding function} 
+\hspace{3mm}	
+\end{tcolorbox}
+\hspace{3mm}	
+
+% ----------------------
+% Controlling roundoff error	
+\subsection{Controlling roundoff error}	
+\textbf{EPS} (largest relative error) := $\max\limits_{x \in I\setminus \lbrace 0 \rbrace} \frac{|rd(x) - x|}{|x|}$ \quad \textit{where $I = \lbrack \min |\M|, \max |\M| \rbrack$}
+\\
+
+... can also be computed by the defining parameters B (base) and m (length of mantissa): \\
+\begin{equation*}
+		EPS = \frac{1}{2} B^{1-m}
+\end{equation*}
+		
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{axiom_roundoff_analysis.png}
+\end{center}
+	
+\subsubsection{Getting machine precision with c++}
+\begin{lstlisting}[language=C++]
+	#include <iostream>
+	#include <limits> 	// get various properties of arithmetic types
+	int main() {
+		std::cout.precision(15); 	// set floating point precision
+		std::cout << std::numeric_limits<double>::epsilon() << std::endl;
+	}
+\end{lstlisting}
+
+\textbf{Output:} \quad $2.22044604925031e^{-16}$ \\
+\pagebreak
+
+\subsubsection{Experiment - Adding EPS to 1}
+\begin{lstlisting}[language=C++]
+	cout.precision(25);
+	double eps = numeric_limits<double>::epsilon();
+	cout << fixed << 1.0 + 0.5*eps << endl
+			<< 1.0 - 0.5*eps	<< endl
+			<< (1.0 + 2/eps) - 2/eps << endl;			// cancellation here
+\end{lstlisting}
+
+\textbf{Output:} 
+
+\begin{lstlisting}[language=c++]
+1.000000000000000000000000
+0.9999999999999998889776975
+0.0000000000000000000000000
+\end{lstlisting}
+
+
+\hspace{5mm}	
+\subsubsection{Testing equality with zero $|$ x == 0.0} 
+\textbf{Numerical crime} for result of floating point computations \\
+$\rightarrow$ Replace with test of relative smallness! \\
+	
+	... example of testing with relative smallness ...
+	
+\hspace{6mm}
+
+	
+% -----------
+% Cancellation 
+\subsection{Cancellation}
+ 
+
+ \begin{minipage}{0.6\textwidth}
+ 	... = \textbf{subtraction of almost equal numbers} \\
+ $\blacktriangleright$ extreme ampilifcation of relative errors
+ \end{minipage}
+\hfill
+ \begin{minipage}{0.3\textwidth}\raggedleft
+ 		 \includegraphics[width=0.8\textwidth]{cancellation_illustration.png}
+ \end{minipage}
+
+
+\hspace{5mm}
+\subsubsection{Example  1 - Cancellation when evaluating difference quotients}
+\begin{equation*}
+	f'(x) \approx \frac{f(x+h) - f(x)}{h} \quad \quad , |h|<<1	
+\end{equation*}
+\hspace{10mm}
+$\Rightarrow$ Cancellation will happen here: $f(x+h) - f(x)$
+
+
+\subsubsection{Example  2 - Cancellation in Gram-Schmidt orthogonalisation}
+
+\begin{minipage}{0.6\textwidth}
+Cancellation when computing orthogonal projection of vector a onto space spanned by vector b.
+\begin{equation*}
+	p = a - \frac{a \cdot b }{b \cdot b}b
+\end{equation*}
+If a, b are nearly parallel: $p \approx 0$ $\rightarrow$ Cancellation
+\end{minipage}
+\begin{minipage}{0.3\textwidth}\raggedleft
+ 		 \includegraphics[width=1.0\textwidth]{cancellation_gramSchmidt.png}
+ \end{minipage}
+
+
+
+\subsubsection{Tricks to avoid cancellation}
+ 
+ \begin{tcolorbox}
+ \textbf{USE OF ALTERNATIVE FORMULAS:}
+ \begin{itemize}
+  \item Use mathmatic identities (trigonometric, definitions, ...)
+  \item Approximation with Taylor Series $\rightarrow$ Choosing m large enough
+  \item Sometimes: Use of case distinctions
+\end{itemize}
+\end{tcolorbox}
+
+
+% ----------------
+% Numerical stability
+\subsection{Numerical stability}
+
+\subsubsection{Problem description}
+\begin{minipage}{0.6\textwidth}
+	\begin{equation*}
+	F: X \subset \R^{n} \longrightarrow Y \subset \R^{m}	
+	\end{equation*}
+	\begin{center}
+		(X := data space and Y := result space)
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}\raggedleft
+	\begin{center}
+	 \includegraphics[width=1.0\textwidth]{stable_problem_desc.png}
+\end{center}
+\end{minipage}
+
+
+\subsubsection{Numerical algorithm}
+\begin{itemize}
+	\item Problem: \quad  \quad $F: X \subset \R^{n} \longrightarrow Y \subset \R^{m}	$
+	\item Algorithm: \quad  $\tilde{F}: X \rightarrow \tilde{Y} \subset \M$
+\end{itemize}
+
+
+
+\subsubsection{Stable Algorithm (= Good Algorithm)}
+\begin{center}
+	 \includegraphics[width=1.0\textwidth]{stable_algorithm1.png}
+\end{center}
+
+\begin{center}
+	 \includegraphics[width=0.6\textwidth]{stable_algorithm2.png}
+\end{center}
 
 
 
