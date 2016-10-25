@@ -107,7 +107,7 @@ Zwei Ereignisse $A, B$ sind unabh{\"a}ngig (stochastisch), falls gilt:
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=8cm, noitemsep]
 	\item[Zufallsvariable $X: \Omega \mapsto \mathbb{R}$:] Eine eindeutige Zuordnung, die jedem Elementarereignisses im Ereignisraum eine Zahl zuordnet.
 	\item[Verteilungsfunktion $F_X: \mathbb{R} \mapsto \lbrack 0,1 \rbrack$:] $F_X(t) := P[X \leq t] := P[\{\omega | X(\omega) \leq t\}]$ \\ Der Wert an der Stelle $x$  entspricht der Wahrscheinlichkeit, dass die zugeh{\"o}rige Zufallsvarible $X$ einen Wert kleiner oder gleich $x$ annimmt.
-	\item[Gewichtsfunktion $p_X:\mathcal{W}(X) \mapsto \lbrack 0,1 \rbrack$:] $p_X(x_k) := P[X = x_k] = P[\{\omega | X(\omega) = x_k\}]$ 
+	\item[Gewichtsfunktion $p_X:\mathcal{W}(X) \mapsto \lbrack 0,1 \rbrack$:] $p_X(x_k) := P[X = x_k] = P[\{\omega | X(\omega) = x_k\}]$ \\ Die Summe aller Gewicht aller Ereignisse muss zusammen 1 ergeben.
 	\item[Indikatorfunktion $I_A$:] $I_A(\omega) = 1$, falls $\omega \in A$, $0$ sonst. Eine diskrete Zufallsvariable, falls $\Omega$ endlich und abz{\"a}hlbar ist.
 \end{description}
 
@@ -152,5 +152,101 @@ Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} de
 	\text{Var}[Y] & = \text{Var}[aX +b] = a^2\text{Var}[X]
 \end{split}	
 \end{equation*}
+
+\subsection{Gemeinsame Verteilungen}
+
+\begin{equation*}
+\begin{split}
+	\text{Gemeinsame Gewichtsfunktion } p: \mathbb{R}^n \mapsto [0,1] \qquad & p(x_1,...,x_n) := P[X_1 = x_1,..., X_n = x_n] \\
+	\text{Gemeinsame Verteilungsfunktion } F: \mathbb{R}^n \mapsto [0,1] \qquad & F(x_1,...,x_n) = P[X_1 \leq x_1,..., X_n \leq x_n] \\
+	& = \sum_{y_1 \leq x_1,...,y_n \leq x_n} p(y_1,...,y_n)
+\end{split}
+\end{equation*}
+
+\emph{Veranschaulichung:} F{\"u}r die Zufallsvariablen $X$ und $Y$ beschreibt die gemeinsame Verteilungsfunktion die Wahrscheinlichkeit, dass der Vektor $(X,Y)$ in ein unendliches Rechteck der Form $(-\infty, X] \times (-\infty,y]$ f{\"a}llt.
+
+\subsubsection{Randverteilungen}
+
+Haben $X$ und $Y$ die gemeinsame Verteilungsfunktion $F$, so ist die Verteilungsfunktion der Randverteilung von $X$ gegeben durch:
+\begin{equation*}
+	F_X(x) := P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y \rightarrow \infty} F(x,y)
+\end{equation*}
+
+Analog dazu ist die Gewichtsfunktion der Randverteilung von $X$ gleich:
+\begin{equation*}
+	p_X(x) = P[X = x] = \sum_{y_i \in \mathcal{W}(Y)} P[X=x, Y=y_i] = \sum_{y_i \in \mathcal{W}(Y)} p(x, y_i) \text{ f{\"u}r } x \in \mathcal{W}(X)
+\end{equation*}
+
+\subsubsection{Unabh{\"a}ngigkeit}
+
+Die Zufallsvariablen $X_1,...,X_n$ heissen \textbf{unabh{\"a}ngig}, falls
+\begin{equation*}
+\begin{split}
+		\text{entweder} \quad & F(x_1,...,x_n) = F_{X_1}(x_1) \cdot\cdot\cdot F_{X_n}(x_n)  \\
+		\text{oder} \quad & p(x_1,...,x_n) = p_{X_1}(x_1) \cdot\cdot\cdot p_{X_n}(x_n)
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+	\text{unabh{\"a}ngig} \Rightarrow \text{paarweise unabh{\"a}ngig} \Rightarrow \text{unkorreliert}
+\end{equation*}
+
+\subsection{Funktionen von mehreren Zufallsvariablen}
+
+Seien $X_1,...,X_n$ diskrete Zufallsvariablen mit endlichen Erwartungswerten $E[X_1],...,E[X_n]$...
+
+\subsubsection{Summen von Erwartungswerte}
+
+Sei weiter $Y = a + \sum_{l=1}^n b_lX_l$ mit Konstanten $a,_1,...,b_n$, dann gilt:
+\begin{equation*}
+	E[Y] = a + \sum_{l=1}^n b_lE[X_l]
+\end{equation*}
+
+Es folgt, dass Erwartungswerte sich \textbf{immer linear verhalten}. Der Erwartungswert einer Summe von Zufallsvariablen ist also immer die Summe der Erwartungswerte.
 	
+\subsubsection{Summen von Varianzen}
+
+Die \textbf{Kovarianz} von $X$ und $Y$ ist wie folgt definiert:
+\begin{equation*}
+	\text{Cov}(X,Y) = E[X,Y] - E[X]E[Y] = E[(X - E[X])(Y-E[Y])]
+\end{equation*}
+
+Es gelten:
+\begin{equation*}
+\begin{split}
+	& \text{Cov}(X, X) = \text{Var}(X) \\
+	& \text{Cov}(X, Y) = 0 \Rightarrow \text{$X$ und $Y$ sind unkorreliert}
+\end{split}
+\end{equation*}
+
+Daraus folgt die \textbf{allgemeine Summenformel f{\"u}r Varianzen}:
+
+\begin{equation*}
+\begin{split}
+	\text{korreliert:} \quad & \text{Var}\Bigg[\sum_{i=1}^n X_i \Bigg] = \sum_{i=1}^n\text{Var}[X_i] + 2\sum_{i<j}\text{Cov}(X_i, X_j) \\
+	\text{unkorreliert:} \quad & \text{Var}\Bigg[\sum_{i=1}^n X_i \Bigg] = \sum_{i=1}^n\text{Var}[X_i]
+\end{split}
+\end{equation*}
+
+\subsubsection{Produkte von Zufallsvariablen und Varianzen}
+
+Falls $X_1,...X_n$ unabh{\"a}ngig sind und der Erwartungswert links {\"u}berhaupt existiert, gilt
+
+\begin{equation*}
+	E\Bigg[\prod_{i=1}^n X_i\Bigg] = \prod_{i=1}^n E[X_i]
+\end{equation*}
+
+In diesem Fall sind dann $X_1,...,X_n$ paarweise unkorreliert.
+
+\subsection{Bedingte Verteilungen}
+
+Seien $X$ und $Y$ diskrete Zufallsvariablen mit gemeinsamer Gewichtsfunktion $p(x, y)$. Die bedingte Gewichtsfunktion von $X$, gegeben dass $Y = y$, ist definiert durch
+\begin{equation*}
+	p_{X|Y}(x|y) := P[X=x|Y=y] = \frac{P[X=x,Y=y]}{P[Y=y]} = \frac{p(x,y)}{p_Y(y)}
+\end{equation*}
+
+\section{Wichtige Diskrete Verteilungen}
+
+
+
 \end{document}
