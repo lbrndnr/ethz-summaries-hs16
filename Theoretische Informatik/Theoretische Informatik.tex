@@ -115,7 +115,7 @@ Um zu zeigen, dass eine Sprache nicht regul{\"a}r ist ($L \notin \mathcal{L}_{EA
 
 \subsubsection{Lemma 3.3}
 
-Sei $A = (Q, \Sigma, \delta_A, q_0, F)$ ein EA. Seien weiter $x,y \in \Sigma^*$ mit $x \neq y$, so dass
+Sei $A = (Q, \Sigma, \delta_A, q_0, F)$ ein EA. Seien weiter $x,y \in \Sigma^*$ mit $x \neq y$, wobei $x$ und $y$ nicht unbedingt in $L$ sein muss, so dass
 \begin{equation*}
 	(q_0, x) \vdash_A^* (p, \lambda)\quad\text{und}\quad (q_0, y) \vdash_A^* (p, \lambda)
 \end{equation*}
@@ -155,9 +155,42 @@ Sei $L \subseteq \Sigma_\text{bool}^*$ eine regul{\"a}re Sprache. Sei $L_x = \{y
 \end{equation*}
 
 falls $y$ das $n$-te Wort in der Sprache $L$ ist.
+
+\subsection{Reguläre Ausdrücke}
+
+Die Menge $RA(\Sigma)$ aller regulären Ausdrücke über dem Alphabet $\Sigma$ ist rekursiv definiert durch:
+\begin{equation*}
+\begin{split}
+	\lambda \in RA(\Sigma),\ \emptyset \not\in RA(\Sigma) \qquad & L(\lambda) = \{\lambda\},\ L(\emptyset) = \{\emptyset\} \\
+	a \in RA(\Sigma) \text{ für alle } a \in \Sigma \qquad & L(a) = \{a\} \\
+	\alpha, \beta \in RA(\Sigma) \Rightarrow (\alpha, \beta) \in RA(\Sigma) \qquad & L(\alpha, \beta) = L(\alpha) \cdot L(\beta) \\
+	\alpha, \beta \in RA(\Sigma) \Rightarrow (\alpha + \beta) \in RA(\Sigma) \qquad & L(\alpha + \beta) = L(\alpha) \cup L(\beta) \\
+	\alpha \in RA(\Sigma) \Rightarrow \alpha^* \in RA(\Sigma) \qquad & L(\alpha^*) = (L(\alpha))^*
+\end{split}
+\end{equation*}
 	
 \subsection{Nichtdeterminismus}	
 
-Ein \textbf{nichtdeterministischer endlicher Automat} (NEA) ist ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$.
+Ein \textbf{nichtdeterministischer endlicher Automat} (NEA) ist wie ein endlicher Automat ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$. Der einzige Unterschied ist, dass ein NEA zu einem Zustand $q$ und gelesenen Zeichen $a$ zu mehreren oder gar keinem Zustand {\"u}bergehen kann. \\
+Dementsprechend ist $x$ in $L(M)$, falls es mindestens eine akzeptierte Berechnung auf $x$ gibt. Zus{\"a}tzlich kann eine nicht akzeptierte Berechnung auch fr{\"u}hzeitig enden, falls von dem momentanen Zustand $q$ keine weiteren Zust{\"a}nde f{\"u}r das gelesene Zeichen gibt ($\delta(q, a) = \emptyset$).
+
+\begin{equation*}
+	L(M) = \{w \in \Sigma^*\ |\ \hat\delta(q, a) \cap F \neq \emptyset\}
+\end{equation*}
+
+Ausserdem gilt $\mathcal{L}_{NEA} = \mathcal{L}_{EA}$: Zu jedem NEA $M$ existiert ein EA $A$, so dass
+\begin{equation*}
+	L(M) = L(A)
+\end{equation*}
+
+\subsubsection{$\lambda$-NEA}
+
+$\lambda$-NEAs sind genau gleich definiert wie NEAs, also auch ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$. Die Übergangsfunktion $\delta$ ist jedoch wie folgt definiert:
+\begin{equation*}
+	\delta: (Q\times(\Sigma \cup \{\lambda\})) \mapsto Q
+\end{equation*}
+Es kann also zusätzlich auch dass leere Wort $\lambda$ eingelesen werden. \\
+
+Durch die Elimination der $\lambda$-Kanten lässt sich auch zeigen, dass $\mathcal{L}_{\lambda-NEA} = \mathcal{L}_{NEA}$.
 
 \end{document}
