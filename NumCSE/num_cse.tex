@@ -12,7 +12,7 @@
  
 \geometry{
  a4paper,
- left=20mm,
+ left=15mm,
  top=15mm,
  bottom=25mm
  }
@@ -274,6 +274,51 @@ If a, b are nearly parallel: $p \approx 0$ $\rightarrow$ Cancellation
 \begin{center}
 	 \includegraphics[width=0.6\textwidth]{stable_algorithm2.png}
 \end{center}
+
+% -------------------------------------------------------------
+% Direct Methods for Linear Systems of Equations
+% -------------------------------------------------------------
+\newpage
+\section{Direct Methods for Linear Systems of Equations}
+
+
+
+
+% -------------------------------------------------------------
+% Direct Methods for Linear Least Squares Problems
+% -------------------------------------------------------------
+\newpage
+\section{Direct Methods for Linear Least Squares Problems}
+
+- uebersichtstabelle
+
+\subsection{General - Least Squares}
+
+\subsection{Solution Concepts}
+
+\subsection{Normal Equation method (std. / extd.)}
+
+\subsection{Orthogonal Transformation method}
+ 
+\subsection{Singular Value Decomposition (SVD)}
+
+\subsection{Total Least Squares}
+
+\subsection{Constrained Least Squares}
+
+!! Some data are considered accurate $\rightarrow$ mix interpolation and least squares fitting
+
+\begin{tcolorbox}
+\textbf{Linear least squares problem with linear constraint:}
+
+Given: \\
+$A \in \R^{m,n}, m \geq n, rank(A) = n, b \in \R^{m}$\\
+ $C \in \R^{p,n}, m < n, rank(C) = p, d \in \R^{p}$ \\
+
+Find: \\
+$x \in \R^{n}$ with $ \lVert Ax - b\rVert_{2} \rightarrow min $, \quad \quad $Cx =d$ (linear constraint)	
+\end{tcolorbox}
+
 
 
 
