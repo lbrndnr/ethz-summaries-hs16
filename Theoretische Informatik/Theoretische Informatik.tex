@@ -168,6 +168,12 @@ Die Menge $RA(\Sigma)$ aller regulären Ausdrücke über dem Alphabet $\Sigma$ i
 	\alpha \in RA(\Sigma) \Rightarrow \alpha^* \in RA(\Sigma) \qquad & L(\alpha^*) = (L(\alpha))^*
 \end{split}
 \end{equation*}
+
+Sei $\alpha_{ij}^{(k)}$ der reguläre Ausdruck, der alle Transitionen vom Zustand $i$ zu Zustand $j$ über die Zwischenzustände $k \in \{0,...,k\}$ beschreibt. Das heisst, es wird kein Zwischenzustand (Start- und Endzustand ausgenommen) $q$ berührt, mit $q > k$.
+
+\begin{equation*}
+	\alpha_{ij}^{(k)} = \alpha_{ij}^{(k-1)} + \alpha_{ik}^{(k-1)}\cdot (\alpha_{kk}^{(k-1)})^* \cdot \alpha_{kj}^{(k-1)}
+\end{equation*}
 	
 \subsection{Nichtdeterminismus}	
 
