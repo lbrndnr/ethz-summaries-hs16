@@ -303,8 +303,9 @@ If a, b are nearly parallel: $p \approx 0$ $\rightarrow$ Cancellation
  
 \subsection{Singular Value Decomposition (SVD)}
 
-\subsection{Total Least Squares}
 
+%--------------------------------
+\subsection{Total Least Squares}
 We have generally considered overdetermined linear systems of equations $Ax = b$, for which only the right handside vector b was affected by measurement errors. But it is also possible that A and b are perturbed (affected by measurements errors)!
 
 \begin{tcolorbox}
@@ -408,8 +409,8 @@ Tensor Product	   & $xy^T$               & $O(mn)$			    \\ \hline
 Matrix Product	   & $AB$             	  & $O(mnk)$			    \\ \hline
 Kronecker Product  & $A \otimes C$        & $O(mngh)$			\\ \hline
 Gaussian Elimination (without pivoting) & $Ax = y$        & $O(n^3)$			\\ \hline
-LU decomposition (setup phase) & $D$.lu()  & $O(n^3)$			\\ \hline
-LU decomposition (elimination phase) & $D$.lu().solve($x$)  & $O(n^2)$			\\ \hline
+LU decomposition (setup phase) & $Dlu = D$.lu()  & $O(n^3)$			\\ \hline
+LU decomposition (elimination phase) & $Dlu$.solve($x$)  & $O(n^2)$			\\ \hline
 Householder QR & $A$.householderQr()  & $O(mn^2)$			\\ \hline
 Economical SVD & & $O(\min(m, n)^2\cdot\max(m,n))$ \\ \hline
 \end{tabular}
