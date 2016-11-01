@@ -109,6 +109,11 @@ Zus{\"a}tzliche sind folgende Operationen definiert:
 	Die Aussage $\hat\delta(q, w) = p$ bedeutet, dass wenn $M$ im Zustand $q$ das Wort $w$ zu lesen beginnt, dann endet $M$ im Zustand $p$.
 \end{description}
 
+Zwei endliche Automaten $A$ und $B$ heissen \textbf{{\"a}quivalent}, falls gilt:
+\begin{equation*}
+	L(A) = L(B)
+\end{equation*}
+
 \subsection{Nichtexistenz}
 
 Um zu zeigen, dass eine Sprache nicht regul{\"a}r ist ($L \notin \mathcal{L}_{EA}$), gen{\"u}gt es, zu beweisen, dass es keinen Automaten gibt, der die Sprache akzeptiert.
@@ -198,5 +203,35 @@ $\lambda$-NEAs sind genau gleich definiert wie NEAs, also auch ein Tupel $M = (Q
 Es kann also zusätzlich auch dass leere Wort $\lambda$ eingelesen werden. \\
 
 Durch die Elimination der $\lambda$-Kanten lässt sich auch zeigen, dass $\mathcal{L}_{\lambda-NEA} = \mathcal{L}_{NEA}$.
+
+\section{Grammatiken}
+
+Eine Grammatik $G = (\Sigma_N, \Sigma_T, P, S)$ ist ein Tupel mit $\Sigma = \Sigma_N \cup \Sigma_T$:
+
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=3cm, noitemsep]
+	\item[$\Sigma_N$:] Die Nichtterminalsymbole spielen die Rolle von Variablen und dürfen in der Sprache nicht vorkommen.
+	\item[$\Sigma_T$:] Die Terminalsymbole, die bisherige Nutzung zur Gestaltung von Wörtern aus der betrachteten Sprache.
+	\item[$S \in \Sigma_N$:] Das Startsymbol
+	\item[$P$:] Die Menge der Ableitungsregeln ist eine Teilmenge von $\Sigma^*\Sigma_N\Sigma^* \times \Sigma^*$
+	\item[$(\alpha, \beta) \in P$:] Die Regel, die besagt, dass $\alpha$ kann in $G$ durch $\beta$ ersetzt werden (auch $\alpha \rightarrow_G \beta$)
+\end{description}
+
+Sei weiter $\gamma, \delta \in \Sigma^*$, dann sagen wir dass $\delta$ aus $\gamma$ in einem Ableitungsschritt in $G$ ableitbar ist, genau dann wenn $w_1$ und $w_2 \in \Sigma^*$ und eine Regel $(\alpha, \beta) \in P$ existieren, so dass
+\begin{equation*}
+	\gamma \Rightarrow_G \delta :\Leftrightarrow \gamma = w_1\alpha w_2 \text{ und } w_1\beta w_2
+\end{equation*}
+
+Weiter bedeutet, $S \Rightarrow_G^* w$, dass $w$ von $G$ erzeugt wird. Die von $G$ erzeugte Sprache ist:
+\begin{equation*}
+	L(G) = \{w \in \Sigma^*_T\ |\ S \Rightarrow_G^* w\}
+\end{equation*}
+
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=5.5cm, noitemsep]
+	\item[Typ-0:] Die Klasse der allgemeinen, uneingeschränkten Grammatiken
+	\item[kontextsensitiv/Typ-1:] $|\alpha| \leq |\beta|$ für alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass mein kein Teilwort $\alpha$ durch ein kürzeres Teilwort $\beta$ ersetzen kann.
+	\item[kontextfrei/Typ-2:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma^*$ für alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass alle Regeln die Form $X \rightarrow \beta$ für ein Nichtterminal $X$ haben.
+	\item[regulär/Typ-3:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma_T^*\cdot\Sigma_N \cup \Sigma_T^*$ für alle Regeln $(\alpha, \beta) \in P$. Das bedeutet, dass die Regeln die Form $X \rightarrow u$ oder $X \rightarrow uY$ für ein $u \in \Sigma_T^*, X,Y \in \Sigma_N$ haben.
+\end{description}
+
 
 \end{document}

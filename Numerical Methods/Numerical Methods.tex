@@ -8,7 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{tcolorbox}
-
+\usepackage{float}
  
 \geometry{
  a4paper,
@@ -320,7 +320,25 @@ $x \in \R^{n}$ with $ \lVert Ax - b\rVert_{2} \rightarrow min $, \quad \quad $Cx
 \end{tcolorbox}
 
 
+\section{Operation Costs}
 
+Consider $x, y \in \mathbb{R}^n$, $A \in \mathbb{R}^{m,n}$, $B \in \mathbb{R}^{n,k}$, $C \in \mathbb{R}^{g,h}$ and $D \in \mathbb{R}^{n,n}$
 
- 
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Operation} & \textbf{Description} & \textbf{Complexity} \\ \hline
+Dot Product 	   & $x^Ty$ 				  & $O(n)$              \\ \hline
+Tensor Product	   & $xy^T$               & $O(mn)$			    \\ \hline
+Matrix Product	   & $AB$             	  & $O(mnk)$			    \\ \hline
+Kronecker Product  & $A \otimes C$        & $O(mngh)$			\\ \hline
+Gaussian Elimination (without pivoting) & $Ax = y$        & $O(n^3)$			\\ \hline
+LU decomposition (setup phase) & $D$.lu()  & $O(n^3)$			\\ \hline
+LU decomposition (elimination phase) & $D$.lu().solve($x$)  & $O(n^2)$			\\ \hline
+Householder QR & $A$.householderQr()  & $O(mn^2)$			\\ \hline
+Economical SVD & & $O(\min(m, n)^2\cdot\max(m,n))$ \\ \hline
+\end{tabular}
+\end{table}
+
 \end{document}
