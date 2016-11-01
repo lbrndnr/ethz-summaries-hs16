@@ -20,6 +20,7 @@
 \graphicspath{ {images/} } 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\M}{\mathbb{M}}
+\newcommand{\argmin}{\arg\!\min} 
  
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -304,13 +305,44 @@ If a, b are nearly parallel: $p \approx 0$ $\rightarrow$ Cancellation
 
 \subsection{Total Least Squares}
 
+We have generally considered overdetermined linear systems of equations $Ax = b$, for which only the right handside vector b was affected by measurement errors. But it is also possible that A and b are perturbed (affected by measurements errors)!
+
+\begin{tcolorbox}
+\textbf{Given:}\\
+$Ax = b$ (overdetermined linear system of equations) \\
+$m \geq n$, $rank(A)=n$ ,  $b \in \R^{m}$\vspace{2mm}\\
+\textbf{Known:}  \\
+LSE would be solvable if A, b were not perturbed  \vspace{2mm}\\
+\textbf{Task:} \\
+Find the nearest solvable LSE \\
+$\rightarrow  \hat A \in \R^{m,n}$ ,  $\hat b \in \R^{m}$ with: \\
+\[ \lVert \lbrack A \text{ }b \rbrack - \lbrack \hat A \text{ } \hat b \rbrack\rVert_{F} \rightarrow min, \quad \hat b \in \mathcal{R}(\hat A) \] 
+\end{tcolorbox}
+
+
+$\Rightarrow \lbrack \hat A \text{ } \hat b \rbrack \in \R^{m, n+1}$ \textbf{is the rank-n best approximation of}  $\lbrack A \text{ }b \rbrack$ \\
+
+\textbf{Calculation:} \\
+(1) SVD of $\lbrack A \text{ }b \rbrack = U \Sigma V^{T}$, \quad \quad $V \in \R^{n+1, n+1}$ \\
+\[ \lbrack A \text{ }b \rbrack =  U \Sigma V^{T} = \sum_{j=1}^{n+1} \sigma_j (U)_{:,j} (V)_{:,j}^{T} \quad \Rightarrow \quad  \lbrack \hat A \text{ } \hat b \rbrack = \color{red}\sum_{j=1}^{n} \color{black}\sigma_j (U)_{:,j} (V)_{:,j}^{T} \]
+\begin{center}
+$\Rightarrow \hat A = (\lbrack \hat A \text{ } \hat b \rbrack )_{1:n, 1:n}$, \quad $\hat b = (\lbrack \hat A \text{ } \hat b \rbrack )_{1:n, n+1}$ \vspace{2mm}\\
+	Due to orthogonality: $\lbrack \hat A \text{ } \hat b \rbrack (V)_{:n+1} = 0$
+	\vspace{10mm}\\
+
+	$x = \hat A^{-1} \hat b =\color{red} ... (correct formula)...$
+ 
+\end{center}
+
+
+%--------------------------------
 \subsection{Constrained Least Squares}
 
 !! Some data are considered accurate $\rightarrow$ mix interpolation and least squares fitting
 
 \begin{tcolorbox}
 \textbf{Linear least squares problem with linear constraint:}
-
+\vspace{2mm} \\
 Given: \\
 $A \in \R^{m,n}, m \geq n, rank(A) = n, b \in \R^{m}$\\
  $C \in \R^{p,n}, m < n, rank(C) = p, d \in \R^{p}$ \\
@@ -319,7 +351,49 @@ Find: \\
 $x \in \R^{n}$ with $ \lVert Ax - b\rVert_{2} \rightarrow min $, \quad \quad $Cx =d$ (linear constraint)	
 \end{tcolorbox}
 
+\subsubsection{Solution with normal equations (and Lagrange parameter)}
 
+\textbf{Idea:} coupling the constraint using the Lagrange multiplier $m \in R^{p}$
+
+\begin{equation*}
+	x = \argmin_{x \in \R^{n}}  \max_{m \in \R^{p}} L(x,m)  \quad \longrightarrow \quad L(x,m) ) := \frac{1}{2} \lVert Ax - b\rVert^{2} + m^{T} (Cx - d)
+\end{equation*}
+
+Simple heuristics behind Lagrange multipliers: $\max_{m \in \R^{p}} L(x,m) = \infty $ in case of: $Cx \not = d$
+
+\begin{equation*}
+	\text{Augmented normal equation: \quad}
+  	\begin{bmatrix}
+  		A^{T}A 	& C^{T} \\
+  		C 			& 0 
+  	\end{bmatrix}
+  	\begin{bmatrix}
+  		x \\
+  		m
+  	\end{bmatrix} 
+  	=
+  	\begin{bmatrix}
+  		A^{T}b \\
+  		d
+  	\end{bmatrix} 
+\end{equation*}
+
+\subsubsection{Solution with SVD}
+\textbf{Idea:} identify the subspace in which the solution can vary without violating the constraint. Since C has fullrank, this subspace agrees with the nullspace/kernel of C.
+\vspace{3mm} \\
+(1) Compute orthonorm. basis of $\mathcal{N}(C)$ using SVD \\
+\[ ... \text{fill with explanation} ... \]
+(2) Calculate particular solution of the constraint equation: \\
+\[ x_0 := V_1\Sigma^{-1}U^{T}d \] 
+(3) Representation of the solution x: \\
+\[ x =x_0 + V_2y, \quad  y \in \R^{n-p}\]
+(4) Insert in Std. LSE representation:  \\
+\[ \lVert A(x_0 + V_2y) - b\rVert_{2} \rightarrow min \]
+
+%-------------------------------------------------------
+% Operation Costs
+%-------------------------------------------------------
+\newpage
 \section{Operation Costs}
 
 Consider $x, y \in \mathbb{R}^n$, $A \in \mathbb{R}^{m,n}$, $B \in \mathbb{R}^{n,k}$, $C \in \mathbb{R}^{g,h}$ and $D \in \mathbb{R}^{n,n}$
