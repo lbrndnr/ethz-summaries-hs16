@@ -230,8 +230,18 @@ Weiter bedeutet, $S \Rightarrow_G^* w$, dass $w$ von $G$ erzeugt wird. Die von $
 	\item[Typ-0:] Die Klasse der allgemeinen, uneingeschränkten Grammatiken
 	\item[kontextsensitiv/Typ-1:] $|\alpha| \leq |\beta|$ für alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass mein kein Teilwort $\alpha$ durch ein kürzeres Teilwort $\beta$ ersetzen kann.
 	\item[kontextfrei/Typ-2:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma^*$ für alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass alle Regeln die Form $X \rightarrow \beta$ für ein Nichtterminal $X$ haben.
-	\item[regulär/Typ-3:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma_T^*\cdot\Sigma_N \cup \Sigma_T^*$ für alle Regeln $(\alpha, \beta) \in P$. Das bedeutet, dass die Regeln die Form $X \rightarrow u$ oder $X \rightarrow uY$ für ein $u \in \Sigma_T^*, X,Y \in \Sigma_N$ haben.
+	\item[regulär/Typ-3:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma_T^*\cdot\Sigma_N \cup \Sigma_T^*$ für alle Regeln $(\alpha, \beta) \in P$. Das bedeutet, dass die Regeln die Form $X \rightarrow u$ oder $X \rightarrow uY$ für ein $u \in \Sigma_T^*, X,Y \in \Sigma_N$ haben (enthält höchstens ein Nichtterminal welches nur als letztes Symbol vorkommen darf).
+	\item[normiert:] falls alle Regeln nur eine der folgenden drei Regeln haben:
+	\begin{enumerate}[label=(\roman*), noitemsep]
+		\item $S \rightarrow \lambda$, wobei S das Startsymbol ist
+		\item $A \rightarrow a$ für $A \in \Sigma_N$ und $a \in \Sigma_T$
+		\item $B \rightarrow bC$ für $B,C \in \Sigma_N$ und $b \in \Sigma_T$ 
+	\end{enumerate}
 \end{description}
 
+Es gilt:
+\begin{equation*}
+	\mathcal{L}_3 = \mathcal{L}_{EA}
+\end{equation*}
 
 \end{document}
