@@ -12,8 +12,8 @@
  
 \geometry{
  a4paper,
- left=15mm,
- top=15mm,
+ left=20mm,
+ top=20mm,
  bottom=25mm
  }
 \parindent0pt
@@ -66,40 +66,127 @@
 
 \subsection{Floating Point numbers}
 
-\subsection{Dense Matrix}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{floatingPoint_IEEE_layout.png}
+\end{center}
+
+\begin{tcolorbox}
+	\textbf{Value of the IEEE-FloatingPoint number:} 
+	\hspace{-4mm}
+	\begin{center}
+		$\color{blue}\mathbf{-1^{S} \times (1.0 + 0.M) \times B^{E-bias}}$ 
+	\end{center}
+	
+ S = sign \\
+ M = mantissa \\
+ B = Basis $\in \mathbb{N}-\lbrace 1 \rbrace$ \\
+ E = exponent  $\rightarrow $ Exponent range: $\lbrace e_{min}, ..., e_{max} \rbrace e_{min}, e_{max} \in \mathbb{Z}, e_{min} < e_{max}$ \\
+ bias = 127 (single precision), 1023 (Double precision)
+\end{tcolorbox}
+
+\textbf{Largest machine number:} $x_{max} = \max|\M| = (1 - B^{-m}) \cdot  B^{e_{max}} $ \\
+\textbf{Smallest machine number:} $x_{min} = \min|\M| = B^{-1} \cdot B^{e_{min}}$ \\
+
+\underline{No suprise:} For modern computers $B = 2$ (binary system), the other parameters of universally implemented machine number system are:
+\begin{itemize}
+	\item single precision: $m=23, E \in \lbrace -125, ..., 128\rbrace \blacktriangleright$ 4 bytes 
+	\item double precision: $m=52, E \in \lbrace -1021, ..., 1024 \rbrace \blacktriangleright $ 8 bytes 
+\end{itemize}
 
 
-\subsection{Sparse Matrix}
-“almost all” entries = 0 /“only a few percent of” entries $\not =$ 0"
+% ------------
+% Dense Matrices
+\subsection{Dense Matrices}
+\begin{tcolorbox}
+	Dense(=generic) matrices store every entry in the matrix \textbf{(not many entries=0)}.  \vspace{-1mm}\\
+	$\rightarrow$ All numerical libraries store the entries of a dense matrix $A /in \K^{m,n}$ in a \textbf{linear array of length $\color{red}\mathbf{mn}$ (or longer)}. 
+\end{tcolorbox}
 
-\subsubsection{Build Matrix using Triples}
+\textbf{Vectorisation options:} \\ 
+\begin{center}
+\includegraphics[width=0.9\textwidth]{DenseMatrix.png}
+\end{center}
 
-\begin{lstlisting}[language=C++, caption=Triplet example]
-//Definition of a SparseMatrix
-SparseMatrix<double> C(n,m);
+\textbf{$\rightarrow$ Remark:} Eigen Default: ColumnMajor
 
-//TripletList to save some triplets
-std::vector<Triplet<double>> tripletList;
-
-//Triplet entry
-Triplet<double> triplet (i, j, value); 	 
-//Saving Triplet in TripletList
-tripletList.push_back(triplet);
+% ------------
+% Sparse Matrices
+\subsection{Sparse Matrices}
+\begin{tcolorbox}
+	“almost all” entries = 0 /“only a few percent of” entries $\not =$ 0"
+\end{tcolorbox}
 
 
-//Fill Sparse Matrix with triplets in tripletList
-C.setFromTriplets(tripletList.begin(), tripletList.end());
-//Compress Sparse Matrix
-C.makeCompressed();
+
+
+\subsubsection{Special storage formats for sparse matrices}
+\textbf{- COO (Triplet/Coordinate format)} \\
+Case: Sparse matrix $A \in \K^{m,n}$, this format stores triplets $(i, j, \alpha_{i,j}, 1\leq i \leq m, 1\leq j \leq n:$
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{SparseMatrix_COO.png}
+\end{center}
+
+All vectors have same size $\geq nnz(a)$, because repetitions of index pairs $(i,j)$ are allowed. \\
+
+\textbf{- CRS (Compressed row storage)} \\
+CRS format for a sparse matrix $A = (a_{ij}) \in \K^{n,n}$ keeps the data in three arrays:
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{SparseMatrix_CRS_structure.png}
+\end{center}
+
+Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{SparseMatrix_CRS.png}
+\end{center}
+
+\textbf{Remark:} The CCS format is equivalent to the CRS format for the transposed matrix. \\
+
+\subsubsection{Creating sparse matrices in Eigen}
+
+\begin{lstlisting}[language=C++, caption=sparse matrix creation]
+	#include <Eigen/Sparse>
+	using namespace Eigen;
+	
+	
+	// ----------------------------------
+	// Creating CRS format Matrix
+	SparseMatrix<double, Eigen::RowMajor> ExampleMatrix(rows, cols); 
+	
+	// ----------------------------------
+	// Creating Matrix from Triplets
+	// Definition of a SparseMatrix
+	SparseMatrix<double> C(n,m);
+
+	// TripletList to save some triplets (COO format)
+	std::vector<Triplet<double>> tripletList;
+
+	// Triplet entry
+	Triplet<double> triplet (i, j, value); 	 
+	// Saving Triplet in TripletList
+	tripletList.push_back(triplet);
+
+
+	//Fill Sparse Matrix with triplets in tripletList
+	C.setFromTriplets(tripletList.begin(), tripletList.end());
+	//Compress Sparse Matrix
+	C.makeCompressed();
+
+
 \end{lstlisting}
 
-\subsubsection{Special storage formats}
-\paragraph{- COO (Triplet/Coordinate format)}
-\paragraph{- CRS (Compressed row storage)}
-\hspace{2mm}
 
-\includegraphics[width=0.8\textwidth]{SparseMatrix_CRS.png}
 
+\subsection{Important Eigen Commands}
+
+\subsubsection{Initializing Matrices, Vectors}
+
+\subsubsection{Matrix Access}
+values, block, ...
+
+
+\subsubsection{Operations}
+...
 
 
 
