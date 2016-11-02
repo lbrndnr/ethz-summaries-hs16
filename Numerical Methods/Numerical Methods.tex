@@ -20,6 +20,7 @@
 \graphicspath{ {images/} } 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\M}{\mathbb{M}}
+\newcommand{\K}{\mathbb{K}}
 \newcommand{\argmin}{\arg\!\min} 
  
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -278,13 +279,34 @@ If a, b are nearly parallel: $p \approx 0$ $\rightarrow$ Cancellation
 \end{center}
 
 % -------------------------------------------------------------
-% Direct Methods for Linear Systems of Equations
+% Linear systems of equations
 % -------------------------------------------------------------
 \newpage
-\section{Direct Methods for Linear Systems of Equations}
+\section{Linear Systems of Equations}
+
+\subsection{Sensitivity of Linear Systems}
+
+The Sensitivity of a problem (for given data) gauges the impact of small perturbations of the data on the result.
+
+\begin{equation*}
+	\textbf{Condition Number of a Matrix } A \in \R^{n,n}:\quad \text{cond}(A) := ||A^{-1}||\cdot||A||
+\end{equation*}
+
+\begin{center}
+ 			\vspace{2mm}
+		\textbf{small} changes of data $\Rightarrow$ \textbf{large} perturbation of result $\Rightarrow$ \textbf{ill}-conditioned problem $\Rightarrow$ $\text{cond}(A) >> 1$ $\Rightarrow$ columns/rows of $A$ are almost linearly dependent \\
+\end{center}
 
 
+\subsection{LSE with low-rank perturbation}
 
+Given $A \in \K^{n,n} \mapsto \tilde{A} := A + uv^H$ we can use the \textbf{Sherman-Morrison-Woodburry formula} to solve $\tilde{A}\tilde{x} = b$ more efficiently provided that the $LU$ decomposition of $A$ is already known.
+
+\begin{equation*}
+	\tilde{x} = \textcolor{orange}{A^{-1}b}-\frac{\textcolor{red}{A^{-1}u}(v^H(\textcolor{orange}{A^{-1}b}))}{1+v^H(\textcolor{red}{A^{-1}u})}
+\end{equation*}
+
+Note that $\textcolor{orange}{A^{-1}b}$ und $\textcolor{red}{A^{-1}u}$ can be computed more efficiently using the $LU$ decomposition of $A$. The resulting complexity is $O(n^2)$.
 
 % -------------------------------------------------------------
 % Direct Methods for Linear Least Squares Problems
@@ -411,6 +433,8 @@ Tensor Product	   & $xy^T$               & $O(mn)$			    \\ \hline
 Matrix Product	   & $AB$             	  & $O(mnk)$			    \\ \hline
 Kronecker Product  & $A \otimes C$        & $O(mngh)$			\\ \hline
 Gaussian Elimination (without pivoting) & $Ax = y$        & $O(n^3)$			\\ \hline
+Gaussian Elimination (triangular) & $Ax = y$        & $O(n^2)$			\\ \hline
+Gaussian Elimination (arrow) & $Ax = y$        & $O(n)$			\\ \hline
 LU decomposition (setup phase) & $Dlu = D$.lu()  & $O(n^3)$			\\ \hline
 LU decomposition (elimination phase) & $Dlu$.solve($x$)  & $O(n^2)$			\\ \hline
 Householder QR & $A$.householderQr()  & $O(mn^2)$			\\ \hline
