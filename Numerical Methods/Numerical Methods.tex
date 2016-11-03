@@ -52,7 +52,7 @@
  
  % -------------------------------------------------------------
 \title{Numerical Methods for CSE}
-\author{Nino Scherrer \thanks{based on NumCSE script from Prof. Dr. Hiptmaier}}
+\author{Nino Scherrer, Laurin Brandner \thanks{based on NumCSE script from Prof. Ralf Hiptmair}}
 \date{FS2016}
  
 \begin{document}
@@ -203,31 +203,74 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 
 
-\subsubsection{Matrix Access}
+\subsubsection{Matrix/Vector Access}
 \begin{lstlisting}[language=C++, caption=matrix manipulation]
 	
-	// Get col, row size of matrix
+	// Get col, row size of matrix & number of elements
+	int cols = A.cols();
+	int rows = A.rows();
+	std::cout << "It has " << m.size() << " coefficients" << std::endl;
 	
-	// Get entry
+	// Get size of vector m (nr. of elements = size)
+	int elements = m.size()
+		
+	// Get entry of matrix --> Example A(2,3) value
+	int entryValue = A(2,3);
 	
-	// Get row, column
+	// Get i'th row, column from matrix A
+	std::cout << A.col(J)  << std::endl;
+	std::cout << A.row(i) << std::endl;
 	
-	// Get upper k element vom nx1 vector
+	// Block containing the first q rows (matrix)
+	std::cout << matrix.topRows(q) << std::endl;
 	
-	// Get block(submatrix)
+	// Block containing the first n elements (vector)
+	std::cout <<	vector.head(n)	<< std::endl;
 	
-	
+	// Get block(submatrix) --> Block starting from (0,0) with dimension ixi
+	std::cout << M.block(0,0,i,i) << std::endl;
 \end{lstlisting}
 
 
 \subsubsection{Matrix Reshapening}
-
+...
 
 \subsubsection{Operations}
 ...
 
+\subsubsection{Runtime plotting with FigureClass}
+...
 
-\subsubsection{Runtime ploting with FigureClass}
+\subsubsection{Solvers for LSE in Eigen }
+	\begin{lstlisting}[language=C++, caption=LSE solvers]
+	
+	// Gaussian elimination with partial pivoting, Code 2.3.41
+	x = A. lu().solve(b); // lu() is short for partialPivLu()
+	
+	// Gaussian elimination with total pivoting
+	x = A. fullPivLu().solve(b); // total pivoting
+	
+	// An elimination solver based on Householder transformations		
+	Eigen::HouseholderQR<MatrixXd> solver(A);	x = solver.solve(b) ;	
+	
+	// Use singular value decomposition (SVD)	
+	x = A.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).solve(b);	
+		
+	\end{lstlisting}
+
+
+\subsubsection{Solvers for sparse LSE}
+	\begin{lstlisting}[language=C++, caption=LSE solvers (sparse)]
+		Eigen::SparseLU<SparseMatrix> solver(A) ;
+		x = solver.solve(b) ;
+	\end{lstlisting}
+
+\begin{tcolorbox}
+	When solving linear systems of equations directly dedicated sparse elimination \textbf{solvers from numerical libraries} have to be used! \\
+		$\rightarrow$ System matrices are passed to these algorithms in sparse storage formats to convey information about zero entries.	
+\end{tcolorbox}
+
+
 
 
 
@@ -412,23 +455,34 @@ If a, b are nearly parallel: $p \approx 0$ $\rightarrow$ Cancellation
 \newpage
 \section{Linear Systems of Equations}
 
+\subsection{Existence and Uniqueness of solutions}
+...
+
 \subsection{Sensitivity of Linear Systems}
 
-The Sensitivity of a problem (for given data) gauges the impact of small perturbations of the data on the result.
+The Sensitivity of a problem (for given data) gauges the impact of small perturbations of the data on the result. \\
 
-\begin{equation*}
+\begin{tcolorbox}
+		\vspace{-5mm}
+	\begin{equation*}
 	\textbf{Condition Number of a Matrix } A \in \R^{n,n}:\quad \text{cond}(A) := ||A^{-1}||\cdot||A||
-\end{equation*}
+	\end{equation*}
+\end{tcolorbox}
 
 \begin{center}
- 			\vspace{2mm}
 		\textbf{small} changes of data $\Rightarrow$ \textbf{large} perturbation of result $\Rightarrow$ \textbf{ill}-conditioned problem $\Rightarrow$ $\text{cond}(A) >> 1$ $\Rightarrow$ columns/rows of $A$ are almost linearly dependent \\
 \end{center}
+
+\textbf{Remark:} If $cond(A) \gg 1$, a stable algorithm can produce solutions with large rel. error!
 
 
 \subsection{LSE with low-rank perturbation}
 
-Given $A \in \K^{n,n} \mapsto \tilde{A} := A + uv^H$ we can use the \textbf{Sherman-Morrison-Woodburry formula} to solve $\tilde{A}\tilde{x} = b$ more efficiently provided that the LU-decomposition of $A$ is already known.
+\begin{tcolorbox}
+Adding a tensor product of two vectors to a matrix := \textbf{rank-1 modification}	
+\end{tcolorbox}
+
+Given $A \in \K^{n,n} \mapsto \mathbf{\color{blue}\tilde{A} := A + uv^H}$ we can use the \textbf{Sherman-Morrison-Woodburry formula} to solve $\tilde{A}\tilde{x} = b$ more efficiently provided that the LU-decomposition of $A$ is already known.
 
 \begin{equation*}
 	\tilde{x} = \textcolor{orange}{A^{-1}b}-\frac{\textcolor{red}{A^{-1}u}(v^H(\textcolor{orange}{A^{-1}b}))}{1+v^H(\textcolor{red}{A^{-1}u})}
@@ -444,9 +498,35 @@ Note that $\textcolor{orange}{A^{-1}b}$ und $\textcolor{red}{A^{-1}u}$ can be co
 
 A \textbf{fill-in} at position $(i,j)$ of the decomposition $A=LU$ occurs if $a_{ij} = 0$ but $u_{ij} \neq 0$ or $l_{ij} \neq 0$.
 
+\subsubsection{Using LU factorization to solve a LSE}
+Solving a $n \times n$ linear system of equations by LU factorization:
+\begin{enumerate}
+	\item LU decomposition: \hspace{8mm} $A=LU$ \hspace{3mm} $\rightarrow O(n^3)$
+	\item Forward substitution: \hspace{4mm} $Lz=b$ \hspace{5mm} $\rightarrow O(n^2)$
+	\item Backward substitution: \hspace{2mm} $Ux=z$ \hspace{3mm} $\rightarrow O(n^2)$
+\end{enumerate}
+
+
 \subsubsection{Arrow Matrices}
 
 The LU-decomposition of an arrow matrix pointing into the upper left corner leads to massive fill-in, one that points to the bottom right corner doesn't, however. Thus, it's easier to transform one into the other via a permutation matrix. The resulting decomposition without pivoting requires only $O(n)$.
+
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{arrow_matrix.png}
+\end{center}
+
+\begin{tcolorbox}
+	\vspace{1mm}
+	\textbf{Remark for solving LSE with arrow matrix:}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{arrow_matrix_inverse.png} \\
+		$\rightarrow$ A, L, U are sparse \quad \quad \textbf{BUT:} $A^{-1}$ is not sparse! \\
+	\end{center}
+
+	Besides stability and efficiency issues, this is another reason why using \color{red} \\
+	$x = A.inverse()*y$ \color{black} instead of \color{blue}$\mathbf{y=A.lu().solve(b)}$ \color{black} is usually a major blunder. 
+\end{tcolorbox}
+
 
 \subsubsection{Banded Matrices}
 
@@ -456,10 +536,15 @@ The LU-decomposition of an arrow matrix pointing into the upper left corner lead
 
 For the LU-decomposition of the regular matrix $A \in \K^{n,n}$ the \textbf{fill-in is confined} to $\text{env}(A)$.
 
+\begin{center}
+	\includegraphics[width=350pt]{envelope2.png}
+\end{center}
+
 \subsubsection{Structurally Symmetric Matrix}
 
 \begin{center}
-	\includegraphics[width=350pt]{ssmatrix.png}
+	\includegraphics[width=310pt]{ssmatrix.png}
+	\includegraphics[width=0.24\textwidth]{strucSymMatrix.png}
 \end{center}
 
 \subsection{Stable Gaussian Elimination Without Pivoting}
@@ -479,6 +564,10 @@ For certain classes of matrices, however, pivoting isn't required to for a stabl
 	\item[Diagonally Dominant Matrix:] The absolute value of the components in the diagonal are larger than the sum of the absolute values of their respective row. $\sum_{j\neq k}|a_{jk}| \leq |a_{kk}|$
 	\item[s.p.d. Matrix:] Symmetric/Hermitian positive definite matrices
 \end{description}
+
+
+\subsection{Cholesky Decomposition}
+... (see chapter 2.8.13)
 
 % -------------------------------------------------------------
 % Direct Methods for Linear Least Squares Problems
