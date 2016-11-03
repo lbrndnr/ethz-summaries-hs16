@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{tcolorbox}
+\usepackage{enumitem}
 \usepackage{float}
  
 \geometry{
@@ -387,13 +388,57 @@ The Sensitivity of a problem (for given data) gauges the impact of small perturb
 
 \subsection{LSE with low-rank perturbation}
 
-Given $A \in \K^{n,n} \mapsto \tilde{A} := A + uv^H$ we can use the \textbf{Sherman-Morrison-Woodburry formula} to solve $\tilde{A}\tilde{x} = b$ more efficiently provided that the $LU$ decomposition of $A$ is already known.
+Given $A \in \K^{n,n} \mapsto \tilde{A} := A + uv^H$ we can use the \textbf{Sherman-Morrison-Woodburry formula} to solve $\tilde{A}\tilde{x} = b$ more efficiently provided that the LU-decomposition of $A$ is already known.
 
 \begin{equation*}
 	\tilde{x} = \textcolor{orange}{A^{-1}b}-\frac{\textcolor{red}{A^{-1}u}(v^H(\textcolor{orange}{A^{-1}b}))}{1+v^H(\textcolor{red}{A^{-1}u})}
 \end{equation*}
 
-Note that $\textcolor{orange}{A^{-1}b}$ und $\textcolor{red}{A^{-1}u}$ can be computed more efficiently using the $LU$ decomposition of $A$. The resulting complexity is $O(n^2)$.
+Note that $\textcolor{orange}{A^{-1}b}$ und $\textcolor{red}{A^{-1}u}$ can be computed more efficiently using the LU-decomposition of $A$. The resulting complexity is $O(n^2)$.
+
+\subsection{LU-Factorization of sparse Matrices}
+
+\begin{center}
+	$A$ sparse $\not\Rightarrow$ LU-factors sparse
+\end{center}
+
+A \textbf{fill-in} at position $(i,j)$ of the decomposition $A=LU$ occurs if $a_{ij} = 0$ but $u_{ij} \neq 0$ or $l_{ij} \neq 0$.
+
+\subsubsection{Arrow Matrices}
+
+The LU-decomposition of an arrow matrix pointing into the upper left corner leads to massive fill-in, one that points to the bottom right corner doesn't, however. Thus, it's easier to transform one into the other via a permutation matrix. The resulting decomposition without pivoting requires only $O(n)$.
+
+\subsubsection{Banded Matrices}
+
+\begin{center}
+	\includegraphics[width=350pt]{envelope}
+\end{center}
+
+For the LU-decomposition of the regular matrix $A \in \K^{n,n}$ the \textbf{fill-in is confined} to $\text{env}(A)$.
+
+\subsubsection{Structurally Symmetric Matrix}
+
+\begin{center}
+	\includegraphics[width=350pt]{ssmatrix.png}
+\end{center}
+
+\subsection{Stable Gaussian Elimination Without Pivoting}
+
+Recall the following insights:
+\begin{itemize}[noitemsep]
+	\item Special structure of a matrix avoids fill-in during Gaussian Elimination/LU-decomposition without pivoting
+	\item Pivoting can lead to massive fill-in
+	\item Fill-in reducing effect of reordering can be cancelled out by subsequent row swapping in the course of pivoting 
+\end{itemize}
+
+\textbf{However}, \textbf{pivoting is necessary} to provide a numerically stable Gaussian Elimination/LU-decomposition. \\
+
+For certain classes of matrices, however, pivoting isn't required to for a stable elimination:
+
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=7cm, noitemsep]
+	\item[Diagonally Dominant Matrix:] The absolute value of the components in the diagonal are larger than the sum of the absolute values of their respective row. $\sum_{j\neq k}|a_{jk}| \leq |a_{kk}|$
+	\item[s.p.d. Matrix:] Symmetric/Hermitian positive definite matrices
+\end{description}
 
 % -------------------------------------------------------------
 % Direct Methods for Linear Least Squares Problems
