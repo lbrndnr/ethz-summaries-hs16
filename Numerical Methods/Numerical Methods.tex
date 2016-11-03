@@ -490,13 +490,67 @@ For certain classes of matrices, however, pivoting isn't required to for a stabl
 
 \subsection{General - Least Squares}
 
-\subsection{Solution Concepts}
+\begin{center}
+	\includegraphics[width=350pt]{cond.png}
+\end{center}
 
-\subsection{Normal Equation method (std. / extd.)}
+This definition agrees with the previous definition in case $A$ is regular.
+
+\subsection{Normal Equation Method}
+
+\subsubsection{Standard Method}
+
+\begin{tcolorbox}
+\textbf{Given:}\\
+$Ax = b$ (overdetermined linear system of equations) \\
+$m \geq n$, $rank(A)=n$ ,  $b \in \R^{m}$\vspace{2mm}\\
+\textbf{Task:} \vspace{-2mm}
+\begin{enumerate}[noitemsep]
+	\item Compute regular matrix $C := A^TA \in \R^{n,n}$
+	\item Compute right hand side vector $c := A^Tb$
+	\item Solve linear system of equation $Cx = c$
+\end{enumerate}
+\end{tcolorbox}
+
+\subsubsection{Extended Method}
+
+The extended method, compared to the standard one, \textbf{preserves sparsity}. However, the conditioning of the systems does not change. It also doesn't require the computation of $A^HA$. \\
+
+The problem can be solved using the residual defined as $r := Ax - b$:
+
+\begin{equation*}
+	B\begin{bmatrix}r \\ x \end{bmatrix} := \begin{bmatrix}
+		-I & A \\ A^H & 0
+	\end{bmatrix} \begin{bmatrix}
+		r \\ x
+	\end{bmatrix} = \begin{bmatrix}
+		b \\ 0
+	\end{bmatrix}
+\end{equation*}
 
 \subsection{Orthogonal Transformation method}
+
+Generally, we're looking for two matrices $Q$ and $R$, such that
+\begin{equation*}
+	A = QR
+\end{equation*}
+This is possible to achieve using the \textbf{Gram Schmidt Orthonormalization}. This procedure isn't numerically stable.
+
+\subsubsection{Householder Reflections}
+
+\begin{tcolorbox}
+\begin{equation*}
+	Q = H(v) := I - 2\frac{vv^H}{v^Hv}\text{ mit } v = \frac{1}{2}(a \pm ||a||_2 e_1)
+\end{equation*}
+\end{tcolorbox}
+
+\subsubsection{Givens Rotation}
+
+Alternatively, the Givens Rotation can be used instead of the Householder Reflections. 
  
 \subsection{Singular Value Decomposition (SVD)}
+
+
 
 
 %--------------------------------
@@ -601,7 +655,7 @@ Consider $x, y \in \mathbb{R}^n$, $A \in \mathbb{R}^{m,n}$, $B \in \mathbb{R}^{n
 \hline
 \textbf{Operation} & \textbf{Description} & \textbf{Complexity} \\ \hline
 Dot Product 	   & $x^Ty$ 				  & $O(n)$              \\ \hline
-Tensor Product	   & $xy^T$               & $O(mn)$			    \\ \hline
+Tensor Product	   & $xy^T$               & $O(n^2)$			    \\ \hline
 Matrix Product	   & $AB$             	  & $O(mnk)$			    \\ \hline
 Kronecker Product  & $A \otimes C$        & $O(mngh)$			\\ \hline
 Gaussian Elimination (without pivoting) & $Ax = y$        & $O(n^3)$			\\ \hline
