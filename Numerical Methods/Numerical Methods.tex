@@ -15,7 +15,7 @@
  a4paper,
  left=20mm,
  top=20mm,
- bottom=25mm
+ bottom=20mm
  }
 \parindent0pt
 \graphicspath{ {images/} } 
@@ -73,7 +73,6 @@
 
 \begin{tcolorbox}
 	\textbf{Value of the IEEE-FloatingPoint number:} 
-	\hspace{-4mm}
 	\begin{center}
 		$\color{blue}\mathbf{-1^{S} \times (1.0 + 0.M) \times B^{E-bias}}$ 
 	\end{center}
@@ -103,9 +102,9 @@
 	$\rightarrow$ All numerical libraries store the entries of a dense matrix $A /in \K^{m,n}$ in a \textbf{linear array of length $\color{red}\mathbf{mn}$ (or longer)}. 
 \end{tcolorbox}
 
-\textbf{Vectorisation options:} \\ 
+\textbf{Vectorisation options:} 
 \begin{center}
-\includegraphics[width=0.9\textwidth]{DenseMatrix.png}
+\includegraphics[width=0.8\textwidth]{DenseMatrix.png}
 \end{center}
 
 \textbf{$\rightarrow$ Remark:} Eigen Default: ColumnMajor
@@ -132,49 +131,16 @@ All vectors have same size $\geq nnz(a)$, because repetitions of index pairs $(i
 \textbf{- CRS (Compressed row storage)} \\
 CRS format for a sparse matrix $A = (a_{ij}) \in \K^{n,n}$ keeps the data in three arrays:
 \begin{center}
-	\includegraphics[width=0.8\textwidth]{SparseMatrix_CRS_structure.png}
+	\includegraphics[width=0.9\textwidth]{SparseMatrix_CRS_structure.png}
 \end{center}
 
 Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 \begin{center}
-	\includegraphics[width=0.8\textwidth]{SparseMatrix_CRS.png}
+	\includegraphics[width=0.9\textwidth]{SparseMatrix_CRS.png}
 \end{center}
 
 \textbf{Remark:} The CCS format is equivalent to the CRS format for the transposed matrix. \\
-
-\subsubsection{Creating sparse matrices in Eigen}
-
-\begin{lstlisting}[language=C++, caption=sparse matrix creation]
-	#include <Eigen/Sparse>
-	using namespace Eigen;
-	
-	
-	// ----------------------------------
-	// Creating CRS format Matrix
-	SparseMatrix<double, Eigen::RowMajor> ExampleMatrix(rows, cols); 
-	
-	// ----------------------------------
-	// Creating Matrix from Triplets
-	// Definition of a SparseMatrix
-	SparseMatrix<double> C(n,m);
-
-	// TripletList to save some triplets (COO format)
-	std::vector<Triplet<double>> tripletList;
-
-	// Triplet entry
-	Triplet<double> triplet (i, j, value); 	 
-	// Saving Triplet in TripletList
-	tripletList.push_back(triplet);
-
-
-	//Fill Sparse Matrix with triplets in tripletList
-	C.setFromTriplets(tripletList.begin(), tripletList.end());
-	//Compress Sparse Matrix
-	C.makeCompressed();
-
-
-\end{lstlisting}
 
 
 
@@ -182,12 +148,86 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 \subsubsection{Initializing Matrices, Vectors}
 
+\textbf{Vector Creation \hspace{32mm} \color{blue}VectorXd (dynamic), VectorNd (fixed size)} \color{black}
+\begin{lstlisting}[language=C++, caption=Initializing vectors]
+	#include <Eigen/Dense>
+
+	// Just allocate space for vector, no initialisation --> Exp: 20x1 vector
+	VectorXd a(20);
+	// Create vector with random entries of size nx1
+	VectorXd b = VectorXd::Random( n , 1 )
+	// Create row vector --> better: use of normal vector and transpose
+	RowVectorXd c(10);
+	
+	
+\end{lstlisting}
+
+
+
+\textbf{Dense Matrix Creation \hspace{20mm} \color{blue}MatrixXd (dynamic), MatrixNd (fixed size)}
+
+\begin{lstlisting}[language=C++, caption=Initializing dense matrices]
+	#include <Eigen/Dense>
+	#include <Eigen/Sparse>
+	using namespace Eigen;
+	
+	// Just allocate space for matrix, no initialisation
+	MatrixXd A(rows ,cols) ;	// Zero matrix. Similar to matlab command zeros(rows, cols);	MatrixXd B = MatrixXd::Zero(rows, cols);	// Ones matrix. Similar to matlab command ones(rows, cols);	MatrixXd C = MatrixXd::Ones(rows, cols);	// Matrix with all entries same as value.	MatrixXd D = MatrixXd::Constant (rows, cols, value);	// Random matrix, entries uniformly distributed in [0,1]	MatrixXd E = MatrixXd::Random(rows, cols);	// (Generalized) identity matrix, 1 on main diagonal	MatrixXd I = MatrixXd::Identity(rows , cols);
+	// Matrix with only diagonal entries vom vector d_vector	Eigen::MatrixXd D = d_vector.asDiagonal();
+\end{lstlisting}
+
+\textbf{Sparse Matrix Creation (CRS, and from Triplets(COO))}
+\begin{lstlisting}[language=C++, caption=sparse matrix creation]
+	#include <Eigen/Sparse>
+	using namespace Eigen;
+	
+	// ----------------------------------
+	// Creating CRS format Matrix
+	SparseMatrix<double, Eigen::RowMajor> ExampleMatrix(rows, cols); 
+	// ----------------------------------
+	// Creating Matrix from Triplets
+	// Definition of a SparseMatrix
+	SparseMatrix<double> C(n,m);
+
+	// TripletList to save some triplets (COO format)
+	std::vector<Triplet<double>> tripletList;
+	// Triplet entry
+	Triplet<double> triplet (i, j, value); 	 
+	// Saving Triplet in TripletList
+	tripletList.push_back(triplet);
+	//Fill Sparse Matrix with triplets in tripletList
+	C.setFromTriplets(tripletList.begin(), tripletList.end());
+	//Compress Sparse Matrix
+	C.makeCompressed();
+\end{lstlisting}
+
+
+
 \subsubsection{Matrix Access}
-values, block, ...
+\begin{lstlisting}[language=C++, caption=matrix manipulation]
+	
+	// Get col, row size of matrix
+	
+	// Get entry
+	
+	// Get row, column
+	
+	// Get upper k element vom nx1 vector
+	
+	// Get block(submatrix)
+	
+	
+\end{lstlisting}
+
+
+\subsubsection{Matrix Reshapening}
 
 
 \subsubsection{Operations}
 ...
+
+
+\subsubsection{Runtime ploting with FigureClass}
 
 
 
