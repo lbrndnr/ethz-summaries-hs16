@@ -575,15 +575,50 @@ For certain classes of matrices, however, pivoting isn't required to for a stabl
 \newpage
 \section{Direct Methods for Linear Least Squares Problems}
 
-- uebersichtstabelle
+\begin{tabular}{lll}
+$A \in R^{m,n}$ dense and n small		& $\rightarrow$ &   Use \textbf{orthogonal transformations methods}  \\ 
+															&  & ($\rightarrow$ GramSchmidt is numerically \color{red}{not stable}\color{black}) \\
+															&	& - Householder Reflection \\
+															&  & - Givens Rotation \hspace{5mm}\\
+$A \in R^{m,n}$ sparse and m,n big 	& $\rightarrow$ &	 Use \textbf{normal equations in the expanded form}   \\ 
+
+\end{tabular}
+
 
 \subsection{General - Least Squares}
 
+\textbf{Problem:}  \quad Overdetermined linear systems of equations (see below)
+\begin{center}
+	\includegraphics[width=350pt]{leastsquares_overview.png}
+\end{center}
+
+
+The system $Ax=b$ has a solution, if and only if the right hand side vector b lies in the image (range space) of the matrix $A$:
+\[
+	\exists x \in \R^{n}: \quad Ax = b \Leftrightarrow b \in \mathcal{R}(A)
+\]
+
+
+\rule{40pt}{1pt} \\
+ERWEITERN!
 \begin{center}
 	\includegraphics[width=350pt]{cond.png}
 \end{center}
 
-This definition agrees with the previous definition in case $A$ is regular.
+This definition agrees with the previous definition in case $A$ is regular. \\
+\rule{40pt}{1pt}
+
+
+
+\subsection{Least squares solution concept}
+
+\textbf{Idea:} \quad We seek x that makes the residual $r:=b-Ax$ small.
+\begin{center}
+	\includegraphics[width=350pt]{leastsquares_solution.png}
+\end{center}
+
+$\rightarrow$ But they are different situations and different methods to get this $x$!
+
 
 \subsection{Normal Equation Method}
 
@@ -601,9 +636,52 @@ $m \geq n$, $rank(A)=n$ ,  $b \in \R^{m}$\vspace{2mm}\\
 \end{enumerate}
 \end{tcolorbox}
 
+\textbf{- Normal equation definition:}
+\begin{center}
+	\includegraphics[width=380pt]{normalEquationDef.png}
+\end{center}
+
+\textbf{- Uniqueness of Least square solutions:}
+\begin{center}
+	\includegraphics[width=380pt]{normalEquationUniqueness.png}
+\end{center}
+
+
+$\rightarrow A^TA$ is \color{blue}s.p.d. (symmetric positive definite) \color{black} if $\mathcal{N}(A) = \lbrace 0 \rbrace$ \\
+
+\textbf{Remark: Full Rank condition (FRC)} \\
+For a matrix $A \in \R^{m,n}$ with $m \geq n$ is equivalent: \quad $\mathcal{N}(A) = \lbrace 0 \rbrace \Leftrightarrow rank(A)=n$ \\
+
+\begin{tcolorbox}
+\color{red}\textbf{Problem 1:} Normal equations are numerically problematic! \\
+
+\[ 
+	A = 
+	\begin{bmatrix}
+	1 & 1 \\ 
+	\delta & 0 \\
+	0 & \delta	
+	\end{bmatrix}
+	\quad
+	\Rightarrow
+	\quad
+	A^TA = 
+	\begin{bmatrix}
+	1 + \delta^2 & 1 \\
+	1 & 1 + \delta^2 	
+	\end{bmatrix}
+\] 
+If $\delta \approx \sqrt{EPS}$, then $1 + \delta^2 = 1$ in $\M$. Hence the computed $A^TA$ will fail to be regular, though $rank(A) = 2, cond_2(A) \approx \sqrt{EPS}$! \hspace{3mm}\\
+
+\textbf{Problem 2:} Loss of sparsity! \\
+$A$ sparse $\not \Rightarrow A^TA$  sparse!
+\end{tcolorbox}
+
+
+
 \subsubsection{Extended Method}
 
-The extended method, compared to the standard one, \textbf{preserves sparsity}. However, the conditioning of the systems does not change. It also doesn't require the computation of $A^HA$. \\
+The extended method, compared to the standard one, \textbf{preserves sparsity}. However, the conditioning of the systems does not change. It also \textbf{doesn't require the computation of} $\mathbf{A^HA}$. \\
 
 The problem can be solved using the residual defined as $r := Ax - b$:
 
@@ -618,12 +696,28 @@ The problem can be solved using the residual defined as $r := Ax - b$:
 \end{equation*}
 
 \subsection{Orthogonal Transformation method}
+\begin{tcolorbox}
+	\textbf{Idea:} Conversion of the LSE $Ax=b$ by row transformations to an equivalent LSE $Ux=\tilde b$ ,which is easier to solve because it has a triangular form. \vspace{2mm}\\
+$\Rightarrow$ Transform $Ax=b \longrightarrow \tilde Ax = \tilde b$ such that $Lsq(A,b) = Lsq(\tilde A, \tilde b)$ \\
+
+\textbf{Result:} Triangular least squares problem, which is easier to solve:
+\begin{center}
+	\includegraphics[width=380pt]{orthogonalTransformation_1.png}
+\end{center}
+
+\textbf{Solution:} \quad $x=R^{-1}(b)_{1:n}$ \hspace{35mm} R is regular, if $rank(A)=n$
+\end{tcolorbox}
+
+\vspace{10mm}
+
 
 Generally, we're looking for two matrices $Q$ and $R$, such that
 \begin{equation*}
 	A = QR
 \end{equation*}
-This is possible to achieve using the \textbf{Gram Schmidt Orthonormalization}. This procedure isn't numerically stable.
+This is possible to achieve using the \textbf{Gram Schmidt Orthonormalization}. This procedure isn't numerically stable. \\
+
+ERGAENZEN VON ECONOMICAL and FULL QR DECOMPOSITION
 
 \subsubsection{Householder Reflections}
 
@@ -633,9 +727,13 @@ This is possible to achieve using the \textbf{Gram Schmidt Orthonormalization}. 
 \end{equation*}
 \end{tcolorbox}
 
+TODO: Hinweis Cancellation und daherige Fallunterscheidung! Und bildliche Interpretation!
+
 \subsubsection{Givens Rotation}
 
-Alternatively, the Givens Rotation can be used instead of the Householder Reflections. 
+Alternatively, the Givens Rotation can be used instead of the Householder Reflections. \\
+
+$\Rightarrow$ QR-Decomposition by Givens preserves bandwith of banded matrices.
  
 \subsection{Singular Value Decomposition (SVD)}
 
@@ -753,6 +851,7 @@ Gaussian Elimination (arrow) & $Ax = y$        & $O(n)$			\\ \hline
 LU decomposition (setup phase) & $Dlu = D$.lu()  & $O(n^3)$			\\ \hline
 LU decomposition (elimination phase) & $Dlu$.solve($x$)  & $O(n^2)$			\\ \hline
 Householder QR & $A$.householderQr()  & $O(mn^2)$			\\ \hline
+Givens-Rotation QR &   & $O(mn^2)$			\\ \hline
 Economical SVD & & $O(\min(m, n)^2\cdot\max(m,n))$ \\ \hline
 \end{tabular}
 \end{table}
