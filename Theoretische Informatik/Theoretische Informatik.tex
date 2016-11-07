@@ -78,12 +78,19 @@ Sei $R \subseteq \Sigma^*\times\Gamma^*$ eine Relation, dann l{\"o}st ein \textb
 \end{equation*}
 
 \emph{Bemerkung:} Es ist nur n{\"o}tig, ein einziges $y = A(x)$ von potenziel unendlich vielen $y$ zu finden.
-\subsection{Kolmogorov complexity}
-\begin{enumerate}
-	\item Write the function to give the desired output.
-	\item Find the part of the program that depends on n() (we multiply the log with the number of times that n appears in the program).
-	\item This part has complexity of $\ulcorner log_2(n + 1) \urcorner$ + c.
-	\item Find $y_n$ in function of n and replace it in the previous part.
+
+\subsection{Kolmogorov Komplexität}
+
+Die Kosten für die binäre Kodierung $\text{Bin}(n)$ von $n$ sind
+\begin{equation*}
+	K(\text{Bin}(n)) = \lceil\log_2(n+1)\rceil
+\end{equation*}
+
+\paragraph{Anleitung:}
+\begin{enumerate}[noitemsep]
+	\item Schreibe ein Programm, welches das gewünschte Resultat liefert
+	\item Finde den Term, der von $n$ abhängig ist ($\log$ wird mit der Anzahl $n$ im Programm multipliziert)
+	\item Dieser Term hat die Komplexität $\lceil \log_2(n + 1) \rceil + c$
 \end{enumerate}
 
 \section{Endliche Automaten}
