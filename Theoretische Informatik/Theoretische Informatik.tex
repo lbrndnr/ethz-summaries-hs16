@@ -79,18 +79,18 @@ Sei $R \subseteq \Sigma^*\times\Gamma^*$ eine Relation, dann l{\"o}st ein \textb
 
 \emph{Bemerkung:} Es ist nur n{\"o}tig, ein einziges $y = A(x)$ von potenziel unendlich vielen $y$ zu finden.
 
-\subsection{Kolmogorov Komplexität}
+\subsection{Kolmogorov Komplexit{\"a}t}
 
-Die Kosten für die binäre Kodierung $\text{Bin}(n)$ von $n$ sind
+Die Kosten f{\"u}r die bin{\"a}re Kodierung $\text{Bin}(n)$ von $n$ sind
 \begin{equation*}
 	K(\text{Bin}(n)) = \lceil\log_2(n+1)\rceil
 \end{equation*}
 
 \paragraph{Anleitung:}
 \begin{enumerate}[noitemsep]
-	\item Schreibe ein Programm, welches das gewünschte Resultat liefert
-	\item Finde den Term, der von $n$ abhängig ist ($\log$ wird mit der Anzahl $n$ im Programm multipliziert)
-	\item Dieser Term hat die Komplexität $\lceil \log_2(n + 1) \rceil + c$
+	\item Schreibe ein Programm, welches das gew{\"u}nschte Resultat liefert
+	\item Finde den Term, der von $n$ abh{\"a}ngig ist ($\log$ wird mit der Anzahl $n$ im Programm multipliziert)
+	\item Dieser Term hat die Komplexit{\"a}t $\lceil \log_2(n + 1) \rceil + c$
 \end{enumerate}
 
 \section{Endliche Automaten}
@@ -152,7 +152,7 @@ F{\"u}r jedes Suffix $z \in \Sigma^*$ gilt dann, dass beide W{\"o}rter $xz$ und 
 \end{equation*}
 
 \paragraph{Vorgehen:} Um zu beweisen, dass eine Sprache nicht regul{\"a}r ist, zeigt man, dass zwei W{\"o}rter zum selben Zustand f{\"u}hren m{\"u}ssen. \\
-Wir wählen $m$ als die Anzahl zustände im EA. Zusätzlich wählen wir $m+1$ Wörter, die alle vom Automaten akzeptiert werden. Da es $m+1$ Wörter gibt, aber nur $m$ Zustände, müssen zwei unterschiedliche Wörter zum selben Zustand $y_0$ führen. Es folgt, dass beide Wörter mit einem $z$ konkateniert zu der Sprache $L$ gehören müssen. Wir wählen also einfach ein $z$ so dass nur eines der beiden Wörter sich in $L$ befindet.
+Wir w{\"a}hlen $m$ als die Anzahl zust{\"a}nde im EA. Zus{\"a}tzlich w{\"a}hlen wir $m+1$ W{\"o}rter, die alle vom Automaten akzeptiert werden. Da es $m+1$ W{\"o}rter gibt, aber nur $m$ Zust{\"a}nde, m{\"u}ssen zwei unterschiedliche W{\"o}rter zum selben Zustand $y_0$ f{\"u}hren. Es folgt, dass beide W{\"o}rter mit einem $z$ konkateniert zu der Sprache $L$ geh{\"o}ren m{\"u}ssen. Wir w{\"a}hlen also einfach ein $z$ so dass nur eines der beiden W{\"o}rter sich in $L$ befindet.
 
 \subsubsection{Pumping Lemma f{\"u}r regul{\"a}re Sprachen}
 
@@ -176,20 +176,20 @@ Sei $L \subseteq \Sigma_\text{bool}^*$ eine regul{\"a}re Sprache. Sei $L_x = \{y
 
 falls $y$ das $n$-te Wort in der Sprache $L$ ist.
 
-\subsection{Reguläre Ausdrücke}
+\subsection{Regul{\"a}re Ausdr{\"u}cke}
 
-Die Menge $RA(\Sigma)$ aller regulären Ausdrücke über dem Alphabet $\Sigma$ ist rekursiv definiert durch:
+Die Menge $RA(\Sigma)$ aller regul{\"a}ren Ausdr{\"u}cke {\"u}ber dem Alphabet $\Sigma$ ist rekursiv definiert durch:
 \begin{equation*}
 \begin{split}
 	\lambda \in RA(\Sigma),\ \emptyset \not\in RA(\Sigma) \qquad & L(\lambda) = \{\lambda\},\ L(\emptyset) = \{\emptyset\} \\
-	a \in RA(\Sigma) \text{ für alle } a \in \Sigma \qquad & L(a) = \{a\} \\
+	a \in RA(\Sigma) \text{ f{\"u}r alle } a \in \Sigma \qquad & L(a) = \{a\} \\
 	\alpha, \beta \in RA(\Sigma) \Rightarrow (\alpha, \beta) \in RA(\Sigma) \qquad & L(\alpha, \beta) = L(\alpha) \cdot L(\beta) \\
 	\alpha, \beta \in RA(\Sigma) \Rightarrow (\alpha + \beta) \in RA(\Sigma) \qquad & L(\alpha + \beta) = L(\alpha) \cup L(\beta) \\
 	\alpha \in RA(\Sigma) \Rightarrow \alpha^* \in RA(\Sigma) \qquad & L(\alpha^*) = (L(\alpha))^*
 \end{split}
 \end{equation*}
 
-Sei $\alpha_{ij}^{(k)}$ der reguläre Ausdruck, der alle Transitionen vom Zustand $i$ zu Zustand $j$ über die Zwischenzustände $k \in \{0,...,k\}$ beschreibt. Das heisst, es wird kein Zwischenzustand (Start- und Endzustand ausgenommen) $q$ berührt, mit $q > k$.
+Sei $\alpha_{ij}^{(k)}$ der regul{\"a}re Ausdruck, der alle Transitionen vom Zustand $i$ zu Zustand $j$ {\"u}ber die Zwischenzust{\"a}nde $k \in \{0,...,k\}$ beschreibt. Das heisst, es wird kein Zwischenzustand (Start- und Endzustand ausgenommen) $q$ ber{\"u}hrt, mit $q > k$.
 
 \begin{equation*}
 	\alpha_{ij}^{(k)} = \alpha_{ij}^{(k-1)} + \alpha_{ik}^{(k-1)}\cdot (\alpha_{kk}^{(k-1)})^* \cdot \alpha_{kj}^{(k-1)}
@@ -211,21 +211,21 @@ Ausserdem gilt $\mathcal{L}_{NEA} = \mathcal{L}_{EA}$: Zu jedem NEA $M$ existier
 
 \subsubsection{$\lambda$-NEA}
 
-$\lambda$-NEAs sind genau gleich definiert wie NEAs, also auch ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$. Die Übergangsfunktion $\delta$ ist jedoch wie folgt definiert:
+$\lambda$-NEAs sind genau gleich definiert wie NEAs, also auch ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$. Die {\"u}bergangsfunktion $\delta$ ist jedoch wie folgt definiert:
 \begin{equation*}
 	\delta: (Q\times(\Sigma \cup \{\lambda\})) \mapsto Q
 \end{equation*}
-Es kann also zusätzlich auch dass leere Wort $\lambda$ eingelesen werden. \\
+Es kann also zus{\"a}tzlich auch dass leere Wort $\lambda$ eingelesen werden. \\
 
-Durch die Elimination der $\lambda$-Kanten lässt sich auch zeigen, dass $\mathcal{L}_{\lambda-NEA} = \mathcal{L}_{NEA}$.
+Durch die Elimination der $\lambda$-Kanten l{\"a}sst sich auch zeigen, dass $\mathcal{L}_{\lambda-NEA} = \mathcal{L}_{NEA}$.
 
 \section{Grammatiken}
 
 Eine Grammatik $G = (\Sigma_N, \Sigma_T, P, S)$ ist ein Tupel mit $\Sigma = \Sigma_N \cup \Sigma_T$:
 
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=3cm, noitemsep]
-	\item[$\Sigma_N$:] Die Nichtterminalsymbole spielen die Rolle von Variablen und dürfen in der Sprache nicht vorkommen.
-	\item[$\Sigma_T$:] Die Terminalsymbole, die bisherige Nutzung zur Gestaltung von Wörtern aus der betrachteten Sprache.
+	\item[$\Sigma_N$:] Die Nichtterminalsymbole spielen die Rolle von Variablen und d{\"u}rfen in der Sprache nicht vorkommen.
+	\item[$\Sigma_T$:] Die Terminalsymbole, die bisherige Nutzung zur Gestaltung von W{\"o}rtern aus der betrachteten Sprache.
 	\item[$S \in \Sigma_N$:] Das Startsymbol
 	\item[$P$:] Die Menge der Ableitungsregeln ist eine Teilmenge von $\Sigma^*\Sigma_N\Sigma^* \times \Sigma^*$
 	\item[$(\alpha, \beta) \in P$:] Die Regel, die besagt, dass $\alpha$ kann in $G$ durch $\beta$ ersetzt werden (auch $\alpha \rightarrow_G \beta$)
@@ -242,15 +242,15 @@ Weiter bedeutet, $S \Rightarrow_G^* w$, dass $w$ von $G$ erzeugt wird. Die von $
 \end{equation*}
 
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=5.5cm, noitemsep]
-	\item[Typ-0:] Die Klasse der allgemeinen, uneingeschränkten Grammatiken
-	\item[kontextsensitiv/Typ-1:] $|\alpha| \leq |\beta|$ für alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass mein kein Teilwort $\alpha$ durch ein kürzeres Teilwort $\beta$ ersetzen kann.
-	\item[kontextfrei/Typ-2:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma^*$ für alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass alle Regeln die Form $X \rightarrow \beta$ für ein Nichtterminal $X$ haben.
-	\item[regulär/Typ-3:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma_T^*\cdot\Sigma_N \cup \Sigma_T^*$ für alle Regeln $(\alpha, \beta) \in P$. Das bedeutet, dass die Regeln die Form $X \rightarrow u$ oder $X \rightarrow uY$ für ein $u \in \Sigma_T^*, X,Y \in \Sigma_N$ haben (enthält höchstens ein Nichtterminal welches nur als letztes Symbol vorkommen darf).
+	\item[Typ-0:] Die Klasse der allgemeinen, uneingeschr{\"a}nkten Grammatiken
+	\item[kontextsensitiv/Typ-1:] $|\alpha| \leq |\beta|$ f{\"u}r alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass mein kein Teilwort $\alpha$ durch ein k{\"u}rzeres Teilwort $\beta$ ersetzen kann.
+	\item[kontextfrei/Typ-2:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma^*$ f{\"u}r alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass alle Regeln die Form $X \rightarrow \beta$ f{\"u}r ein Nichtterminal $X$ haben.
+	\item[regul{\"a}r/Typ-3:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma_T^*\cdot\Sigma_N \cup \Sigma_T^*$ f{\"u}r alle Regeln $(\alpha, \beta) \in P$. Das bedeutet, dass die Regeln die Form $X \rightarrow u$ oder $X \rightarrow uY$ f{\"u}r ein $u \in \Sigma_T^*, X,Y \in \Sigma_N$ haben (enth{\"a}lt h{\"o}chstens ein Nichtterminal welches nur als letztes Symbol vorkommen darf).
 	\item[normiert:] falls alle Regeln nur eine der folgenden drei Regeln haben:
 	\begin{enumerate}[label=(\roman*), noitemsep]
 		\item $S \rightarrow \lambda$, wobei S das Startsymbol ist
-		\item $A \rightarrow a$ für $A \in \Sigma_N$ und $a \in \Sigma_T$
-		\item $B \rightarrow bC$ für $B,C \in \Sigma_N$ und $b \in \Sigma_T$ 
+		\item $A \rightarrow a$ f{\"u}r $A \in \Sigma_N$ und $a \in \Sigma_T$
+		\item $B \rightarrow bC$ f{\"u}r $B,C \in \Sigma_N$ und $b \in \Sigma_T$ 
 	\end{enumerate}
 \end{description}
 
