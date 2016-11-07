@@ -151,8 +151,8 @@ F{\"u}r jedes Suffix $z \in \Sigma^*$ gilt dann, dass beide W{\"o}rter $xz$ und 
 	xz \in L(A) \Leftrightarrow yz \in L(A)
 \end{equation*}
 
-\paragraph{Vorgehen:} Um zu beweisen, dass eine Sprache nicht regul{\"a}r ist, zeigt man, dass zwei W{\"o}rter zum selben Zustand f{\"u}hren m{\"u}ssen.\\
-	We set m = to the number of states in the FSM. Then we take M+1 words that are all accepted. Since there are m+1 words there has to be two different words that bring to the same state departing from a $y_0$. Therefore both of them appended with a z have to belong to L. Then we just choose a z that works for one of them but not both.
+\paragraph{Vorgehen:} Um zu beweisen, dass eine Sprache nicht regul{\"a}r ist, zeigt man, dass zwei W{\"o}rter zum selben Zustand f{\"u}hren m{\"u}ssen. \\
+Wir wählen $m$ als die Anzahl zustände im EA. Zusätzlich wählen wir $m+1$ Wörter, die alle vom Automaten akzeptiert werden. Da es $m+1$ Wörter gibt, aber nur $m$ Zustände, müssen zwei unterschiedliche Wörter zum selben Zustand $y_0$ führen. Es folgt, dass beide Wörter mit einem $z$ konkateniert zu der Sprache $L$ gehören müssen. Wir wählen also einfach ein $z$ so dass nur eines der beiden Wörter sich in $L$ befindet.
 
 \subsubsection{Pumping Lemma f{\"u}r regul{\"a}re Sprachen}
 
