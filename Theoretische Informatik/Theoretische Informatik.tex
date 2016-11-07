@@ -81,16 +81,17 @@ Sei $R \subseteq \Sigma^*\times\Gamma^*$ eine Relation, dann l{\"o}st ein \textb
 
 \subsection{Kolmogorov Komplexit{\"a}t}
 
-Die Kosten f{\"u}r die bin{\"a}re Kodierung $\text{Bin}(n)$ von $n$ sind
+Die Kosten f{\"u}r die bin{\"a}re Kodierung von $w_n$ der L{\"a}nge $n$ sind
 \begin{equation*}
-	K(\text{Bin}(n)) = \lceil\log_2(n+1)\rceil
+	K(w_n) \leq \lceil\log_2(n+1)\rceil + c \leq \log_2(n) + c + 1
 \end{equation*}
 
-\paragraph{Anleitung:}
+\paragraph{Vorgehen:}
 \begin{enumerate}[noitemsep]
 	\item Schreibe ein Programm, welches das gew{\"u}nschte Resultat liefert
 	\item Finde den Term, der von $n$ abh{\"a}ngig ist ($\log$ wird mit der Anzahl $n$ im Programm multipliziert)
 	\item Dieser Term hat die Komplexit{\"a}t $\lceil \log_2(n + 1) \rceil + c$
+	\item Jetzt muss nur noch $n$ in Abhängigkeit von $|w_n|$ ausgedr{\"u}ckt werden
 \end{enumerate}
 
 \section{Endliche Automaten}
@@ -168,10 +169,10 @@ Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass
 
 \subsection{Methode der Kolmogorov Komplexit{\"a}t}
 
-Sei $L \subseteq \Sigma_\text{bool}^*$ eine regul{\"a}re Sprache. Sei $L_x = \{y \in \Sigma_\text{bool}^*\ |\ xy \in L\}$ f{\"u}r jedes $x \in \Sigma_\text{bool}^*$. Dann existiert eine Konstante const, so dass f{\"u}r alle $x,y \in \Sigma_\text{bool}^*$ gilt
+Sei $L \subseteq \Sigma_\text{bool}^*$ eine regul{\"a}re Sprache. Sei $L_x = \{y \in \Sigma_\text{bool}^*\ |\ xy \in L\}$ f{\"u}r jedes $x \in \Sigma_\text{bool}^*$. Dann existiert eine Konstante $c$, so dass f{\"u}r alle $x,y \in \Sigma_\text{bool}^*$ gilt
 
 \begin{equation*}
-	K(y) \leq \lceil\log_2(n+1)\rceil + \text{const}
+	K(y) \leq \lceil\log_2(n+1)\rceil + c
 \end{equation*}
 
 falls $y$ das $n$-te Wort in der Sprache $L$ ist.
