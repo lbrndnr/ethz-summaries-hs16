@@ -157,10 +157,10 @@ Wir w{\"a}hlen $m$ als die Anzahl zust{\"a}nde im EA. Zus{\"a}tzlich w{\"a}hlen 
 
 \subsubsection{Pumping Lemma f{\"u}r regul{\"a}re Sprachen}
 
-Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass sich jedes Wort $w \in \Sigma^*$ mit $|w| \geq n_0$ in drei Teile $x, y, z$ zerlegen l{\"a}sst, so dass $w = xyz$, wobei
+Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass sich jedes Wort $w \in \Sigma^*$ mit $|w| \geq n_0$ in drei Teile $x, y, z$ zerlegen l{\"a}sst, so dass $w = yxz$, wobei
 
 \begin{enumerate}[label=(\roman*), noitemsep]
-	\item $|xy| \leq n_0$
+	\item $|yx| \leq n_0$
 	\item $|x| \geq 1$
 	\item entweder $\{yx^kz\ |\ k \in \mathbb{N}\} \subseteq L$ oder $\{yx^kz\ |\ k \in \mathbb{N}\} \cap L = \emptyset$
 \end{enumerate}
