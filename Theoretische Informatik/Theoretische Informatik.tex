@@ -94,6 +94,16 @@ Die Kosten f{\"u}r die bin{\"a}re Kodierung von $w_n$ der L{\"a}nge $n$ sind
 	\item Jetzt muss nur noch $n$ in Abhängigkeit von $|w_n|$ ausgedr{\"u}ckt werden
 \end{enumerate}
 
+Ein Wort $x \in (\Sigma_\text{bool})^*$ heisst \textbf{zuf{\"a}llig}, falls gilt:
+\begin{equation*}
+	K(x) \geq |x|
+\end{equation*}
+
+Analog dazu heisst eine Zahl $n$ \textbf{zuf{\"a}llig}, falls gilt:
+\begin{equation*}
+	K(n) = K(\text{Bin}(n)) \geq \lceil\log_2(n+1)\rceil-1
+\end{equation*}
+
 \section{Endliche Automaten}
 
 Ein \textbf{endlicher Automat} (EA) ist ein Tupel $M = (Q, \Sigma, \delta, q_0, F)$:
@@ -157,7 +167,7 @@ Wir w{\"a}hlen $m$ als die Anzahl zust{\"a}nde im EA. Zus{\"a}tzlich w{\"a}hlen 
 
 \subsubsection{Pumping Lemma f{\"u}r regul{\"a}re Sprachen}
 
-Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass sich jedes Wort $w \in \Sigma^*$ mit $|w| \geq n_0$ in drei Teile $x, y, z$ zerlegen l{\"a}sst, so dass $w = yxz$, wobei
+Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass sich jedes Wort $w \in \Sigma^*$, welches nicht zwingend in $L$ sein muss, mit $|w| \geq n_0$ in drei Teile $x, y, z$ zerlegen l{\"a}sst, so dass $w = yxz$, wobei
 
 \begin{enumerate}[label=(\roman*), noitemsep]
 	\item $|yx| \leq n_0$
@@ -165,7 +175,7 @@ Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass
 	\item entweder $\{yx^kz\ |\ k \in \mathbb{N}\} \subseteq L$ oder $\{yx^kz\ |\ k \in \mathbb{N}\} \cap L = \emptyset$
 \end{enumerate}
 
-\paragraph{Vorgehen:} W{\"a}hle ein Wort mit L{\"a}nge $|w| \geq n_0 \in \mathbb{N}$ aus, so dass keine seiner Zerlegungen die Eigenschaften (i), (ii) und (iii) erf{\"u}llt.
+\paragraph{Vorgehen:} W{\"a}hle ein Wort abhängig von $n_0$ mit L{\"a}nge $|w| \geq n_0 \in \mathbb{N}$ aus, so dass keine seiner Zerlegungen die Eigenschaften (i), (ii) und (iii) erf{\"u}llt.
 
 \subsection{Methode der Kolmogorov Komplexit{\"a}t}
 
@@ -259,23 +269,13 @@ Es gilt:
 \begin{equation*}
 	\mathcal{L}_3 = \mathcal{L}_{EA}
 \end{equation*}
-\subsection{Beweis durch induktion}
-Zu zeigen: L($G_1$) = $\{...\}$
+
+\subsection{Beweis durch Induktion}
+
+Zu zeigen: $L(G_1) = \{...\}$
 \begin{enumerate}
-	\item Zeigen: w $\epsilon$ $L(G_1)$, eine Ableitung fur w in $G_1$ zu geben.
-	\item G1 nur Wo ̈rter vom w abgeleitet werden ko ̈nnen. Zeigen wir durch induktion. Zuerst mit ein ableitung es gilt. Dann nehmen wir ein $\alpha$ bei dem wir annehmen dass es geht, wir ableiten noch einmal und zeigen dass es immer noch zu A gehort.
+	\item Zeige, dass: $w \in L(G_1)$, eine Ableitung fur w in $G_1$ zu geben.
+	\item G1 nur Wörter vom w abgeleitet werden ko ̈nnen. Zeigen wir durch induktion. Zuerst mit ein ableitung es gilt. Dann nehmen wir ein $\alpha$ bei dem wir annehmen dass es geht, wir ableiten noch einmal und zeigen dass es immer noch zu A gehort.
 \end{enumerate}
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
