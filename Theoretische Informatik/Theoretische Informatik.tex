@@ -175,9 +175,9 @@ Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass
 	\item entweder $\{yx^kz\ |\ k \in \mathbb{N}\} \subseteq L$ oder $\{yx^kz\ |\ k \in \mathbb{N}\} \cap L = \emptyset$
 \end{enumerate}
 
-\paragraph{Vorgehen:} W{\"a}hle ein Wort abhängig von $n_0$ mit L{\"a}nge $|w| \geq n_0 \in \mathbb{N}$ aus, so dass keine seiner Zerlegungen die Eigenschaften (i), (ii) und (iii) erf{\"u}llt.
+\paragraph{Vorgehen:} W{\"a}hle ein \textbf{konkretes} Wort mit L{\"a}nge $|w| \geq n_0 \in \mathbb{N}$ aus, so dass keine seiner Zerlegungen die Eigenschaften (i), (ii) und (iii) erf{\"u}llt.
 
-\subsection{Methode der Kolmogorov Komplexit{\"a}t}
+\subsubsection{Methode der Kolmogorov Komplexit{\"a}t}
 
 Sei $L \subseteq \Sigma_\text{bool}^*$ eine regul{\"a}re Sprache. Sei $L_x = \{y \in \Sigma_\text{bool}^*\ |\ xy \in L\}$ f{\"u}r jedes $x \in \Sigma_\text{bool}^*$. Dann existiert eine Konstante $c$, so dass f{\"u}r alle $x,y \in \Sigma_\text{bool}^*$ gilt
 
@@ -254,8 +254,8 @@ Weiter bedeutet, $S \Rightarrow_G^* w$, dass $w$ von $G$ erzeugt wird. Die von $
 
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=5.5cm, noitemsep]
 	\item[Typ-0:] Die Klasse der allgemeinen, uneingeschr{\"a}nkten Grammatiken
-	\item[kontextsensitiv/Typ-1:] $|\alpha| \leq |\beta|$ f{\"u}r alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass mein kein Teilwort $\alpha$ durch ein k{\"u}rzeres Teilwort $\beta$ ersetzen kann.
-	\item[kontextfrei/Typ-2:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma^*$ f{\"u}r alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass alle Regeln die Form $X \rightarrow \beta$ f{\"u}r ein Nichtterminal $X$ haben.
+	\item[kontextsensitiv/Typ-1:] $|\alpha| \leq |\beta|$ f{\"u}r alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass kein Teilwort $\alpha$ durch ein k{\"u}rzeres Teilwort $\beta$ ersetzen kann.
+	\item[kontextfrei/Typ-2:] $\alpha \in \Sigma_N$ und $\beta \in (\Sigma_N \cup \Sigma_T)^*$ f{\"u}r alle Regeln $(\alpha, \beta) \in P$. Es folgt, dass alle Regeln die Form $X \rightarrow \beta$ f{\"u}r ein Nichtterminal $X$ haben.
 	\item[regul{\"a}r/Typ-3:] $\alpha \in \Sigma_N$ und $\beta \in \Sigma_T^*\cdot\Sigma_N \cup \Sigma_T^*$ f{\"u}r alle Regeln $(\alpha, \beta) \in P$. Das bedeutet, dass die Regeln die Form $X \rightarrow u$ oder $X \rightarrow uY$ f{\"u}r ein $u \in \Sigma_T^*, X,Y \in \Sigma_N$ haben (enth{\"a}lt h{\"o}chstens ein Nichtterminal welches nur als letztes Symbol vorkommen darf).
 	\item[normiert:] falls alle Regeln nur eine der folgenden drei Regeln haben:
 	\begin{enumerate}[label=(\roman*), noitemsep]
