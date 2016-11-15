@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage[labelformat=empty]{caption}
 \usepackage{booktabs}
+\usepackage{wasysym}
 
 \geometry{
 	a4paper,
@@ -277,5 +278,86 @@ Zu zeigen: $L(G_1) = \{...\}$
 	\item Zeige, dass: $w \in L(G_1)$, eine Ableitung fur w in $G_1$ zu geben.
 	\item G1 nur Wörter vom w abgeleitet werden ko ̈nnen. Zeigen wir durch induktion. Zuerst mit ein ableitung es gilt. Dann nehmen wir ein $\alpha$ bei dem wir annehmen dass es geht, wir ableiten noch einmal und zeigen dass es immer noch zu A gehort.
 \end{enumerate}
+
+\section{Turingmaschinen}
+
+Eine Turingmaschine ist eine Verallgemeinerung eines EA und besthet informell aus:
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=4.5cm, noitemsep]
+	\item[Kontrolle:] Enthält das Programm
+	\item[Unendliches Band:] Eingabeband und Speicher
+	\item[Lese-/Schreibkopf:] Kann sich in beide Richtungen auf dem Band bewegen
+\end{description}
+
+\textbf{Bemerkung:} \begin{itemize}
+	\item Das Band ist nur nach rechts unendlich, links ist es mit dem Randsymbol $\cent$ begrenzt, welches von der Maschine nicht überschritten oder überschrieben werden darf. Dies erlaubt es, das Band \textbf{durchzunummerieren}.
+	\item Die Felder, die nicht beschriftet sind, enthalten das Leerfeldsymbol $\textvisiblespace$
+\end{itemize}
+
+Die \textbf{Ähnlichkeit} zu den EAs besteht in der Kontrolle über eine endliche Zustandsmenge und dem Band, das am Anfang das Eingabewort enthält. \\
+Der \textbf{Hauptunterschied} liegt darin, dass eine Turingmaschine mit dem Band über einen unendlich grossen Speicher verfügt. \\
+
+Formell ist eine \textbf{Turingmaschine} (TM) ein Tupel $M = (Q, \Sigma, \Gamma, \delta, q_0, q_\text{accept}, q_\text{reject})$, wobei
+
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=4.5cm, noitemsep]
+	\item[$Q$:] Eine endliche Menge von Zust{\"a}nden
+	\item[$\Sigma$:] Das Eingabealphabet
+	\item[$\Gamma$:] Das Arbeitsalphabet, wobei $\Sigma \subseteq \Gamma$ und $\cent, \textvisiblespace \in \Gamma$ gelten, wie auch $\Gamma \cap \Sigma = \emptyset$
+	\item[$\delta$:] Die {\"U}bergangsfunktion\\ ($\delta: (Q-\{q_\text{accept}, q_\text{reject}\}\times\Gamma) \mapsto Q\times\Gamma\times\{L,R,N\}$).  \\$M$ kann also eine Aktion $(q, X, Z) \in Q \times \Gamma \times \{L, R, N\}$ aus einem aktuellen Zustand $q$ beim Lesen eines Symbols $Y \in \Gamma$ durchführen, falls $\delta(p, Y) = (q, X, Z)$. Dies bedeutet der Übergang von $p$ nach $q$, das Ersetzen von $Y$ durch $X$ und die Bewegung des Kopfes gemäss $Z$ (\textbf{L}inks, \textbf{R}echts, \textbf{N}ichts).
+	\item[$q_0 \in Q$:] Der Anfangszustand
+	\item[$q_\text{\normalfont accept} \in Q$:] Der akzeptierende Zustand
+	\item[$q_\text{\normalfont reject} \in Q-\{q_\text{\normalfont accept}\}$:] Der verwerfende Zustand
+\end{description}
+
+Die \textbf{akzeptierte Sprache} der Turingmaschine $M$ ist
+\begin{equation*}
+	L(M) = \{w \in \Sigma^*\ |\ q_0\cent w \vdash_M^* yq_\text{accept}z,\text{ für irgendwelche }y,z \in \Gamma^*\}
+\end{equation*}
+
+Weiter \textbf{berechnet} $M$ eine Funktion $F:\Sigma^* \mapsto \Gamma^*$, falls
+\begin{equation*}
+	q_0\cent x \vdash_M^* q_\text{accept}\cent F(x)
+\end{equation*}
+
+Eine Sprache $L \subseteq \Sigma^*$ heisst \textbf{rekursiv aufzählbar}, falls
+\begin{equation*}
+	\mathcal{L}_{RE} = \{L(M)\ | \text{ M ist eine Turingmaschine }\}
+\end{equation*}
+
+Eine Sprache $L \subseteq \Sigma^*$ heisst \textbf{rekursiv entscheidbar}, falls $L = L(M)$ und $M$ keine unendliche Berechnungen besitzt. \\
+Somit ist die \textbf{Klasse der rekursiv, algorithmisch erkennbaren Sprachen} definiert als:
+\begin{equation*}
+	\mathcal{L}_R = \{L(M)\ |\text{ M ist eine TM, die immer hält }\}
+\end{equation*}
+
+\subsection{Mehrband-Turingmaschinen}
+
+Eine \textbf{$k$-Band-Turingmaschine} (MTM) hat im Gegensatz zu einer normalen TM ein endliches Band, welches nur die Eingabe enthält und $k$ unendlich lange Arbeitsbänder, jedes mit eigenem Lese-/ Schreibkopf.
+
+Zwei \textbf{Maschinenmodelle} $\mathcal{A}$ und $\mathcal{B}$ sind äquivalent, falls gilt:
+\begin{itemize}[noitemsep]
+	\item zu jeder Maschine $A \in \mathcal{A}$ existiert eine zu $A$ äquivalente Maschine $B \in \mathcal{B}$
+	\item zu jeder Maschine $C \in \mathcal{B}$ existiert eine zu $C$ äquivalente Maschine $D \in \mathcal{A}$
+\end{itemize}
+
+Zu jeder MTM $A$ existiert eine zu $A$ äquivalente 1-Band-TM $B$. Dies heisst jedoch nicht, dass $A$ und $B$ äquivalent sind. Es kann zum Beispiel sein, dass $A$ auf einem Wort $w \not\in L(A) = L(B)$ unendlich lange läuft, während $B$ dieses verwirft. \\
+Die Maschinenmodelle von MTM und TM sind daher äquivalent.
+
+\section{Nichtdeterministische Turingmaschinen}
+
+Eine \textbf{nichtdeterministische Turingmaschine} $M$ ist ein Tupel mit der gleichen Definition wie eine normale TM, ausser der Übergangsfunktion. Diese wird mehr als Relation betrachtet:
+\begin{equation*}
+	\delta: (Q-\{q_\text{accept}, q_\text{reject}\}\times\Gamma) \mapsto \mathcal{P}(Q\times\Gamma\times\{L,R,N\})
+\end{equation*}
+
+\section{Berechenbarkeit}
+
+\subsection{Methode der Reduktion}
+
+Seien $L_1 \subseteq \Sigma_1^*$ und $L_2 \subseteq \Sigma_2^*$ zwei Sprachen. Wir sagen, dass $L_1$ auf $L_2$ \textbf{rekursiv reduzierbar} ist, $L_1 \leq_R L_2$, falls
+\begin{equation*}
+	L_2 \in \mathcal{L}_R \Rightarrow L_1 \in \mathcal{L}_R
+\end{equation*}
+
+$L_1 \leq_R L_2$ bedeutet so viel wie "$L_2$ ist bezüglich algorithmischer Lösbarkeit mindestens so schwer wie $L_1$".
 
 \end{document}
