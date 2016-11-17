@@ -92,7 +92,7 @@ Die Kosten f{\"u}r die bin{\"a}re Kodierung von $w_n$ der L{\"a}nge $n$ sind
 	\item Schreibe ein Programm, welches das gew{\"u}nschte Resultat liefert
 	\item Finde den Term, der von $n$ abh{\"a}ngig ist ($\log$ wird mit der Anzahl $n$ im Programm multipliziert)
 	\item Dieser Term hat die Komplexit{\"a}t $\lceil \log_2(n + 1) \rceil + c$
-	\item Jetzt muss nur noch $n$ in Abhängigkeit von $|w_n|$ ausgedr{\"u}ckt werden
+	\item Jetzt muss nur noch $n$ in Abh{\"a}ngigkeit von $|w_n|$ ausgedr{\"u}ckt werden
 \end{enumerate}
 
 Ein Wort $x \in (\Sigma_\text{bool})^*$ heisst \textbf{zuf{\"a}llig}, falls gilt:
@@ -276,25 +276,25 @@ Es gilt:
 Zu zeigen: $L(G_1) = \{...\}$
 \begin{enumerate}
 	\item Zeige, dass: $w \in L(G_1)$, eine Ableitung fur w in $G_1$ zu geben.
-	\item G1 nur Wörter vom w abgeleitet werden ko ̈nnen. Zeigen wir durch induktion. Zuerst mit ein ableitung es gilt. Dann nehmen wir ein $\alpha$ bei dem wir annehmen dass es geht, wir ableiten noch einmal und zeigen dass es immer noch zu A gehort.
+	\item G1 nur W{\"o}rter vom w abgeleitet werden ko ̈nnen. Zeigen wir durch induktion. Zuerst mit ein ableitung es gilt. Dann nehmen wir ein $\alpha$ bei dem wir annehmen dass es geht, wir ableiten noch einmal und zeigen dass es immer noch zu A gehort.
 \end{enumerate}
 
 \section{Turingmaschinen}
 
 Eine Turingmaschine ist eine Verallgemeinerung eines EA und besthet informell aus:
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=4.5cm, noitemsep]
-	\item[Kontrolle:] Enthält das Programm
+	\item[Kontrolle:] Enth{\"a}lt das Programm
 	\item[Unendliches Band:] Eingabeband und Speicher
 	\item[Lese-/Schreibkopf:] Kann sich in beide Richtungen auf dem Band bewegen
 \end{description}
 
 \textbf{Bemerkung:} \begin{itemize}
-	\item Das Band ist nur nach rechts unendlich, links ist es mit dem Randsymbol $\cent$ begrenzt, welches von der Maschine nicht überschritten oder überschrieben werden darf. Dies erlaubt es, das Band \textbf{durchzunummerieren}.
+	\item Das Band ist nur nach rechts unendlich, links ist es mit dem Randsymbol $\cent$ begrenzt, welches von der Maschine nicht {\"u}berschritten oder {\"u}berschrieben werden darf. Dies erlaubt es, das Band \textbf{durchzunummerieren}.
 	\item Die Felder, die nicht beschriftet sind, enthalten das Leerfeldsymbol $\textvisiblespace$
 \end{itemize}
 
-Die \textbf{Ähnlichkeit} zu den EAs besteht in der Kontrolle über eine endliche Zustandsmenge und dem Band, das am Anfang das Eingabewort enthält. \\
-Der \textbf{Hauptunterschied} liegt darin, dass eine Turingmaschine mit dem Band über einen unendlich grossen Speicher verfügt. \\
+Die \textbf{{\"a}hnlichkeit} zu den EAs besteht in der Kontrolle {\"u}ber eine endliche Zustandsmenge und dem Band, das am Anfang das Eingabewort enth{\"a}lt. \\
+Der \textbf{Hauptunterschied} liegt darin, dass eine Turingmaschine mit dem Band {\"u}ber einen unendlich grossen Speicher verf{\"u}gt. \\
 
 Formell ist eine \textbf{Turingmaschine} (TM) ein Tupel $M = (Q, \Sigma, \Gamma, \delta, q_0, q_\text{accept}, q_\text{reject})$, wobei
 
@@ -302,7 +302,7 @@ Formell ist eine \textbf{Turingmaschine} (TM) ein Tupel $M = (Q, \Sigma, \Gamma,
 	\item[$Q$:] Eine endliche Menge von Zust{\"a}nden
 	\item[$\Sigma$:] Das Eingabealphabet
 	\item[$\Gamma$:] Das Arbeitsalphabet, wobei $\Sigma \subseteq \Gamma$ und $\cent, \textvisiblespace \in \Gamma$ gelten, wie auch $\Gamma \cap \Sigma = \emptyset$
-	\item[$\delta$:] Die {\"U}bergangsfunktion\\ ($\delta: (Q-\{q_\text{accept}, q_\text{reject}\}\times\Gamma) \mapsto Q\times\Gamma\times\{L,R,N\}$).  \\$M$ kann also eine Aktion $(q, X, Z) \in Q \times \Gamma \times \{L, R, N\}$ aus einem aktuellen Zustand $q$ beim Lesen eines Symbols $Y \in \Gamma$ durchführen, falls $\delta(p, Y) = (q, X, Z)$. Dies bedeutet der Übergang von $p$ nach $q$, das Ersetzen von $Y$ durch $X$ und die Bewegung des Kopfes gemäss $Z$ (\textbf{L}inks, \textbf{R}echts, \textbf{N}ichts).
+	\item[$\delta$:] Die {\"U}bergangsfunktion\\ ($\delta: (Q-\{q_\text{accept}, q_\text{reject}\}\times\Gamma) \mapsto Q\times\Gamma\times\{L,R,N\}$).  \\$M$ kann also eine Aktion $(q, X, Z) \in Q \times \Gamma \times \{L, R, N\}$ aus einem aktuellen Zustand $q$ beim Lesen eines Symbols $Y \in \Gamma$ durchf{\"u}hren, falls $\delta(p, Y) = (q, X, Z)$. Dies bedeutet der {\"u}bergang von $p$ nach $q$, das Ersetzen von $Y$ durch $X$ und die Bewegung des Kopfes gem{\"a}ss $Z$ (\textbf{L}inks, \textbf{R}echts, \textbf{N}ichts).
 	\item[$q_0 \in Q$:] Der Anfangszustand
 	\item[$q_\text{\normalfont accept} \in Q$:] Der akzeptierende Zustand
 	\item[$q_\text{\normalfont reject} \in Q-\{q_\text{\normalfont accept}\}$:] Der verwerfende Zustand
@@ -310,7 +310,7 @@ Formell ist eine \textbf{Turingmaschine} (TM) ein Tupel $M = (Q, \Sigma, \Gamma,
 
 Die \textbf{akzeptierte Sprache} der Turingmaschine $M$ ist
 \begin{equation*}
-	L(M) = \{w \in \Sigma^*\ |\ q_0\cent w \vdash_M^* yq_\text{accept}z,\text{ für irgendwelche }y,z \in \Gamma^*\}
+	L(M) = \{w \in \Sigma^*\ |\ q_0\cent w \vdash_M^* yq_\text{accept}z,\text{ f{\"u}r irgendwelche }y,z \in \Gamma^*\}
 \end{equation*}
 
 Weiter \textbf{berechnet} $M$ eine Funktion $F:\Sigma^* \mapsto \Gamma^*$, falls
@@ -318,36 +318,43 @@ Weiter \textbf{berechnet} $M$ eine Funktion $F:\Sigma^* \mapsto \Gamma^*$, falls
 	q_0\cent x \vdash_M^* q_\text{accept}\cent F(x)
 \end{equation*}
 
-Eine Sprache $L \subseteq \Sigma^*$ heisst \textbf{rekursiv aufzählbar}, falls
-\begin{equation*}
-	\mathcal{L}_{RE} = \{L(M)\ | \text{ M ist eine Turingmaschine }\}
-\end{equation*}
-
-Eine Sprache $L \subseteq \Sigma^*$ heisst \textbf{rekursiv entscheidbar}, falls $L = L(M)$ und $M$ keine unendliche Berechnungen besitzt. \\
-Somit ist die \textbf{Klasse der rekursiv, algorithmisch erkennbaren Sprachen} definiert als:
-\begin{equation*}
-	\mathcal{L}_R = \{L(M)\ |\text{ M ist eine TM, die immer hält }\}
-\end{equation*}
-
 \subsection{Mehrband-Turingmaschinen}
 
-Eine \textbf{$k$-Band-Turingmaschine} (MTM) hat im Gegensatz zu einer normalen TM ein endliches Band, welches nur die Eingabe enthält und $k$ unendlich lange Arbeitsbänder, jedes mit eigenem Lese-/ Schreibkopf.
+Eine \textbf{$k$-Band-Turingmaschine} (MTM) hat im Gegensatz zu einer normalen TM ein endliches Band, welches nur die Eingabe enth{\"a}lt und $k$ unendlich lange Arbeitsb{\"a}nder, jedes mit eigenem Lese-/ Schreibkopf.
 
-Zwei \textbf{Maschinenmodelle} $\mathcal{A}$ und $\mathcal{B}$ sind äquivalent, falls gilt:
+Zwei \textbf{Maschinenmodelle} $\mathcal{A}$ und $\mathcal{B}$ sind {\"a}quivalent, falls gilt:
 \begin{itemize}[noitemsep]
-	\item zu jeder Maschine $A \in \mathcal{A}$ existiert eine zu $A$ äquivalente Maschine $B \in \mathcal{B}$
-	\item zu jeder Maschine $C \in \mathcal{B}$ existiert eine zu $C$ äquivalente Maschine $D \in \mathcal{A}$
+	\item zu jeder Maschine $A \in \mathcal{A}$ existiert eine zu $A$ {\"a}quivalente Maschine $B \in \mathcal{B}$
+	\item zu jeder Maschine $C \in \mathcal{B}$ existiert eine zu $C$ {\"a}quivalente Maschine $D \in \mathcal{A}$
 \end{itemize}
 
-Zu jeder MTM $A$ existiert eine zu $A$ äquivalente 1-Band-TM $B$. Dies heisst jedoch nicht, dass $A$ und $B$ äquivalent sind. Es kann zum Beispiel sein, dass $A$ auf einem Wort $w \not\in L(A) = L(B)$ unendlich lange läuft, während $B$ dieses verwirft. \\
-Die Maschinenmodelle von MTM und TM sind daher äquivalent.
+Zu jeder MTM $A$ existiert eine zu $A$ {\"a}quivalente 1-Band-TM $B$. Dies heisst jedoch nicht, dass $A$ und $B$ {\"a}quivalent sind. Es kann zum Beispiel sein, dass $A$ auf einem Wort $w \not\in L(A) = L(B)$ unendlich lange l{\"a}uft, w{\"a}hrend $B$ dieses verwirft. \\
+Die Maschinenmodelle von MTM und TM sind daher {\"a}quivalent.
 
 \section{Nichtdeterministische Turingmaschinen}
 
-Eine \textbf{nichtdeterministische Turingmaschine} $M$ ist ein Tupel mit der gleichen Definition wie eine normale TM, ausser der Übergangsfunktion. Diese wird mehr als Relation betrachtet:
+Eine \textbf{nichtdeterministische Turingmaschine} $M$ ist ein Tupel mit der gleichen Definition wie eine normale TM, ausser der {\"u}bergangsfunktion. Diese wird mehr als Relation betrachtet:
 \begin{equation*}
 	\delta: (Q-\{q_\text{accept}, q_\text{reject}\}\times\Gamma) \mapsto \mathcal{P}(Q\times\Gamma\times\{L,R,N\})
 \end{equation*}
+
+\section{Sprachenhierarchie}
+
+Die Sprachen sind der Reihe nach aufgelistet (d.h. die unteren Sprachen enthalten die oberen)
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Klasse}                        & \textbf{Notation}  & \textbf{Erkl{\"a}rung}                                                                                             & \textbf{Beispiel}   \\ \hline
+regul{\"a}r                                & $\mathcal{L}_{EA}$ & Wird von einem EA akzeptiert                                                                                   & $x010y$             \\ \hline
+kontextfrei                            &                    &                                                                                                                & $0^n1^n$, $ww^R$    \\ \hline
+kontextsensitiv                        &                    &                                                                                                                &                     \\ \hline
+rekursiv (entscheidbar)                & $\mathcal{L}_R$    & \begin{tabular}[c]{@{}l@{}}Wird von einer TM akzeptiert\\ Die TM h{\"a}lt bei jedem eingegebenen Wort\end{tabular} &                     \\ \hline
+rekursiv aufz{\"a}hlbar (semientscheidbar) & $\mathcal{L}_{RE}$ & \begin{tabular}[c]{@{}l@{}}Wird von einer TM akzeptiert\\ Die TM h{\"a}lt bei jedem akzeptierten Wort\end{tabular} & $(L_\text{diag})^C$ \\ \hline
+unentscheidbar                         &                    & Wird von keiner TM und EA akzeptiert                                                                           & $L_\text{diag}$     \\ \hline
+\end{tabular}
+\end{table}
 
 \section{Berechenbarkeit}
 
@@ -358,6 +365,53 @@ Seien $L_1 \subseteq \Sigma_1^*$ und $L_2 \subseteq \Sigma_2^*$ zwei Sprachen. W
 	L_2 \in \mathcal{L}_R \Rightarrow L_1 \in \mathcal{L}_R
 \end{equation*}
 
-$L_1 \leq_R L_2$ bedeutet so viel wie "$L_2$ ist bezüglich algorithmischer Lösbarkeit mindestens so schwer wie $L_1$".
+$L_1 \leq_R L_2$ bedeutet so viel wie "$L_2$ ist bez{\"u}glich algorithmischer L{\"o}sbarkeit mindestens so schwer wie $L_1$".
+
+\subsubsection{EE-Reduktion}
+
+Bei der \textbf{Eingabe-zu-Eingabe-Reduktion} ist die Idee, eine TM (einen Algorithmus) $M$ zu finden, die f{\"u}r jede Eingabe $x$ f{\"u}r das Entscheidungsproblem $(\Sigma_1,L_1)$ eine Eingabe $y$ f{\"u}r das Entscheidungsproblem $(\Sigma_2,L_2)$ konstruiert, so dass die L{\"o}sung des Problems $(\Sigma_2,L_2)$ f{\"u}r $y$ der L{\"o}sung des Problems $(\Sigma_1,L_1)$ f{\"u}r $x$ entspricht. \\
+
+Falls es so eine TM $M$ gibt, die die Abbildung $f_M: \Sigma_1^*\mapsto\Sigma_2^*$ berechnet, so dass
+\begin{equation*}
+	x \in L_1 \Leftrightarrow f_M(x) \in L_2
+\end{equation*}
+
+Dann sagen wir, dass $L_1$ auf $L_2$ \textbf{EE-reduzierbar} bzw. $M$ die Sprache $L_1$ auf $L_2$ reduziert.
+
+\subsubsection{Universelle Sprache}
+
+\begin{equation*}
+	L_U = \{\text{Kod}(M)\#w\ |\ w \in (\Sigma_\text{bool})^* \text{ und M akzeptiert $w$ }\}
+\end{equation*}
+
+Es gibt eine TM $U$, die \textbf{universelle TM}, so dass
+\begin{equation*}
+	L(U) = L_U
+\end{equation*}
+Es folgt, dass $L_U \in \mathcal{L}_\text{RE}$, jedoch nicht $L_U \in \mathcal{L}_\text{R}$. Dies leuchtet ein, da die simulierte Maschine $M$ f{\"u}r das eingegebene Wort $w$ nicht zwingend terminiert.
+
+\subsubsection{Halteproblem}
+
+Das \textbf{Halteproblem} ist das Entscheidungsproblem $(\{0, 1, \#\}, L_H)$, wobei
+\begin{equation*}
+	L_H = \{\text{Kod}(M)\#x\ |\ x \in \{0,1\}^* \text{ und M h{\"a}lt auf $x$ }\}
+\end{equation*}
+
+Da es kein Algorithmus gibt, der Testen kann, ob ein gegebenes Programm immer terminiert, gilt:
+\begin{equation*}
+	L_H \not\in \mathcal{L}_R
+\end{equation*}
+
+\subsubsection{Leere Sprache}
+
+Die \textbf{leere Sprache} ist die Sprache, die alle Kodierungen aller Turingmaschinen enth{\"a}lt, die die leere Menge (kein Wort) akzeptieren.
+\begin{equation*}
+	L_\text{empty} = \{\text{Kod}(M)\ |\ L(M) = \emptyset\}
+\end{equation*}
+
+Es gilt
+\begin{equation*}
+	(L_\text{empty})^C \in \mathcal{L}_{RE} \quad\text{und}\quad L_\text{empty} \not\in \mathcal{L}_{R}
+\end{equation*}
 
 \end{document}
