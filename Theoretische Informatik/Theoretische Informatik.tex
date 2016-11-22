@@ -21,6 +21,9 @@
 
 \setlength{\parindent}{0pt}
 
+\newcommand{\ttc}{\text{Time}}
+\newcommand{\tsc}{\text{Space}}
+
 \begin{document}
 
 \section{Alphabete, W{\"o}rter und Sprachen}
@@ -373,15 +376,26 @@ Bei der \textbf{Eingabe-zu-Eingabe-Reduktion} ist die Idee, eine TM (einen Algor
 
 Falls es so eine TM $M$ gibt, die die Abbildung $f_M: \Sigma_1^*\mapsto\Sigma_2^*$ berechnet, so dass
 \begin{equation*}
-	x \in L_1 \Leftrightarrow f_M(x) \in L_2
+	L_1 \leq_{EE} L_2 :\Leftrightarrow x \in L_1 \Leftrightarrow f_M(x) \in L_2
 \end{equation*}
 
-Dann sagen wir, dass $L_1$ auf $L_2$ \textbf{EE-reduzierbar} bzw. $M$ die Sprache $L_1$ auf $L_2$ reduziert.
+Dann sagen wir, dass $L_1$ auf $L_2$ \textbf{EE-reduzierbar} bzw. $M$ die Sprache $L_1$ auf $L_2$ reduziert. \\
+
+\textbf{Bemerkung:} Wichtig ist dabei, dass $f$ berechenbar ist, d.h. für alle $x$ muss die Berechnung terminieren, egal ob $x \in L_1$ oder $x \not\in L_1$.
+
+\subsubsection{Diagonalsprache}
+
+\begin{equation*}
+\begin{split}
+	L_\text{diag} &  = \{ w \in (\Sigma_\text{bool})*\ |\ w = w_i \text{ für ein } i \in \mathbb{N} - \{0\} \text{ und $M_i$ akzeptiert $w_i$ nicht} \} \\
+	(L_\text{diag})^C &  = \{ w \in (\Sigma_\text{bool})*\ |\ w = w_i \text{ für ein } i \in \mathbb{N} - \{0\} \text{ und $M_i$ akzeptiert $w_i$} \} \\
+\end{split}
+\end{equation*}
 
 \subsubsection{Universelle Sprache}
 
 \begin{equation*}
-	L_U = \{\text{Kod}(M)\#w\ |\ w \in (\Sigma_\text{bool})^* \text{ und M akzeptiert $w$ }\}
+	L_U = \{\text{Kod}(M)\#w\ |\ w \in (\Sigma_\text{bool})^* \text{ und M akzeptiert $w$}\}
 \end{equation*}
 
 Es gibt eine TM $U$, die \textbf{universelle TM}, so dass
@@ -412,6 +426,67 @@ Die \textbf{leere Sprache} ist die Sprache, die alle Kodierungen aller Turingmas
 Es gilt
 \begin{equation*}
 	(L_\text{empty})^C \in \mathcal{L}_{RE} \quad\text{und}\quad L_\text{empty} \not\in \mathcal{L}_{R}
+\end{equation*}
+
+\subsubsection{Satz von Rice}
+
+Jedes semantisch nichttriviale Entscheidungsproblem über Turingmaschinen ist unentscheidbar. 
+
+\subsubsection{Post'sche Korrespondenzproblem}
+
+Zielsetzung ist es, mit Hilfe der Reduktion die Untentscheidbarkeit aus der Welt der Turingmaschinen in die Welt der Spiele (Domino) zu übertragen. Das Dominospiel wid auch \textbf{Post'sches Korrespondenzproblem (PKP)} gennant.\\
+
+Eine \textbf{Instanz des Post'schen Korrespondezproblems} ist ein Paar $(A,B)$, wobei $A = w_1,...,w_k$ und $B = x_1,...,x_k$. Für jedes $i = 1,...,k$ wird $(w_i, x_i)$ ein \textbf{Dominiostein} genannt.
+
+Es existiert eine \textbf{Lösung}, falls $i_1, i_2,..., i_m$ so gewählt werden können, so dass:
+\begin{equation*}
+	w_{i_1}w_{i_2}...w_{i_m} = x_{i_1}x_{i_2}...x_{i_m}
+\end{equation*}
+
+Zusätzlich dazu gibt es noch die modifizierte Variante, \textbf{MPKP}. Es ist ein Spezialform des \textbf{PKP}, bei der das Dominospiel immer mit dem ersten Dominosteintyp anfangen muss. Eine Lösung dazu ist die folgende:
+\begin{equation*}
+	u_1u_{j_1}u_{j_2}...u_{j_m} = v_1v_{j_1}v_{j_2}...v_{j_m}
+\end{equation*}
+
+\textbf{Bemerkung:} Falls PKP entscheidbar ist, ist auch MPKP entscheidbar. Da MPKP untentscheidbar ist, ist somit auch PKP \textbf{unentscheidbar}.
+
+\subsection{Methode der Kolmogorovkomplexität}
+
+Wir benutzen diese Methode, um zu beweisen, dass kein Algorithmus existiert, der die Kolmogorovkomplexität $K(x)$ von $x$ aller Wörter $x \in \Sigma^*_\text{bool}$ berechnen kann. Dies ist nämlich \textbf{algorithmisch unlösbar}.
+
+\section{Komplexitätstheorie}
+
+\subsection{Komplexitätsmasse}
+
+\subsubsection{Zeitkomplexität}
+
+Sei $M$ eine MTM oder TM, die immer hält und sei $D = C_1,C_2,...,C_k$ die Berechnung von $M$ auf $x \in \Sigma^*$. Dann ist die \textbf{Zeitkomplexität} $\ttc_M(x)$ die Berechnung von $M$ auf $x$ definiert durch die Anzahl Berechnungsschritte in $D$:
+\begin{equation*}
+	\ttc_M(x) = k-1
+\end{equation*}
+
+Die Zeitkomplxität $\ttc_M: \mathbb{N} \mapsto \mathbb{N}$ ist als Funktion definiert durch:
+\begin{equation*}
+	\ttc(n) = \max\{\ttc_M(x)\ |\ x \in \Sigma^n\}
+\end{equation*}
+
+$\ttc_M(n)$ ist die Zeitkomplexität der längsten Berechnung auf Eingaben der Länge $n$. Man nennt dies auch \textbf{die Komplexität im schlechtesten Fall}.
+
+\subsubsection{Speicherplatzkomplexität}
+
+Sei $M$ eine $k$-Band-Turingmaschine, die immer hält und sei weiter $C = (q, x, i, \alpha_1, i_1, \alpha_2, i_2,..., \alpha_k, i_k)$ eine Konfiguration von $M$. Dann ist die \textbf{Speicherplatzkomplexität von $C$} gleich:
+\begin{equation*}
+	\tsc_M(C) = \max\{|\alpha_i|\ |\ i = 1,...,k\}
+\end{equation*}
+
+Sei $C_1, C_2,..., C_l$ die Berechnung von $M$ auf $x$, dann ist die \textbf{Speicherplatzkomplexität von $M$ auf $x$} geich
+\begin{equation*}
+	\tsc_M(x) = \max\{\tsc_M(C_i)\ |\ i = 1,...,l\}
+\end{equation*}
+
+Die \textbf{Speicherplatzkomplexität von $M$} ist die Funktion $\tsc_M: \mathbb{N} \mapsto \mathbb{N}$, definiert durch:
+\begin{equation*}
+	\tsc_M(n) = \max\{\tsc_M(x)\ |\ x \in \Sigma^n\}
 \end{equation*}
 
 \end{document}
