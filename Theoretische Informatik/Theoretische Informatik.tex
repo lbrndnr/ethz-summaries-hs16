@@ -489,4 +489,130 @@ Die \textbf{Speicherplatzkomplexität von $M$} ist die Funktion $\tsc_M: \mathbb
 	\tsc_M(n) = \max\{\tsc_M(x)\ |\ x \in \Sigma^n\}
 \end{equation*}
 
+\subsubsection{Asymptotische Komplexität}
+
+Für jede Funktion $f: \mathbb{N} \mapsto \mathbb{R}^+$ definieren wir:
+\begin{equation*}
+\begin{split}
+	O(f(n)) & = \{r: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists n_0 \in \mathbb{N}, \exists c \in \mathbb{N}, \text{ so dass für alle $n \geq n_0: r(n) \leq c\cdot f(n)$}\}  \\
+	\Omega(f(n)) & = \{s: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists n_0 \in \mathbb{N}, \exists d \in \mathbb{N}, \text{ so dass für alle $n \geq n_0: s(n) \geq \frac{1}{d}\cdot f(n)$}\}  \\
+	\Theta(f(n)) & = \{q: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists c,d,n_0 \in \mathbb{N}, \text{ so dass für alle $ n \geq n_0: \frac{1}{d}\cdot f(n) \leq q(n) \leq c\cdot f(n)$}\}  \\
+\end{split}
+\end{equation*}
+
+Mit Bedeutung:
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=3cm, noitemsep]
+	\item[$r \in 0(f(n))$:] $r$ wächst asymptotisch nicht schneller als $f$
+	\item[$s \in \Omega(f(n))$:] $r$ wächst asymptotisch mindestens so schnell wie $f$
+	\item[$q \in \Theta(f(n))$:] $r$ wächst asymptotisch gleich schnell wie $f$
+\end{description}
+
+Sei $L$ eine Sprache und $f,g$ zwei Funktionen, dann ist:
+\begin{itemize}[noitemsep]
+	\item $O(g(n))$ eine \textbf{obere Schranke für die Zeitkomplexität von $L$}, falls eine MTM $A$ existiert, so dass $L(A) = L$ und $\ttc_A(n) \in O(g(n))$
+	\item $\Omega(f(n))$ eine \textbf{untere Schranke für die Zeitkomplexität von $L$}, falls eine MTM $B$ existiert, so dass $L(B) = L$ und $\ttc_B(n) \in \Omega(f(n))$
+	\item Eine MTM $C$ heisst \textbf{optimal für $L$}, falls $\ttc_C(n) \in \O(f(n))$ gilt und $\Theta(f(n))$ eine untere Schranke für die Zeitkomplexität von $L$ ist.
+\end{itemize}
+
+\subsubsection{Komplexitätsklassen}
+
+\begin{equation*}
+\begin{split}
+	\text{TIME}(f) & = \{L(B)\ |\ \text{B ist eine MTM mit } \ttc_B(n) \in O(f(n))\} \\
+	\text{SPACE}(g) & = \{L(A)\ |\ \text{A ist eine MTM mit } \tsc_A(n) \in O(g(n))\} \\
+	\text{DLOG} & = \text{SPACE}(\log_2 n) \\
+	\text{P} & = \bigcup_{c \in \mathbb{N}} \text{TIME}(n^c) \\
+	\text{PSPACE} & = \bigcup_{c \in \mathbb{N}} \text{SPACE}(n^c) \\
+	\text{EXPTIME} & = \bigcup_{d \in \mathbb{N}} \text{TIME}(2^{n^d}) \\
+\end{split}
+\end{equation*}
+
+Eine Funktion $s: \mathbb{N} \mapsto \mathbb{N}$ heisst \textbf{platzkonstruierbar}, falls ein 1-Band-TM $M$ existiert, so dass:
+\begin{enumerate}[label=(\roman*), noitemsep]
+	\item $\tsc_M(n) \leq s(n)$ für alle $n \in \mathbb{N}$
+	\item für jede Eingabe $0^n$ generiert generiert $M$ das Wort $0^{s(n)}$ und hält in $q_\text{accept}$
+\end{enumerate}
+
+Weiter ist eine Funktion $t: \mathbb{N} \mapsto \mathbb{N}$ \textbf{zeitkonstruierbar}, falls eine MTM $M$ existiert, so dass:
+\begin{enumerate}[label=(\roman*), noitemsep]
+	\item $\ttc_M(n) \in O(t(n))$
+	\item für jede Eingabe $0^n$ generiert generiert $M$ das Wort $0^{t(n)}$ und hält in $q_\text{accept}$
+\end{enumerate}
+
+\textbf{Bemerkung:} Die meisten gewöhnlichen monotonen Funktionen sind platzkonstruierbar bzw. zeitkonstruierbar. \\
+
+\subsection{Nichtdeterministische Komplexitätsklassen}
+
+\subsubsection{Zeitkomplexität}
+
+Sei $M$ eine NTM mit $x \in L(M)$. Die \textbf{Zeitkomplexität von $M$ auf $x$} gleich:
+\begin{equation*}
+	\ttc_M(x) = \text{die Länge einer kürzesten akzeptierenden Berechnung}
+\end{equation*}
+
+Die \textbf{Zeitkomplexität von $M$} ist die Funktion $\ttc_M: \mathbb{N} \mapsto \mathbb{N}$:
+\begin{equation*}
+	\ttc_M(n) = \max(\{\ttc_M(x)\ |\ x \in L(M) \land |x| = n\} \cup \{0\})
+\end{equation*}
+
+\subsubsection{Speicherplatzkapazität}
+
+Sei $C = C_1C_2...C_m$ eine akzeptierende Berechnung von $M$ auf $x$. Dann ist
+\begin{equation*}
+	\tsc_M(C) = \max\{\tsc_M(C_i)\ |\ i=1,2,...,m\}
+\end{equation*}
+
+Die \textbf{Speicherplatzkapazität von $M$ auf $x$} ist dann definiert als
+\begin{equation*}
+	\tsc_M(x) = \min\{\tsc_M(C)\ |\ \text{$C$ ist eine akzeptierende Berechnung von $M$ auf $x$}\}
+\end{equation*}
+
+Die \textbf{Speicherplatzkomplexität von $M$} ist die Funktion $\tsc_M: \mathbb{N} \mapsto \mathbb{N}$:
+\begin{equation*}
+	\tsc_M(n) = \max(\{ \tsc_M(x)\ |\ x \in L(M) \land |x| = n\} \cup \{0\})
+\end{equation*}
+
+\subsubsection{Komplexitätsklassen}
+
+\begin{equation*}
+\begin{split}
+	\text{NTIME}(f) & = \{L(B)\ |\ \text{B ist eine nichtdeterministische MTM mit } \ttc_B(n) \in O(f(n))\} \\
+	\text{NSPACE}(g) & = \{L(A)\ |\ \text{A ist eine nichtdeterministische MTM mit } \tsc_A(n) \in O(g(n))\} \\
+	\text{NLOG} & = \text{NSPACE}(\log_2 n) \\
+	\text{NP} & = \bigcup_{c \in \mathbb{N}} \text{NTIME}(n^c) \\
+	\text{NPSPACE} & = \bigcup_{c \in \mathbb{N}} \text{NSPACE}(n^c) \\
+\end{split}
+\end{equation*}
+
+Für jede Funktion $t: \mathbb{N} \mapsto \mathbb{R}^+$ und $s: \mathbb{N} \mapsto \mathbb{N}$ mit $s(n) \geq \log_2(n)$ gelten folgende Vergleiche:
+
+\paragraph{Deterministisch - Deterministisch}
+\begin{equation*}
+\begin{split}
+	\text{DLOG} \subseteq \text{P} & \subseteq \text{PSPACE} \subseteq \text{EXPTIME} \\
+	\text{SPACE}(s(n)) & \subseteq \bigcup_{c \in \mathbb{N}} \\
+\end{split}
+\end{equation*}
+
+\paragraph{Nicht Deterministisch - Nicht Deterministisch}
+\begin{equation*}
+\begin{split}
+	\text{NTIME}(t) & \subseteq \text{NSPACE}(t)\\
+	\text{NSPACE}(s) & \subseteq \bigcup_{c \in \mathbb{N}}\text{NTIME}(c^{s(n)}) \\
+\end{split}
+\end{equation*}
+
+\paragraph{Deterministisch - Nicht Deterministisch}
+\begin{equation*}
+\begin{split}
+	\text{TIME}(t) & \subseteq \text{NTIME}(t) \\
+	\text{SPACE}(t) & \subseteq \text{NSPACE}(t) \\
+	\text{NTIME}(s(n)) & \subseteq \text{SPACE}(s(n)) \subseteq \bigcup_{c \in \mathbb{N}}\text{TIME}(c^{s(n)}) \\
+	\text{NP} & \subseteq \text{PSPACE} \\
+	\text{NLOG} & \subseteq \text{P} \\
+	\text{NPSPACE} & \subseteq \text{EXPTIME} \\
+	\text{PSPACE} & = \text{NPSPACE}
+\end{split}
+\end{equation*}
+
 \end{document}
