@@ -20,6 +20,10 @@
 
 \setlength{\parindent}{0pt}
 
+\newcommand{\E}{\text{E}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Cov}{\text{Cov}}
+
 \begin{document}
 
 \section{Wahrscheinlichkeiten}
@@ -113,43 +117,43 @@ Zwei Ereignisse $A, B$ sind unabh{\"a}ngig (stochastisch), falls gilt:
 
 \subsection{Erwartungswert}
 
-Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfuntkion $p_X(x)$, dann ist der Erwartungswert $E[X]$ wie folgt definiert:
+Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfuntkion $p_X(x)$, dann ist der Erwartungswert $\E[X]$ wie folgt definiert:
 \begin{equation*}
-	E[X] := \sum_{x_k \in \mathcal{W}(X)} x_kp_X(x_k)
+	\E[X] := \sum_{x_k \in \mathcal{W}(X)} x_kp_X(x_k)
 \end{equation*}
 
 Ist diese Reihe nicht \emph{absolut konvergent}, so existiert der Erwartungswert nicht.
 
 Sei weiter $Y = g(X)$ eine Zufallsvariable gem{\"a}ss $g: \mathbb{R}\mapsto\mathbb{R}$ abh{\"a}ngig von $X$, so gilt:
 \begin{equation*}
-	E[Y] = E[g(X)] = \sum_{x_k \in \mathcal{W}(X)} g(x_k)p_X(x_k)
+	\E[Y] = \E[g(X)] = \sum_{x_k \in \mathcal{W}(X)} g(x_k)p_X(x_k)
 \end{equation*}
 
 F{\"u}r zwei Zufallsvariablen $X$ und $Y$, die jeweils einen Erwartungswert definiert haben, gilt:
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=4cm, noitemsep]
-	\item[Monotonie:] Ist $X \leq Y$ (bzw. $\forall\omega: X(\omega) \leq Y(\omega)$), so gilt auch $E[X] \leq E[Y]$
-	\item[Linearit{\"a}t:] F{\"u}r beliebige $a,b \in \mathbb{R}$ gilt $E[aX + b] = aE[X]+b$
-	\item[Werte in $\mathbb{N}_0$:] Falls $X$ nur Werte in $\mathbb{N}_0$ annimmt, so gilt \\ $E[X] = \sum^\infty_{j=1}P[X \geq j] = \sum^\infty_{l=0}P[X > l]$
+	\item[Monotonie:] Ist $X \leq Y$ (bzw. $\forall\omega: X(\omega) \leq Y(\omega)$), so gilt auch $\E[X] \leq \E[Y]$
+	\item[Linearit{\"a}t:] F{\"u}r beliebige $a,b \in \mathbb{R}$ gilt $\E[aX + b] = a\E[X]+b$
+	\item[Werte in $\mathbb{N}_0$:] Falls $X$ nur Werte in $\mathbb{N}_0$ annimmt, so gilt \\ $\E[X] = \sum^\infty_{j=1}P[X \geq j] = \sum^\infty_{l=0}P[X > l]$
 \end{description}
 
 \subsection{Varianz}
 
-Sei $X$ eine diskrete Zufallsvariable und ist $E[X] < \infty$, so ist die \textbf{Varianz} definiert als:
+Sei $X$ eine diskrete Zufallsvariable und ist $\E[X] < \infty$, so ist die \textbf{Varianz} definiert als:
 \begin{equation*}
-	\text{Var}[X] := E[(X-E[X])^2] = \sum_{x_k \in \mathcal{W}(X)}(x_k - E[X])^2 p_X(x_k)
+	\Var[X] := \E[(X-\E[X])^2] = \sum_{x_k \in \mathcal{W}(X)}(x_k - \E[X])^2 p_X(x_k)
 \end{equation*}
 
 Dementsprechend ist die \textbf{Standardabweichung} von $X$ gleich
 \begin{equation*}
-	\text{sd}(X) = \sigma(X) := \sqrt{\text{Var}[X]}
+	\text{sd}(X) = \sigma(X) := \sqrt{\Var[X]}
 \end{equation*}
 
 Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} der Verteilung von $X$. F{\"u}r beliebiges $X$ und $Y = aX +b$ gilt:
 
 \begin{equation*}
 \begin{split}
-	\text{Var}[X] & = E[X^2] - E[X]^2 \\
-	\text{Var}[Y] & = \text{Var}[aX +b] = a^2\text{Var}[X]
+	\Var[X] & = \E[X^2] - \E[X]^2 \\
+	\Var[Y] & = \Var[aX +b] = a^2\Var[X]
 \end{split}	
 \end{equation*}
 
@@ -193,13 +197,13 @@ Die Zufallsvariablen $X_1,...,X_n$ heissen \textbf{unabh{\"a}ngig}, falls
 
 \subsection{Funktionen von mehreren Zufallsvariablen}
 
-Seien $X_1,...,X_n$ diskrete Zufallsvariablen mit endlichen Erwartungswerten $E[X_1],...,E[X_n]$...
+Seien $X_1,...,X_n$ diskrete Zufallsvariablen mit endlichen Erwartungswerten $\E[X_1],...,\E[X_n]$...
 
 \subsubsection{Summen von Erwartungswerte}
 
 Sei weiter $Y = a + \sum_{l=1}^n b_lX_l$ mit Konstanten $a,_1,...,b_n$, dann gilt:
 \begin{equation*}
-	E[Y] = a + \sum_{l=1}^n b_lE[X_l]
+	\E[Y] = a + \sum_{l=1}^n b_l\E[X_l]
 \end{equation*}
 
 Es folgt, dass Erwartungswerte sich \textbf{immer linear verhalten}. Der Erwartungswert einer Summe von Zufallsvariablen ist also immer die Summe der Erwartungswerte.
@@ -208,14 +212,14 @@ Es folgt, dass Erwartungswerte sich \textbf{immer linear verhalten}. Der Erwartu
 
 Die \textbf{Kovarianz} von $X$ und $Y$ ist wie folgt definiert:
 \begin{equation*}
-	\text{Cov}(X,Y) = E[XY] - E[X]E[Y] = E[(X - E[X])(Y-E[Y])]
+	\Cov(X,Y) = \E[XY] - \E[X]\E[Y] = \E[(X - \E[X])(Y-\E[Y])]
 \end{equation*}
 
 Es gelten:
 \begin{equation*}
 \begin{split}
-	& \text{Cov}(X, X) = \text{Var}(X) \\
-	& \text{Cov}(X, Y) = 0 \Rightarrow \text{$X$ und $Y$ sind unkorreliert}
+	& \Cov(X, X) = \Var(X) \\
+	& \Cov(X, Y) = 0 \Rightarrow \text{$X$ und $Y$ sind unkorreliert}
 \end{split}
 \end{equation*}
 
@@ -223,8 +227,8 @@ Daraus folgt die \textbf{allgemeine Summenformel f{\"u}r Varianzen}:
 
 \begin{equation*}
 \begin{split}
-	\text{korreliert:} \quad & \text{Var}\Bigg[\sum_{i=1}^n X_i \Bigg] = \sum_{i=1}^n\text{Var}[X_i] + 2\sum_{i<j}\text{Cov}(X_i, X_j) \\
-	\text{unkorreliert:} \quad & \text{Var}\Bigg[\sum_{i=1}^n X_i \Bigg] = \sum_{i=1}^n\text{Var}[X_i]
+	\text{korreliert:} \quad & \Var\Bigg[\sum_{i=1}^n X_i \Bigg] = \sum_{i=1}^n\Var[X_i] + 2\sum_{i<j}\Cov(X_i, X_j) \\
+	\text{unkorreliert:} \quad & \Var\Bigg[\sum_{i=1}^n X_i \Bigg] = \sum_{i=1}^n\Var[X_i]
 \end{split}
 \end{equation*}
 
@@ -233,7 +237,7 @@ Daraus folgt die \textbf{allgemeine Summenformel f{\"u}r Varianzen}:
 Falls $X_1,...X_n$ unabh{\"a}ngig sind und der Erwartungswert links {\"u}berhaupt existiert, gilt
 
 \begin{equation*}
-	E\Bigg[\prod_{i=1}^n X_i\Bigg] = \prod_{i=1}^n E[X_i]
+	E\Bigg[\prod_{i=1}^n X_i\Bigg] = \prod_{i=1}^n \E[X_i]
 \end{equation*}
 
 In diesem Fall sind dann $X_1,...,X_n$ paarweise unkorreliert.
@@ -247,6 +251,96 @@ Seien $X$ und $Y$ diskrete Zufallsvariablen mit gemeinsamer Gewichtsfunktion $p(
 
 \section{Wichtige Diskrete Verteilungen}
 
+\subsection{Diskrete Gleichverteilung}
 
+Alle Elementarereignisse treten mit der gleichen Wahrscheinlichkeit auf.
+
+\begin{equation*}
+	p_X(x_k) = P[X = x_k] = \frac{1}{N}
+\end{equation*}
+
+\subsection{Bernoulli-Verteilung}
+
+Bei einem \textbf{0-1-Experiment} ist die Gewichtsfunktion mit einer \textbf{Bernoulli-Verteilung} wie folgt definiert:
+\begin{equation*}
+	p_X(x) = p^x(1-p)^{1-x} \quad\text{für } k = 1, 2, ..., N
+\end{equation*}
+
+Es folgt, dass folgende Formeln gelten:
+\begin{equation*}
+\begin{split}
+	p_X(1) & = P[X = 1] = p \\
+	p_X(0) & = P[X = 0] = 1-p \\
+\end{split}
+\end{equation*}
+
+Anders ausgedrückt ist $X$ die Anzahl Erfolge bei einem einzelnen 0-1-Experiment mit \textbf{Erfolgsparameter} $p$, liefert also nur die Werte 1 oder 0. Wir schreiben $X \sim Be(p)$.
+
+\textbf{Erwartungswert} und \textbf{Varianz} verhalten sich bei einer Bernoulli-verteilten Zufallsvariable wie folgt:
+\begin{equation*}
+\begin{split}
+	\E[X] & = 1 \cdot P[X = 1] + 0 \cdot P[X = 0] = p \\
+	\Var[X] & = \E[X^2] - (\E[X])^2 = p(1-p) \quad \text{da } X^2 = X
+\end{split}
+\end{equation*}
+
+\subsection{Binomialverteilung}
+
+Die \textbf{Binomialverteilung} mit Parametern $n$ und $p$ beschreibt $n$ \textbf{0-1-Experimente} mit \textbf{Erfolgsparameter} $p$. \\
+Der Wertebereich ist also $\mathcal{W} = \{0, 1, ..., n\}$. Die Gewichtsfunktion ist gleich
+\begin{equation*}
+	p_X(k) = P[X = k] = \binom{n}{k}p^k(1-p)^{n-k} \quad\text{für } k = 0, 1, ..., n
+\end{equation*}
+
+Wir schreiben $X \sim Bin(n,p)$. Falls $n = 1$ gilt $Bin(n,p) = Be(p)$
+
+\subsection{Geometrische Verteilung}
+
+Betrachten wir eine unendliche Folge von unabhängigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$, dann ist $X$ der Index der ersten Eins in der zufälligen 0-1-Folge. \\
+Der Wertebereich ist dementsprechend $\mathcal{W} = \mathbb{N}$ und die Gewichtsfunktion gleich
+\begin{equation*}
+	p_X(k) = P[X = k] = p(1-p)^{k-1} \quad\text{für } k = 1, 2, 3,...
+\end{equation*}
+
+Wir schreiben $X \sim Geom(p)$. $X = k$ heisst gerade, dass $A_1,..., A_{k-1}$ nicht eintreten und $A_k$ als erstes eintritt. Weiter ist der \textbf{Erwartungswert} und die \textbf{Varianz} gleich
+\begin{equation*}
+\begin{split}
+	\E[X] & = \sum_{l=0}^\infty P[X > l] = \frac{1}{p} \\
+	\Var[X] & = \frac{1-p}{p^2}
+\end{split}
+\end{equation*}
+
+\subsection{Negativbinomiale Verteilung}
+
+Eine \textbf{negativbinomiale Verteilung} mit Parametern $r$ und $p$ beschreibt eine unendliche Folge von unabhängigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$ und dem $r$-ten Erfolg. \\
+Der Wertebereich ist $\mathcal{W} = \{r, r+1, r+2,...\}$ und die Gewichtsfunktion
+\begin{equation*}
+	p_X(k) = P[X = k] = \binom{k-1}{r-1}p^r(1-p)^{k-r} \quad\text{für } k = r, r+1, r+2, ...
+\end{equation*}
+
+Wir schreiben kurz $X \sim NB(r,p)$. Es gilt:
+\begin{equation*}
+\begin{split}
+	\E[X] & = \sum_{i=1}^r E[X_i] = \frac{r}{p} \\
+	\Var[X] & = \sum_{i=1}^r \Var[X_i] = \frac{r(1-p)}{p^2}
+\end{split}
+\end{equation*}
+
+\subsection{Hypergeometrische Verteilung}
+
+In einer Urne seien $n$ Gegenstände, davon $r$ vom Typ 1 und $n -r$ vom Typ 2. Man zieht ohne Zurücklegen $m$ der Gegenstände; die Zufallsvariable $X$ beschreibe die Anzahl der Gegenstände vom Typ 1 in dieser Stichprobe vom Umfang $m$. Dann hat $X$ eine \textbf{hypergeometrische Verteilung} mit Parametern $n \in \mathbb{N}$ und $m,r \in \{1, 2, ..., n\}$. \\
+Der Wertebereich ist gleich $\mathcal{W} = \{1, 2,... \min(r, m)\}$ und $X$ hat die Gewichtsfunktion
+\begin{equation*}
+	p_X(k) = \frac{\binom{r}{k}\binom{n-r}{m-k}}{\binom{n}{m}} \quad \text{für } k \in \mathcal{W}(X)
+\end{equation*}
+
+\subsection{Poisson-Verteilung}
+
+Die \textbf{Poisson-Verteilung} mit Parameter $\lambda \in (0, \infty)$ ist eine Verteilung auf der Menge $\mathbb{N}_0$ mit Gewichtsfunktion
+\begin{equation*}
+	p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!}\quad\text{für } k = 0, 1, 2,...
+\end{equation*}
+
+Wir schreiben kurz $X \sim \mathcal{P}(\lambda)$
 
 \end{document}
