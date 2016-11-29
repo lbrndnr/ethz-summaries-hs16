@@ -343,4 +343,141 @@ Die \textbf{Poisson-Verteilung} mit Parameter $\lambda \in (0, \infty)$ ist eine
 
 Wir schreiben kurz $X \sim \mathcal{P}(\lambda)$
 
+\section{Allgemeine Zufallsvariablen}
+
+Das \textbf{stochastiche Verhalten} einer \textbf{allgemeinen Zufallsvariable} $X$ wird durch ihre Verteilung beschrieben:
+\begin{equation*}
+	\mu_X(B) := P[X \in B] 
+\end{equation*}
+
+Die \textbf{Verteilungsfunktion $F_X$} ist durch $\mu_X$ festgelegt:
+\begin{equation*}
+	F_X(t) = P[X \leq t] = \mu_X(]-\infty,t])
+\end{equation*}
+
+Die \textbf{Dichtefunktion} $f_X: \mathbb{R} \mapsto [0,\infty[$ ist das allgemeine Analog zur Gewichtsfunktion. Die Zufallsvariable wird \textbf{(absolut) stetig}, falls gilt:
+\begin{equation*}
+	F_X(t) = \int_{-\infty}^t f_X(s)\ ds \quad\text{für alle }t\in \mathbb{R}
+\end{equation*}
+
+Die Dichtefunktion $f_X$ hat folgende Eigenschaften:
+\begin{equation*}
+\begin{split}
+	f_X \geq 0 \text{ und } f_X & = 0\text{ ausserhalb von } \mathcal{W}(X) \\
+	\int_{-\infty}^\infty f_X(s)\ ds & = 1
+\end{split}
+\end{equation*}
+
+In allen vernünftigen Situationen gilt
+\begin{equation*}
+	\text{Dichtefunktion} = \text{Ableitung der Verteilungsfunktion}
+\end{equation*}
+
+\subsection{Erwartungswerte}
+
+Ist $X$ stetig mit Dichte $f_X(x)$, so ist der Erwartungswert gleich
+\begin{equation*}
+	\E[X] = \int_{-\infty}^\infty x f_X(x)\ dx
+\end{equation*}
+sofer das Integral absolut konvergiert.
+
+Sei weiter $X$ und $Y = g(X)$ zwei Zufallsvariablen. Ist $X$ stetig mit Dichte $f_X(x)$, so ist
+\begin{equation*}
+	\E[Y] = \E[g(X)] = \int_{-\infty}^\infty g(x)f_X(x)\ dx
+\end{equation*} 
+
+\subsection{Gemeinsame Verteilungen, unabhängige Zufallsvariablen}
+
+Die \textbf{gemeinsame Verteilungsfunktion} von $n$ Zufallsvariablen $X_1,...,X_n$ ist die Abbildung $F: \mathbb{R}^n \mapsto [0,1]$
+\begin{equation*}
+	F(x_1,...,x_n) = \int_{-\infty}^{x_1} ... \int_{-\infty}^{x_n} f(t_1,...,t_n)\ dt_n...dt_1
+\end{equation*}
+
+Somit ist $f: \mathbb{R}^n \mapsto [0, \infty[$ die \textbf{gemeinsame Dichte} von $X_1,...,X_n$.
+
+
+
+\section{Wichtige stetige Verteilungen}
+
+\subsection{Gleichverteilung}
+
+Die \textbf{Gleichverteilung} auf einem Intervall $[a,b]$ ist ein Modell für die zufällige Wahl eines Punktes in $[a,b]$. Die Zufallsvariable $X$ hat somit den Wertebereich $\mathcal{W} = [a,b]$. Dementsprechend sind \textbf{Dichtefunktion} und \textbf{Verteilungsfunktion} definiert:
+\begin{equation*}
+\begin{split}
+	f_X(t) = \begin{cases}
+		\frac{1}{b-a}\quad\text{für }a\leq t \leq b \\
+		0\quad\text{sonst }
+	\end{cases} \\
+	F_X(t) = \begin{cases}
+		0\quad\text{für } t < a \\
+		\frac{t-a}{b-a}\quad\text{für } a \leq t \leq b \\
+		1\quad\text{für } t > b
+	\end{cases}
+\end{split}
+\end{equation*}
+
+Wir schreiben $X \sim \mathcal{U}(a,b)$ ($\mathcal{U}$ für uniform).
+
+\subsection{Exponentialverteilung}
+
+Die \textbf{Exponentialverteilung} mit Parameter $\lambda > 0$ ist das stetige Analog der \textbf{geometrischen Verteilung}. \\
+Die Zufallsvariable $X$ hat $\mathcal{W} = [0, \infty[$, \textbf{Dichte} und \textbf{Verteilungsfunktion}:
+\begin{equation*}
+\begin{split}
+	f_X(t) & = \begin{cases}
+		\lambda e^{-\lambda t}\quad\text{für } t \geq 0 \\
+		0 \quad\text{für } t < 0 \\
+	\end{cases} \\
+	F_X(t) & = \int_{-\infty}^t f_X(s)\ ds = \begin{cases}
+		1 - e^{-\lambda t} \quad\text{für } t \geq 0 \\
+		0 \quad\text{für } t < 0 \\
+	\end{cases}
+\end{split}
+\end{equation*}
+
+Wir schreiben $X \sim Exp(\lambda)$. Wie die geometrische Verteilung ist die Exponentialverteilung ein Modell für Wartezeiten oder Lebensdauern; der einzige Unterschied besteht darin, dass nicht nur ganzzahlige, sondern beliebige Werte $\geq 0$ angenommen werden können.
+
+\subsection{Normalverteilung}
+
+Die \textbf{Normalverteilung} (NV, auch \textbf{Gaus-Verteilung}) hat zwei Parameter, $\mu \in \mathbb{R}$ und $\sigma^2 > 0$. \\
+Der Wertebereich entspricht $\mathcal{W} = \mathbb{R}$ und die \textbf{Dichtefunktion} ist gleich:
+\begin{equation*}
+	f_X(t) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(t-\mu)^2}{2\sigma^2}}\quad\text{für } t \in \mathbb{R}
+\end{equation*}
+
+Wir schreiben kurz $X \sim \mathcal{N}(\mu, \sigma^2)$. Für den \textbf{Erwartungswert} und die \textbf{Varianz} gilt
+\begin{equation*}
+\begin{split}
+	\E[X] & = \mu \\
+	\Var[X] & = \sigma^2 \\
+\end{split}
+\end{equation*}
+
+\subsubsection{Standard-Normalverteilung}
+
+Für die \textbf{Standard-Normalverteilung} gilt $\mu = 0$ und $\sigma^2 = 1$, also $\mathcal{N}(0,1)$. Weder die Dichte $\varphi(t)$ noch die Verteilungsfunktion $\Phi(t)$ können mit einer geschlossenen Formel ausgedrückt werden, das Integral ist jedoch \textbf{tabelliert}:
+\begin{equation*}
+	\Phi(t) = \int_{-\infty}^t \phi(s)\ ds = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^t e^{-\frac{1}{2}s^2}\ ds
+\end{equation*}
+
+Weiter gilt
+\begin{equation*}
+	F_X(t) = P[X \leq t] = \Phi(\frac{t-\mu}{\sigma})
+\end{equation*}
+
+\subsection{Cauchy-Verteilung}
+
+Eine \textbf{Cauchy-verteilte} Zufallsvariable $X$ hat den Wertebereich $\mathcal{W} = \mathbb{R}$ und die \textbf{Dichtefunktion}
+\begin{equation*}
+	f_X(x) = \frac{1}{\pi}\frac{1}{1+x^2}\quad\text{für }x \in \mathbb{R}
+\end{equation*}
+
+Die zugehörige \textbf{Verteilungsfunktion} ist 
+\begin{equation*}
+	F_X(x) = \frac{1}{2}+\frac{1}{\pi}\arctan(x)\quad\text{für }x \in \mathbb{R}
+\end{equation*}
+
+Die Cauchy-Verteilung ist eine \textbf{langschwänzige Verteilung}, dies, weil $X$ auch noch sehr grosse Werte mit substantieller Wahrscheinlichkeit annimmt. \\
+Für diese Verteilung gibt es keinen Erwartungswert.
+
 \end{document}
