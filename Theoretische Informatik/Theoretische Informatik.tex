@@ -381,14 +381,14 @@ Falls es so eine TM $M$ gibt, die die Abbildung $f_M: \Sigma_1^*\mapsto\Sigma_2^
 
 Dann sagen wir, dass $L_1$ auf $L_2$ \textbf{EE-reduzierbar} bzw. $M$ die Sprache $L_1$ auf $L_2$ reduziert. \\
 
-\textbf{Bemerkung:} Wichtig ist dabei, dass $f$ berechenbar ist, d.h. für alle $x$ muss die Berechnung terminieren, egal ob $x \in L_1$ oder $x \not\in L_1$.
+\textbf{Bemerkung:} Wichtig ist dabei, dass $f$ berechenbar ist, d.h. f{\"u}r alle $x$ muss die Berechnung terminieren, egal ob $x \in L_1$ oder $x \not\in L_1$.
 
 \subsubsection{Diagonalsprache}
 
 \begin{equation*}
 \begin{split}
-	L_\text{diag} &  = \{ w \in (\Sigma_\text{bool})*\ |\ w = w_i \text{ für ein } i \in \mathbb{N} - \{0\} \text{ und $M_i$ akzeptiert $w_i$ nicht} \} \\
-	(L_\text{diag})^C &  = \{ w \in (\Sigma_\text{bool})*\ |\ w = w_i \text{ für ein } i \in \mathbb{N} - \{0\} \text{ und $M_i$ akzeptiert $w_i$} \} \\
+	L_\text{diag} &  = \{ w \in (\Sigma_\text{bool})*\ |\ w = w_i \text{ f{\"u}r ein } i \in \mathbb{N} - \{0\} \text{ und $M_i$ akzeptiert $w_i$ nicht} \} \\
+	(L_\text{diag})^C &  = \{ w \in (\Sigma_\text{bool})*\ |\ w = w_i \text{ f{\"u}r ein } i \in \mathbb{N} - \{0\} \text{ und $M_i$ akzeptiert $w_i$} \} \\
 \end{split}
 \end{equation*}
 
@@ -430,91 +430,91 @@ Es gilt
 
 \subsubsection{Satz von Rice}
 
-Jedes semantisch nichttriviale Entscheidungsproblem über Turingmaschinen ist unentscheidbar. 
+Jedes semantisch nichttriviale Entscheidungsproblem {\"u}ber Turingmaschinen ist unentscheidbar. 
 
 \subsubsection{Post'sche Korrespondenzproblem}
 
-Zielsetzung ist es, mit Hilfe der Reduktion die Untentscheidbarkeit aus der Welt der Turingmaschinen in die Welt der Spiele (Domino) zu übertragen. Das Dominospiel wid auch \textbf{Post'sches Korrespondenzproblem (PKP)} gennant.\\
+Zielsetzung ist es, mit Hilfe der Reduktion die Untentscheidbarkeit aus der Welt der Turingmaschinen in die Welt der Spiele (Domino) zu {\"u}bertragen. Das Dominospiel wid auch \textbf{Post'sches Korrespondenzproblem (PKP)} gennant.\\
 
-Eine \textbf{Instanz des Post'schen Korrespondezproblems} ist ein Paar $(A,B)$, wobei $A = w_1,...,w_k$ und $B = x_1,...,x_k$. Für jedes $i = 1,...,k$ wird $(w_i, x_i)$ ein \textbf{Dominiostein} genannt.
+Eine \textbf{Instanz des Post'schen Korrespondezproblems} ist ein Paar $(A,B)$, wobei $A = w_1,...,w_k$ und $B = x_1,...,x_k$. F{\"u}r jedes $i = 1,...,k$ wird $(w_i, x_i)$ ein \textbf{Dominiostein} genannt.
 
-Es existiert eine \textbf{Lösung}, falls $i_1, i_2,..., i_m$ so gewählt werden können, so dass:
+Es existiert eine \textbf{L{\"o}sung}, falls $i_1, i_2,..., i_m$ so gew{\"a}hlt werden k{\"o}nnen, so dass:
 \begin{equation*}
 	w_{i_1}w_{i_2}...w_{i_m} = x_{i_1}x_{i_2}...x_{i_m}
 \end{equation*}
 
-Zusätzlich dazu gibt es noch die modifizierte Variante, \textbf{MPKP}. Es ist ein Spezialform des \textbf{PKP}, bei der das Dominospiel immer mit dem ersten Dominosteintyp anfangen muss. Eine Lösung dazu ist die folgende:
+Zus{\"a}tzlich dazu gibt es noch die modifizierte Variante, \textbf{MPKP}. Es ist ein Spezialform des \textbf{PKP}, bei der das Dominospiel immer mit dem ersten Dominosteintyp anfangen muss. Eine L{\"o}sung dazu ist die folgende:
 \begin{equation*}
 	u_1u_{j_1}u_{j_2}...u_{j_m} = v_1v_{j_1}v_{j_2}...v_{j_m}
 \end{equation*}
 
 \textbf{Bemerkung:} Falls PKP entscheidbar ist, ist auch MPKP entscheidbar. Da MPKP untentscheidbar ist, ist somit auch PKP \textbf{unentscheidbar}.
 
-\subsection{Methode der Kolmogorovkomplexität}
+\subsection{Methode der Kolmogorovkomplexit{\"a}t}
 
-Wir benutzen diese Methode, um zu beweisen, dass kein Algorithmus existiert, der die Kolmogorovkomplexität $K(x)$ von $x$ aller Wörter $x \in \Sigma^*_\text{bool}$ berechnen kann. Dies ist nämlich \textbf{algorithmisch unlösbar}.
+Wir benutzen diese Methode, um zu beweisen, dass kein Algorithmus existiert, der die Kolmogorovkomplexit{\"a}t $K(x)$ von $x$ aller W{\"o}rter $x \in \Sigma^*_\text{bool}$ berechnen kann. Dies ist n{\"a}mlich \textbf{algorithmisch unl{\"o}sbar}.
 
-\section{Komplexitätstheorie}
+\section{Komplexit{\"a}tstheorie}
 
-\subsection{Komplexitätsmasse}
+\subsection{Komplexit{\"a}tsmasse}
 
-\subsubsection{Zeitkomplexität}
+\subsubsection{Zeitkomplexit{\"a}t}
 
-Sei $M$ eine MTM oder TM, die immer hält und sei $D = C_1,C_2,...,C_k$ die Berechnung von $M$ auf $x \in \Sigma^*$. Dann ist die \textbf{Zeitkomplexität} $\ttc_M(x)$ die Berechnung von $M$ auf $x$ definiert durch die Anzahl Berechnungsschritte in $D$:
+Sei $M$ eine MTM oder TM, die immer h{\"a}lt und sei $D = C_1,C_2,...,C_k$ die Berechnung von $M$ auf $x \in \Sigma^*$. Dann ist die \textbf{Zeitkomplexit{\"a}t} $\ttc_M(x)$ die Berechnung von $M$ auf $x$ definiert durch die Anzahl Berechnungsschritte in $D$:
 \begin{equation*}
 	\ttc_M(x) = k-1
 \end{equation*}
 
-Die Zeitkomplxität $\ttc_M: \mathbb{N} \mapsto \mathbb{N}$ ist als Funktion definiert durch:
+Die Zeitkomplxit{\"a}t $\ttc_M: \mathbb{N} \mapsto \mathbb{N}$ ist als Funktion definiert durch:
 \begin{equation*}
 	\ttc(n) = \max\{\ttc_M(x)\ |\ x \in \Sigma^n\}
 \end{equation*}
 
-$\ttc_M(n)$ ist die Zeitkomplexität der längsten Berechnung auf Eingaben der Länge $n$. Man nennt dies auch \textbf{die Komplexität im schlechtesten Fall}.
+$\ttc_M(n)$ ist die Zeitkomplexit{\"a}t der l{\"a}ngsten Berechnung auf Eingaben der L{\"a}nge $n$. Man nennt dies auch \textbf{die Komplexit{\"a}t im schlechtesten Fall}.
 
-\subsubsection{Speicherplatzkomplexität}
+\subsubsection{Speicherplatzkomplexit{\"a}t}
 
-Sei $M$ eine $k$-Band-Turingmaschine, die immer hält und sei weiter $C = (q, x, i, \alpha_1, i_1, \alpha_2, i_2,..., \alpha_k, i_k)$ eine Konfiguration von $M$. Dann ist die \textbf{Speicherplatzkomplexität von $C$} gleich:
+Sei $M$ eine $k$-Band-Turingmaschine, die immer h{\"a}lt und sei weiter $C = (q, x, i, \alpha_1, i_1, \alpha_2, i_2,..., \alpha_k, i_k)$ eine Konfiguration von $M$. Dann ist die \textbf{Speicherplatzkomplexit{\"a}t von $C$} gleich:
 \begin{equation*}
 	\tsc_M(C) = \max\{|\alpha_i|\ |\ i = 1,...,k\}
 \end{equation*}
 
-Sei $C_1, C_2,..., C_l$ die Berechnung von $M$ auf $x$, dann ist die \textbf{Speicherplatzkomplexität von $M$ auf $x$} geich
+Sei $C_1, C_2,..., C_l$ die Berechnung von $M$ auf $x$, dann ist die \textbf{Speicherplatzkomplexit{\"a}t von $M$ auf $x$} geich
 \begin{equation*}
 	\tsc_M(x) = \max\{\tsc_M(C_i)\ |\ i = 1,...,l\}
 \end{equation*}
 
-Die \textbf{Speicherplatzkomplexität von $M$} ist die Funktion $\tsc_M: \mathbb{N} \mapsto \mathbb{N}$, definiert durch:
+Die \textbf{Speicherplatzkomplexit{\"a}t von $M$} ist die Funktion $\tsc_M: \mathbb{N} \mapsto \mathbb{N}$, definiert durch:
 \begin{equation*}
 	\tsc_M(n) = \max\{\tsc_M(x)\ |\ x \in \Sigma^n\}
 \end{equation*}
 
-\subsubsection{Asymptotische Komplexität}
+\subsubsection{Asymptotische Komplexit{\"a}t}
 
-Für jede Funktion $f: \mathbb{N} \mapsto \mathbb{R}^+$ definieren wir:
+F{\"u}r jede Funktion $f: \mathbb{N} \mapsto \mathbb{R}^+$ definieren wir:
 \begin{equation*}
 \begin{split}
-	O(f(n)) & = \{r: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists n_0 \in \mathbb{N}, \exists c \in \mathbb{N}, \text{ so dass für alle $n \geq n_0: r(n) \leq c\cdot f(n)$}\}  \\
-	\Omega(f(n)) & = \{s: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists n_0 \in \mathbb{N}, \exists d \in \mathbb{N}, \text{ so dass für alle $n \geq n_0: s(n) \geq \frac{1}{d}\cdot f(n)$}\}  \\
-	\Theta(f(n)) & = \{q: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists c,d,n_0 \in \mathbb{N}, \text{ so dass für alle $ n \geq n_0: \frac{1}{d}\cdot f(n) \leq q(n) \leq c\cdot f(n)$}\}  \\
+	O(f(n)) & = \{r: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists n_0 \in \mathbb{N}, \exists c \in \mathbb{N}, \text{ so dass f{\"u}r alle $n \geq n_0: r(n) \leq c\cdot f(n)$}\}  \\
+	\Omega(f(n)) & = \{s: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists n_0 \in \mathbb{N}, \exists d \in \mathbb{N}, \text{ so dass f{\"u}r alle $n \geq n_0: s(n) \geq \frac{1}{d}\cdot f(n)$}\}  \\
+	\Theta(f(n)) & = \{q: \mathbb{N} \mapsto \mathbb{R}^+\ |\ \exists c,d,n_0 \in \mathbb{N}, \text{ so dass f{\"u}r alle $ n \geq n_0: \frac{1}{d}\cdot f(n) \leq q(n) \leq c\cdot f(n)$}\}  \\
 \end{split}
 \end{equation*}
 
 Mit Bedeutung:
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=3cm, noitemsep]
-	\item[$r \in 0(f(n))$:] $r$ wächst asymptotisch nicht schneller als $f$
-	\item[$s \in \Omega(f(n))$:] $r$ wächst asymptotisch mindestens so schnell wie $f$
-	\item[$q \in \Theta(f(n))$:] $r$ wächst asymptotisch gleich schnell wie $f$
+	\item[$r \in 0(f(n))$:] $r$ w{\"a}chst asymptotisch nicht schneller als $f$
+	\item[$s \in \Omega(f(n))$:] $r$ w{\"a}chst asymptotisch mindestens so schnell wie $f$
+	\item[$q \in \Theta(f(n))$:] $r$ w{\"a}chst asymptotisch gleich schnell wie $f$
 \end{description}
 
 Sei $L$ eine Sprache und $f,g$ zwei Funktionen, dann ist:
 \begin{itemize}[noitemsep]
-	\item $O(g(n))$ eine \textbf{obere Schranke für die Zeitkomplexität von $L$}, falls eine MTM $A$ existiert, so dass $L(A) = L$ und $\ttc_A(n) \in O(g(n))$
-	\item $\Omega(f(n))$ eine \textbf{untere Schranke für die Zeitkomplexität von $L$}, falls eine MTM $B$ existiert, so dass $L(B) = L$ und $\ttc_B(n) \in \Omega(f(n))$
-	\item Eine MTM $C$ heisst \textbf{optimal für $L$}, falls $\ttc_C(n) \in \O(f(n))$ gilt und $\Theta(f(n))$ eine untere Schranke für die Zeitkomplexität von $L$ ist.
+	\item $O(g(n))$ eine \textbf{obere Schranke f{\"u}r die Zeitkomplexit{\"a}t von $L$}, falls eine MTM $A$ existiert, so dass $L(A) = L$ und $\ttc_A(n) \in O(g(n))$
+	\item $\Omega(f(n))$ eine \textbf{untere Schranke f{\"u}r die Zeitkomplexit{\"a}t von $L$}, falls eine MTM $B$ existiert, so dass $L(B) = L$ und $\ttc_B(n) \in \Omega(f(n))$
+	\item Eine MTM $C$ heisst \textbf{optimal f{\"u}r $L$}, falls $\ttc_C(n) \in \O(f(n))$ gilt und $\Theta(f(n))$ eine untere Schranke f{\"u}r die Zeitkomplexit{\"a}t von $L$ ist.
 \end{itemize}
 
-\subsubsection{Komplexitätsklassen}
+\subsubsection{Komplexit{\"a}tsklassen}
 
 \begin{equation*}
 \begin{split}
@@ -529,50 +529,50 @@ Sei $L$ eine Sprache und $f,g$ zwei Funktionen, dann ist:
 
 Eine Funktion $s: \mathbb{N} \mapsto \mathbb{N}$ heisst \textbf{platzkonstruierbar}, falls ein 1-Band-TM $M$ existiert, so dass:
 \begin{enumerate}[label=(\roman*), noitemsep]
-	\item $\tsc_M(n) \leq s(n)$ für alle $n \in \mathbb{N}$
-	\item für jede Eingabe $0^n$ generiert generiert $M$ das Wort $0^{s(n)}$ und hält in $q_\text{accept}$
+	\item $\tsc_M(n) \leq s(n)$ f{\"u}r alle $n \in \mathbb{N}$
+	\item f{\"u}r jede Eingabe $0^n$ generiert generiert $M$ das Wort $0^{s(n)}$ und h{\"a}lt in $q_\text{accept}$
 \end{enumerate}
 
 Weiter ist eine Funktion $t: \mathbb{N} \mapsto \mathbb{N}$ \textbf{zeitkonstruierbar}, falls eine MTM $M$ existiert, so dass:
 \begin{enumerate}[label=(\roman*), noitemsep]
 	\item $\ttc_M(n) \in O(t(n))$
-	\item für jede Eingabe $0^n$ generiert generiert $M$ das Wort $0^{t(n)}$ und hält in $q_\text{accept}$
+	\item f{\"u}r jede Eingabe $0^n$ generiert generiert $M$ das Wort $0^{t(n)}$ und h{\"a}lt in $q_\text{accept}$
 \end{enumerate}
 
-\textbf{Bemerkung:} Die meisten gewöhnlichen monotonen Funktionen sind platzkonstruierbar bzw. zeitkonstruierbar. \\
+\textbf{Bemerkung:} Die meisten gew{\"o}hnlichen monotonen Funktionen sind platzkonstruierbar bzw. zeitkonstruierbar. \\
 
-\subsection{Nichtdeterministische Komplexitätsklassen}
+\subsection{Nichtdeterministische Komplexit{\"a}tsklassen}
 
-\subsubsection{Zeitkomplexität}
+\subsubsection{Zeitkomplexit{\"a}t}
 
-Sei $M$ eine NTM mit $x \in L(M)$. Die \textbf{Zeitkomplexität von $M$ auf $x$} gleich:
+Sei $M$ eine NTM mit $x \in L(M)$. Die \textbf{Zeitkomplexit{\"a}t von $M$ auf $x$} gleich:
 \begin{equation*}
-	\ttc_M(x) = \text{die Länge einer kürzesten akzeptierenden Berechnung}
+	\ttc_M(x) = \text{die L{\"a}nge einer k{\"u}rzesten akzeptierenden Berechnung}
 \end{equation*}
 
-Die \textbf{Zeitkomplexität von $M$} ist die Funktion $\ttc_M: \mathbb{N} \mapsto \mathbb{N}$:
+Die \textbf{Zeitkomplexit{\"a}t von $M$} ist die Funktion $\ttc_M: \mathbb{N} \mapsto \mathbb{N}$:
 \begin{equation*}
 	\ttc_M(n) = \max(\{\ttc_M(x)\ |\ x \in L(M) \land |x| = n\} \cup \{0\})
 \end{equation*}
 
-\subsubsection{Speicherplatzkapazität}
+\subsubsection{Speicherplatzkapazit{\"a}t}
 
 Sei $C = C_1C_2...C_m$ eine akzeptierende Berechnung von $M$ auf $x$. Dann ist
 \begin{equation*}
 	\tsc_M(C) = \max\{\tsc_M(C_i)\ |\ i=1,2,...,m\}
 \end{equation*}
 
-Die \textbf{Speicherplatzkapazität von $M$ auf $x$} ist dann definiert als
+Die \textbf{Speicherplatzkapazit{\"a}t von $M$ auf $x$} ist dann definiert als
 \begin{equation*}
 	\tsc_M(x) = \min\{\tsc_M(C)\ |\ \text{$C$ ist eine akzeptierende Berechnung von $M$ auf $x$}\}
 \end{equation*}
 
-Die \textbf{Speicherplatzkomplexität von $M$} ist die Funktion $\tsc_M: \mathbb{N} \mapsto \mathbb{N}$:
+Die \textbf{Speicherplatzkomplexit{\"a}t von $M$} ist die Funktion $\tsc_M: \mathbb{N} \mapsto \mathbb{N}$:
 \begin{equation*}
 	\tsc_M(n) = \max(\{ \tsc_M(x)\ |\ x \in L(M) \land |x| = n\} \cup \{0\})
 \end{equation*}
 
-\subsubsection{Komplexitätsklassen}
+\subsubsection{Komplexit{\"a}tsklassen}
 
 \begin{equation*}
 \begin{split}
@@ -584,7 +584,7 @@ Die \textbf{Speicherplatzkomplexität von $M$} ist die Funktion $\tsc_M: \mathbb
 \end{split}
 \end{equation*}
 
-Für jede Funktion $t: \mathbb{N} \mapsto \mathbb{R}^+$ und $s: \mathbb{N} \mapsto \mathbb{N}$ mit $s(n) \geq \log_2(n)$ gelten folgende Vergleiche:
+F{\"u}r jede Funktion $t: \mathbb{N} \mapsto \mathbb{R}^+$ und $s: \mathbb{N} \mapsto \mathbb{N}$ mit $s(n) \geq \log_2(n)$ gelten folgende Vergleiche:
 
 \paragraph{Deterministisch - Deterministisch}
 \begin{equation*}
