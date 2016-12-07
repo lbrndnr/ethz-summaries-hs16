@@ -23,6 +23,10 @@
 
 \newcommand{\ttc}{\text{Time}}
 \newcommand{\tsc}{\text{Space}}
+\newcommand{\sat}{\text{SAT}}
+\newcommand{\clique}{\text{CLIQUE}}
+\newcommand{\vc}{\text{VC}}
+\newcommand{\npo}{\text{NPO}}
 
 \begin{document}
 
@@ -614,5 +618,98 @@ F{\"u}r jede Funktion $t: \mathbb{N} \mapsto \mathbb{R}^+$ und $s: \mathbb{N} \m
 	\text{PSPACE} & = \text{NPSPACE}
 \end{split}
 \end{equation*}
+
+\subsection{Beweisverifikation}
+
+Sei $L$ eine Sprache und $p: \mathbb{N} \mapsto \mathbb{N}$ eine Funktion. Wir sagen, dass MTM $A$ ein \textbf{p-Verifizierer für L} ist $V(A) = L$, falls $A$ folgenden Eigenschaften auf alle Eingaben aus $\Sigma^* \times (\Sigma_\text{bool})^*$ arbeitet:
+
+\begin{enumerate}[label=(\roman*), noitemsep]
+	\item $\ttc_A(w,x) \leq p(|w|)$ für jede Eingabe $(w,x) \in \Sigma^* \times (\Sigma_\text{bool})^*$
+	\item Für jedes $w \in L$ existiert ein $x \in (\Sigma_\text{bool})^*$, so dass $|x| \leq p(|w|)$ und $(w,x) \in L(A)$. Das Wort $x$ ist ein \textbf{Beweis} für die Behauptung $w \in L$
+	\item Für jedes $y \not\in L$ gilt $(y, z) \not\in L(A)$ für alle $z \in (\Sigma_\text{bool})^*$
+\end{enumerate}
+
+Ist $p(n) \in O(n^k)$ für ein $k \in \mathbb{N}$, nennen wir $A$ einen \textbf{Polynomialzeitverifizierer}. Somit wird $VP$ als die folgende Sprache definiert:
+\begin{equation*}
+	VP = \{V(A)\ |\ \text{A ist ein Polynomialzeitverifizierer}\}
+\end{equation*}
+
+\emph{Bemerkung:} $V(A)$ und $L(A)$ sind verschiedene Sprachen;
+\begin{equation*}
+	V(A) = \{ w \in \Sigma^*\ |\ \text{es existiert ein } x \in (\Sigma_\text{bool})^* \text{ mit } |x| \leq p(|w|) \}
+\end{equation*}
+
+Ein \textbf{p Verifizierer} $A$ für eine Sprache $L$ ist also ein deterministischer Algorithmus, der für die Eingabe $(w,x)$ verifiziert, ob $x$ ein Beweis für die Behauptung $w \in L$ ist.
+
+Jede polynomielle NTM kann in eine äquivalente NTM umgewandelt werden, die alle nichtdeterministischen Entscheidungen am Anfang macht und dann nur die Richtigkeit des geratenen verifiziert.
+
+\begin{equation*}
+	VP = NP
+\end{equation*}
+
+Daraus folgt, dass die Klasse NP die Klasse aller Sprachen $L$ ist, die für jedes $x \in L$ einen in $|x|$ polynomiell langen Beweis von $x \in L$ haben, welchen man deterministisch in polynomieller Zeit bezüglich $|x|$ verifizieren kann. 
+
+\subsection{NP-Vollständigkeit}
+
+Seien $L_1 \subseteq \Sigma_1$ und $L_2 \subseteq \Sigma_2$ zwei Sprachen. $L_1$ ist polynomiell auf $L_2$ reduzierbar $L_1 \leq_p L_2$, falls eine polynomielle TM (Algorityhmus) $A$ existiert, die für jedes Wort $x \in \Sigma^*_1$ ein Wort $A(x) \in \Sigma^*_2$ berechnet, so dass
+\begin{equation*}
+	x \in L_1 \Leftrightarrow A(x) \in L_2
+\end{equation*}
+
+Dies bedeutet also, dass $L_2$ mindestens so schwer wie $L_1$ ist. \\
+
+Eine Sprache $L$ ist \textbf{NP-schwer}, falls für alle Sprachen $L' \in NP$ gilt $L' \leq_p L$. 
+Eine Sprache $L$ ist \textbf{NP-vollständig}, falls gilt
+\begin{enumerate}[label=(\roman*), noitemsep]
+	\item $L \in NP$
+	\item $L$ ist NP-schwer
+\end{enumerate}
+
+Seien $L_1$ und $L_2$ zwei Sprachen mit $L_1 \leq_p L_2$ und $L_1$ ist NP-schwer, dann ist auch $L_2$ NP-schwer.
+
+\subsubsection{Vergleiche verschiedener Sprachen}
+
+Betrachten wir folgende Sprachen:
+\begin{equation*}
+\begin{split}
+	\sat & = \{x \in (\Sigma_\text{logic})^*\ |\ \text{$x$ kodiert eine erfüllbare Formel in KNF} \} \\
+	\clique & = \{(G,k)\ |\ \text{$G$ ist ein ungerichteter Graph, der eine $k$-Clique enthält} \} \\
+	\vc & = \{(G,k)\ |\ \text{$G$ ist ein ungerichteter Graph mit der Knotenüberdeckung der Mächtigkeit höchstens $k$} \} \\
+\end{split}
+\end{equation*}
+
+Dann gilten:
+\begin{equation*}
+\begin{split}
+	\sat & \text{ ist NP-vollständig (Satz von Cook)} \\
+	\sat & \leq_p \clique \\
+	\clique & \leq_p \vc \\
+	\sat & \leq_p 3\sat
+\end{split}
+\end{equation*}
+
+\subsubsection{Klasse der Optimierungsprobleme}
+
+\textbf{NPO} ist die \textbf{Klasse der Optimierungsprobleme}, wobei 
+\begin{equation*}
+	U = (\Sigma_I, \Sigma_O, L, \mathcal{M}, \text{cost}, \text{goal}) \in \npo
+\end{equation*}
+falls folgende Bedingungen erfüllt sind:
+\begin{enumerate}[label=(\roman*), noitemsep]
+	\item $L \in P$
+	\item Es existiert ein Probelm $p_U$, so dass
+		\begin{enumerate}
+			\item Für jedes $x \in L$ und jedes $y \in \mathcal{M}(x)$ gilt $|y| \leq p_U(|x|)$
+			\item Es existiert ein polynomieller Algorithmus $A$, der für jedes $y \in \Sigma_O^*$ und jedes $x \in L$ mit $|y| \leq p_U(|x|)$ entscheidet, ob $y \in \mathcal{M}(x)$ oder nicht
+		\end{enumerate}
+	\item Die Funktion \emph{cost} kann man in polynomieller Zeit berechnen
+\end{enumerate}
+
+Weiter ist \textbf{PO} die \textbf{Klasse der Optimierungsprobleme} $U = (\Sigma_I, \Sigma_O, L, \mathcal{M}, \text{cost}, \text{goal})$, so dass
+\begin{enumerate}[label=(\roman*), noitemsep]
+	\item $U \in NPO$
+	\item Es existiert ein polynomieller Algorithmus $A$, so dass $A(x)$ für jedes $x \in L$ eine optimale Lösung ist
+\end{enumerate}
+
 
 \end{document}
