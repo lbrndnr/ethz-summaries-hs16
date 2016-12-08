@@ -27,6 +27,7 @@
 \newcommand{\clique}{\text{CLIQUE}}
 \newcommand{\vc}{\text{VC}}
 \newcommand{\npo}{\text{NPO}}
+\newcommand{\code}{\text{Code}}
 
 \begin{document}
 
@@ -300,7 +301,7 @@ Eine Turingmaschine ist eine Verallgemeinerung eines EA und besthet informell au
 	\item Die Felder, die nicht beschriftet sind, enthalten das Leerfeldsymbol $\textvisiblespace$
 \end{itemize}
 
-Die \textbf{{\"a}hnlichkeit} zu den EAs besteht in der Kontrolle {\"u}ber eine endliche Zustandsmenge und dem Band, das am Anfang das Eingabewort enth{\"a}lt. \\
+Die \textbf{{\"A}hnlichkeit} zu den EAs besteht in der Kontrolle {\"u}ber eine endliche Zustandsmenge und dem Band, das am Anfang das Eingabewort enth{\"a}lt. \\
 Der \textbf{Hauptunterschied} liegt darin, dass eine Turingmaschine mit dem Band {\"u}ber einen unendlich grossen Speicher verf{\"u}gt. \\
 
 Formell ist eine \textbf{Turingmaschine} (TM) ein Tupel $M = (Q, \Sigma, \Gamma, \delta, q_0, q_\text{accept}, q_\text{reject})$, wobei
@@ -323,6 +324,23 @@ Die \textbf{akzeptierte Sprache} der Turingmaschine $M$ ist
 Weiter \textbf{berechnet} $M$ eine Funktion $F:\Sigma^* \mapsto \Gamma^*$, falls
 \begin{equation*}
 	q_0\cent x \vdash_M^* q_\text{accept}\cent F(x)
+\end{equation*}
+
+\subsection{Kodierung von Turingmaschinen}
+
+Sei $M$ eine TM mit $Q = \{q_0, q_1, ..., q_m, q_\text{accept}, q_\text{reject}\}$ und $\Gamma = \{A_1, A_2,...,A_r\}$
+
+\begin{equation*}
+\begin{split}
+	\code(q_i) & = 10^{i+1}1 \quad\text{f{\"u}r } i = 0,1,...,m \\
+	\code(q_\text{accept}) & = 10^{m+2}1 \\
+	\code(q_\text{reject}) & = 10^{m+3}1 \\
+	\code(A_j) & = 110^j11 \quad\text{f{\"u}r } j = 1,...,r \\
+	\code(N) & = 1110111 \\
+	\code(R) & = 1110^2111 \\
+	\code(L) & = 1110^3111 \\
+	\code(\delta(p, A_l) = (q, A_m, \alpha)) & = \#\code(p)\code(A_l)\code(q)\code(A_m)\code(\alpha)\#
+\end{split}
 \end{equation*}
 
 \subsection{Mehrband-Turingmaschinen}
@@ -373,6 +391,11 @@ Seien $L_1 \subseteq \Sigma_1^*$ und $L_2 \subseteq \Sigma_2^*$ zwei Sprachen. W
 \end{equation*}
 
 $L_1 \leq_R L_2$ bedeutet so viel wie "$L_2$ ist bez{\"u}glich algorithmischer L{\"o}sbarkeit mindestens so schwer wie $L_1$".
+
+F{\"u}r jede Sprache $L$ gilt:
+\begin{equation*}
+	L \leq_R L^C \quad\text{und}\quad L^C \leq_R L
+\end{equation*}
 
 \subsubsection{EE-Reduktion}
 
@@ -621,15 +644,15 @@ F{\"u}r jede Funktion $t: \mathbb{N} \mapsto \mathbb{R}^+$ und $s: \mathbb{N} \m
 
 \subsection{Beweisverifikation}
 
-Sei $L$ eine Sprache und $p: \mathbb{N} \mapsto \mathbb{N}$ eine Funktion. Wir sagen, dass MTM $A$ ein \textbf{p-Verifizierer für L} ist $V(A) = L$, falls $A$ folgenden Eigenschaften auf alle Eingaben aus $\Sigma^* \times (\Sigma_\text{bool})^*$ arbeitet:
+Sei $L$ eine Sprache und $p: \mathbb{N} \mapsto \mathbb{N}$ eine Funktion. Wir sagen, dass MTM $A$ ein \textbf{p-Verifizierer f{\"u}r L} ist $V(A) = L$, falls $A$ folgenden Eigenschaften auf alle Eingaben aus $\Sigma^* \times (\Sigma_\text{bool})^*$ arbeitet:
 
 \begin{enumerate}[label=(\roman*), noitemsep]
-	\item $\ttc_A(w,x) \leq p(|w|)$ für jede Eingabe $(w,x) \in \Sigma^* \times (\Sigma_\text{bool})^*$
-	\item Für jedes $w \in L$ existiert ein $x \in (\Sigma_\text{bool})^*$, so dass $|x| \leq p(|w|)$ und $(w,x) \in L(A)$. Das Wort $x$ ist ein \textbf{Beweis} für die Behauptung $w \in L$
-	\item Für jedes $y \not\in L$ gilt $(y, z) \not\in L(A)$ für alle $z \in (\Sigma_\text{bool})^*$
+	\item $\ttc_A(w,x) \leq p(|w|)$ f{\"u}r jede Eingabe $(w,x) \in \Sigma^* \times (\Sigma_\text{bool})^*$
+	\item F{\"u}r jedes $w \in L$ existiert ein $x \in (\Sigma_\text{bool})^*$, so dass $|x| \leq p(|w|)$ und $(w,x) \in L(A)$. Das Wort $x$ ist ein \textbf{Beweis} f{\"u}r die Behauptung $w \in L$
+	\item F{\"u}r jedes $y \not\in L$ gilt $(y, z) \not\in L(A)$ f{\"u}r alle $z \in (\Sigma_\text{bool})^*$
 \end{enumerate}
 
-Ist $p(n) \in O(n^k)$ für ein $k \in \mathbb{N}$, nennen wir $A$ einen \textbf{Polynomialzeitverifizierer}. Somit wird $VP$ als die folgende Sprache definiert:
+Ist $p(n) \in O(n^k)$ f{\"u}r ein $k \in \mathbb{N}$, nennen wir $A$ einen \textbf{Polynomialzeitverifizierer}. Somit wird $VP$ als die folgende Sprache definiert:
 \begin{equation*}
 	VP = \{V(A)\ |\ \text{A ist ein Polynomialzeitverifizierer}\}
 \end{equation*}
@@ -639,27 +662,27 @@ Ist $p(n) \in O(n^k)$ für ein $k \in \mathbb{N}$, nennen wir $A$ einen \textbf{
 	V(A) = \{ w \in \Sigma^*\ |\ \text{es existiert ein } x \in (\Sigma_\text{bool})^* \text{ mit } |x| \leq p(|w|) \}
 \end{equation*}
 
-Ein \textbf{p Verifizierer} $A$ für eine Sprache $L$ ist also ein deterministischer Algorithmus, der für die Eingabe $(w,x)$ verifiziert, ob $x$ ein Beweis für die Behauptung $w \in L$ ist.
+Ein \textbf{p Verifizierer} $A$ f{\"u}r eine Sprache $L$ ist also ein deterministischer Algorithmus, der f{\"u}r die Eingabe $(w,x)$ verifiziert, ob $x$ ein Beweis f{\"u}r die Behauptung $w \in L$ ist.
 
-Jede polynomielle NTM kann in eine äquivalente NTM umgewandelt werden, die alle nichtdeterministischen Entscheidungen am Anfang macht und dann nur die Richtigkeit des geratenen verifiziert.
+Jede polynomielle NTM kann in eine {\"a}quivalente NTM umgewandelt werden, die alle nichtdeterministischen Entscheidungen am Anfang macht und dann nur die Richtigkeit des geratenen verifiziert.
 
 \begin{equation*}
 	VP = NP
 \end{equation*}
 
-Daraus folgt, dass die Klasse NP die Klasse aller Sprachen $L$ ist, die für jedes $x \in L$ einen in $|x|$ polynomiell langen Beweis von $x \in L$ haben, welchen man deterministisch in polynomieller Zeit bezüglich $|x|$ verifizieren kann. 
+Daraus folgt, dass die Klasse NP die Klasse aller Sprachen $L$ ist, die f{\"u}r jedes $x \in L$ einen in $|x|$ polynomiell langen Beweis von $x \in L$ haben, welchen man deterministisch in polynomieller Zeit bez{\"u}glich $|x|$ verifizieren kann. 
 
-\subsection{NP-Vollständigkeit}
+\subsection{NP-Vollst{\"a}ndigkeit}
 
-Seien $L_1 \subseteq \Sigma_1$ und $L_2 \subseteq \Sigma_2$ zwei Sprachen. $L_1$ ist polynomiell auf $L_2$ reduzierbar $L_1 \leq_p L_2$, falls eine polynomielle TM (Algorityhmus) $A$ existiert, die für jedes Wort $x \in \Sigma^*_1$ ein Wort $A(x) \in \Sigma^*_2$ berechnet, so dass
+Seien $L_1 \subseteq \Sigma_1$ und $L_2 \subseteq \Sigma_2$ zwei Sprachen. $L_1$ ist polynomiell auf $L_2$ reduzierbar $L_1 \leq_p L_2$, falls eine polynomielle TM (Algorityhmus) $A$ existiert, die f{\"u}r jedes Wort $x \in \Sigma^*_1$ ein Wort $A(x) \in \Sigma^*_2$ berechnet, so dass
 \begin{equation*}
 	x \in L_1 \Leftrightarrow A(x) \in L_2
 \end{equation*}
 
 Dies bedeutet also, dass $L_2$ mindestens so schwer wie $L_1$ ist. \\
 
-Eine Sprache $L$ ist \textbf{NP-schwer}, falls für alle Sprachen $L' \in NP$ gilt $L' \leq_p L$. 
-Eine Sprache $L$ ist \textbf{NP-vollständig}, falls gilt
+Eine Sprache $L$ ist \textbf{NP-schwer}, falls f{\"u}r alle Sprachen $L' \in NP$ gilt $L' \leq_p L$. 
+Eine Sprache $L$ ist \textbf{NP-vollst{\"a}ndig}, falls gilt
 \begin{enumerate}[label=(\roman*), noitemsep]
 	\item $L \in NP$
 	\item $L$ ist NP-schwer
@@ -672,16 +695,16 @@ Seien $L_1$ und $L_2$ zwei Sprachen mit $L_1 \leq_p L_2$ und $L_1$ ist NP-schwer
 Betrachten wir folgende Sprachen:
 \begin{equation*}
 \begin{split}
-	\sat & = \{x \in (\Sigma_\text{logic})^*\ |\ \text{$x$ kodiert eine erfüllbare Formel in KNF} \} \\
-	\clique & = \{(G,k)\ |\ \text{$G$ ist ein ungerichteter Graph, der eine $k$-Clique enthält} \} \\
-	\vc & = \{(G,k)\ |\ \text{$G$ ist ein ungerichteter Graph mit der Knotenüberdeckung der Mächtigkeit höchstens $k$} \} \\
+	\sat & = \{x \in (\Sigma_\text{logic})^*\ |\ \text{$x$ kodiert eine erf{\"u}llbare Formel in KNF} \} \\
+	\clique & = \{(G,k)\ |\ \text{$G$ ist ein ungerichteter Graph, der eine $k$-Clique enth{\"a}lt} \} \\
+	\vc & = \{(G,k)\ |\ \text{$G$ ist ein ungerichteter Graph mit der Knoten{\"u}berdeckung der M{\"a}chtigkeit h{\"o}chstens $k$} \} \\
 \end{split}
 \end{equation*}
 
 Dann gilten:
 \begin{equation*}
 \begin{split}
-	\sat & \text{ ist NP-vollständig (Satz von Cook)} \\
+	\sat & \text{ ist NP-vollst{\"a}ndig (Satz von Cook)} \\
 	\sat & \leq_p \clique \\
 	\clique & \leq_p \vc \\
 	\sat & \leq_p 3\sat
@@ -694,13 +717,13 @@ Dann gilten:
 \begin{equation*}
 	U = (\Sigma_I, \Sigma_O, L, \mathcal{M}, \text{cost}, \text{goal}) \in \npo
 \end{equation*}
-falls folgende Bedingungen erfüllt sind:
+falls folgende Bedingungen erf{\"u}llt sind:
 \begin{enumerate}[label=(\roman*), noitemsep]
 	\item $L \in P$
 	\item Es existiert ein Probelm $p_U$, so dass
 		\begin{enumerate}
-			\item Für jedes $x \in L$ und jedes $y \in \mathcal{M}(x)$ gilt $|y| \leq p_U(|x|)$
-			\item Es existiert ein polynomieller Algorithmus $A$, der für jedes $y \in \Sigma_O^*$ und jedes $x \in L$ mit $|y| \leq p_U(|x|)$ entscheidet, ob $y \in \mathcal{M}(x)$ oder nicht
+			\item F{\"u}r jedes $x \in L$ und jedes $y \in \mathcal{M}(x)$ gilt $|y| \leq p_U(|x|)$
+			\item Es existiert ein polynomieller Algorithmus $A$, der f{\"u}r jedes $y \in \Sigma_O^*$ und jedes $x \in L$ mit $|y| \leq p_U(|x|)$ entscheidet, ob $y \in \mathcal{M}(x)$ oder nicht
 		\end{enumerate}
 	\item Die Funktion \emph{cost} kann man in polynomieller Zeit berechnen
 \end{enumerate}
@@ -708,7 +731,7 @@ falls folgende Bedingungen erfüllt sind:
 Weiter ist \textbf{PO} die \textbf{Klasse der Optimierungsprobleme} $U = (\Sigma_I, \Sigma_O, L, \mathcal{M}, \text{cost}, \text{goal})$, so dass
 \begin{enumerate}[label=(\roman*), noitemsep]
 	\item $U \in NPO$
-	\item Es existiert ein polynomieller Algorithmus $A$, so dass $A(x)$ für jedes $x \in L$ eine optimale Lösung ist
+	\item Es existiert ein polynomieller Algorithmus $A$, so dass $A(x)$ f{\"u}r jedes $x \in L$ eine optimale L{\"o}sung ist
 \end{enumerate}
 
 
