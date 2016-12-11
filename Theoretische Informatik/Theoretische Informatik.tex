@@ -617,7 +617,8 @@ F{\"u}r jede Funktion $t: \mathbb{N} \mapsto \mathbb{R}^+$ und $s: \mathbb{N} \m
 \begin{equation*}
 \begin{split}
 	\text{DLOG} \subseteq \text{P} & \subseteq \text{PSPACE} \subseteq \text{EXPTIME} \\
-	\text{SPACE}(s(n)) & \subseteq \bigcup_{c \in \mathbb{N}} \\
+	\text{TIME}(s(n)) & \subseteq \text{SPACE}(s(n)) \\
+	\text{SPACE}(s(n)) & \subseteq \bigcup_{c \in \mathbb{N}} \text{TIME}(c^{s(n)})\\
 \end{split}
 \end{equation*}
 
@@ -696,12 +697,17 @@ Betrachten wir folgende Sprachen:
 \begin{equation*}
 \begin{split}
 	\sat & = \{x \in (\Sigma_\text{logic})^*\ |\ \text{$x$ kodiert eine erf{\"u}llbare Formel in KNF} \} \\
+	k-\sat & = \{x \in (\Sigma_\text{logic})^*\ |\ \text{$x$ kodiert eine erf{\"u}llbare Formel in k-KNF} \} \\
 	\clique & = \{(G,k)\ |\ \text{$G$ ist ein ungerichteter Graph, der eine $k$-Clique enth{\"a}lt} \} \\
 	\vc & = \{(G,k)\ |\ \text{$G$ ist ein ungerichteter Graph mit der Knoten{\"u}berdeckung der M{\"a}chtigkeit h{\"o}chstens $k$} \} \\
 \end{split}
 \end{equation*}
 
-Dann gilten:
+Eine \textbf{k-KNF} ist eine KNF, bei der jede Klausel aus höchstens 3 Literalen besteht.
+Eine \textbf{Clique} vom Graphen $G = (V,E)$ ist ein Subgraph $G'$, der vollst{\"a}ndig ist.
+Eine \textbf{Knoten{\"u}berdeckung} vom Graphen $G = (V,E)$ ist wenn jede Kante von $G$ mindestens einen Knoten aus $U$ (einer Teilmenge von $V$) enth{\"a}lt.
+
+Dann gelten:
 \begin{equation*}
 \begin{split}
 	\sat & \text{ ist NP-vollst{\"a}ndig (Satz von Cook)} \\
