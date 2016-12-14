@@ -856,4 +856,38 @@ Economical SVD & & $O(\min(m, n)^2\cdot\max(m,n))$ \\ \hline
 \end{tabular}
 \end{table}
 
+
+\section{Filtering Algorithms}
+The mapping of input signals(vector) threw a filter(matrix) to an output signal(vector).
+\\Types of filters:
+\begin{enumerate}
+	\item Finite: every input of finite duration produces an output of finite duration.
+	\item Time-invariant: if shifting the input in time leads to the same output shifted in time by the same amount.
+	\item Linear: if it corresponds to a linear mapping.
+	\item Casual: if the output doesn't start before the input.
+\end{enumerate}
+\begin{center}
+	\includegraphics[width=380pt]{superposOfImpulseResp.png}
+\end{center}
+\subsection{Discrete Convolution}
+\begin{center}
+	\includegraphics[width=380pt]{DescreteConvolution.png}
+\end{center}
+A periodic sequence is a sequence satisfying: $x_{j+n} = x_j$, a n periodic sequence will result into a mapping with a n circulant matrix.
+\begin{center}
+	\includegraphics[width=380pt]{circulantMatrix.png}
+\end{center}
+Discrete convolution can be realized by multiplication with a circulant matrix.
+\subsection{Discrete Fourier Transform (DFT)}
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
