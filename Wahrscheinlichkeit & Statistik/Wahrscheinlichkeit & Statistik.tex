@@ -148,7 +148,7 @@ Dementsprechend ist die \textbf{Standardabweichung} von $X$ gleich
 	\text{sd}(X) = \sigma(X) := \sqrt{\Var[X]}
 \end{equation*}
 
-Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} der Verteilung von $X$. F{\"u}r beliebiges $X$ und $Y = aX +b$ gilt:
+Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} der Verteilung von $X$. Je kleiner die Varianz, desto eher liegen die Werte von $X$ nahe beim Erwatungswert $\E[X]$. F{\"u}r beliebiges $X$ und $Y = aX +b$ gilt:
 
 \begin{equation*}
 \begin{split}
@@ -397,9 +397,9 @@ Somit ist $f: \mathbb{R}^n \mapsto [0, \infty[$ die \textbf{gemeinsame Dichte} v
 
 
 
-\section{Wichtige stetige Verteilungen}
+\subsection{Wichtige stetige Verteilungen}
 
-\subsection{Gleichverteilung}
+\subsubsection{Gleichverteilung}
 
 Die \textbf{Gleichverteilung} auf einem Intervall $[a,b]$ ist ein Modell für die zufällige Wahl eines Punktes in $[a,b]$. Die Zufallsvariable $X$ hat somit den Wertebereich $\mathcal{W} = [a,b]$. Dementsprechend sind \textbf{Dichtefunktion} und \textbf{Verteilungsfunktion} definiert:
 \begin{equation*}
@@ -418,7 +418,7 @@ Die \textbf{Gleichverteilung} auf einem Intervall $[a,b]$ ist ein Modell für di
 
 Wir schreiben $X \sim \mathcal{U}(a,b)$ ($\mathcal{U}$ für uniform).
 
-\subsection{Exponentialverteilung}
+\subsubsection{Exponentialverteilung}
 
 Die \textbf{Exponentialverteilung} mit Parameter $\lambda > 0$ ist das stetige Analog der \textbf{geometrischen Verteilung}. \\
 Die Zufallsvariable $X$ hat $\mathcal{W} = [0, \infty[$, \textbf{Dichte} und \textbf{Verteilungsfunktion}:
@@ -437,7 +437,7 @@ Die Zufallsvariable $X$ hat $\mathcal{W} = [0, \infty[$, \textbf{Dichte} und \te
 
 Wir schreiben $X \sim Exp(\lambda)$. Wie die geometrische Verteilung ist die Exponentialverteilung ein Modell für Wartezeiten oder Lebensdauern; der einzige Unterschied besteht darin, dass nicht nur ganzzahlige, sondern beliebige Werte $\geq 0$ angenommen werden können.
 
-\subsection{Normalverteilung}
+\subsubsection{Normalverteilung}
 
 Die \textbf{Normalverteilung} (NV, auch \textbf{Gaus-Verteilung}) hat zwei Parameter, $\mu \in \mathbb{R}$ und $\sigma^2 > 0$. \\
 Der Wertebereich entspricht $\mathcal{W} = \mathbb{R}$ und die \textbf{Dichtefunktion} ist gleich:
@@ -453,7 +453,7 @@ Wir schreiben kurz $X \sim \mathcal{N}(\mu, \sigma^2)$. Für den \textbf{Erwartu
 \end{split}
 \end{equation*}
 
-\subsubsection{Standard-Normalverteilung}
+\paragraph{Standard-Normalverteilung}
 
 Für die \textbf{Standard-Normalverteilung} gilt $\mu = 0$ und $\sigma^2 = 1$, also $\mathcal{N}(0,1)$. Weder die Dichte $\varphi(t)$ noch die Verteilungsfunktion $\Phi(t)$ können mit einer geschlossenen Formel ausgedrückt werden, das Integral ist jedoch \textbf{tabelliert}:
 \begin{equation*}
@@ -465,7 +465,7 @@ Weiter gilt
 	F_X(t) = P[X \leq t] = \Phi(\frac{t-\mu}{\sigma})
 \end{equation*}
 
-\subsection{Cauchy-Verteilung}
+\subsubsection{Cauchy-Verteilung}
 
 Eine \textbf{Cauchy-verteilte} Zufallsvariable $X$ hat den Wertebereich $\mathcal{W} = \mathbb{R}$ und die \textbf{Dichtefunktion}
 \begin{equation*}
@@ -479,5 +479,56 @@ Die zugehörige \textbf{Verteilungsfunktion} ist
 
 Die Cauchy-Verteilung ist eine \textbf{langschwänzige Verteilung}, dies, weil $X$ auch noch sehr grosse Werte mit substantieller Wahrscheinlichkeit annimmt. \\
 Für diese Verteilung gibt es keinen Erwartungswert.
+
+\section{Ungleichungen und Grenzwerte}
+
+\subsection{Ungleichungen}
+
+\subsubsection{Markov-Ungleichung}
+
+Sei $X$ eine Zufallsvariable und ferner $g: \mathcal{W}(X) \mapsto [0, \infty[$ eine wachsende Funktion. Für jedes $c \in mathbb{R}$ gilt dann
+\begin{equation*}
+	P[X \geq c] \leq \frac{\E[g(X)]}{g(c)}
+\end{equation*}
+
+\subsubsection{Chebyshev-Ungleichung}
+
+Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ gilt dann
+\begin{equation*}
+	P[|Y - \E[Y]| \geq b] \leq \frac{\Var[Y]}{b^2}
+\end{equation*}
+
+\subsection{Gesetz der grossen Zahlen (GGZ)}
+
+Sei $X_1, X_2, ...$ eine Folge von unabhängigen Zufallsvariablen (i.i.d.) mit dem Erwartungswert $\E[X_i] = \mu$ und der Varianz $\Var[X_i] = \sigma^2$. Sei $\overline{X}_n = \frac{1}{n}S_n = \frac{1}{n}\sum_{i=1}^n X_i$. Dann \textbf{konvergiert} $\overline{X}_n$ für $n \mapsto \infty$ in Wahrscheinlichkeit gegen $\mu = E[X_i]$:
+\begin{equation*}
+\begin{split}
+	\text{schwach:} & \qquad P[|\overline{X}_n - \mu| > \varepsilon] \xrightarrow{n \mapsto \infty} 0 \\
+	\text{stark:} & \qquad \overline{X}_n \xrightarrow{n\mapsto\infty}\mu,\ P[\{\omega \in \Omega\ |\  \overline{X}_n(\omega) \xrightarrow{n\mapsto\infty}\mu\}] = 1 
+\end{split}
+\end{equation*}
+
+Das heisst, dass mit beliebig grosser Wahrscheinlichkeit $1- \delta$ der Wert von $\overline{X}_n$ für hinreichend grosse $n$ beliebig nahe (bis auf $\varepsilon$) bei $\mu$ liegt.
+
+\subsection{Zentraler Grenzwertsatz (ZGS)}
+
+Sei $X_1, X_2, ...$ eine Folge von i.i.d. Zufallsvariablen mit $\E[X_i] = \mu$ und $\Var[X_i] = \sigma^2$. Für die Summe $S_n = \sum_{i=1}^n X_i$ gilt dann
+\begin{equation*}
+	\lim_{n\mapsto\infty} P[\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x] = \Phi(x)
+\end{equation*}
+wobei $\Phi$ die Verteilungsfunktion der $\mathcal{N}(0,1)$-Verteilung ist.
+
+\subsection{Grosse Abweichungen und Chernoff-Schnranken}
+
+Die \textbf{momenterzeugende Funktion} einer Zufallsvariable $X$ ist
+\begin{equation*}
+	M_X(t) := \E[e^{tX}]
+\end{equation*}
+Sie ist immer wohldefiniert in $[0, \infty[$.
+
+Seien $X_1, ..., X_n$ i.i.d. Zufallsvariablen, für welche die momenterzeugende Funktion $M_X(t)$ für alle $t \in \mathbb{R}$ endlich ist. Für jedes $b \in \mathbb{R}$ gilt dann:
+\begin{equation*}
+	P[S_n > b] \leq \exp(\inf_{t \in \mathbb{R}}(n \log M_X(t) - tb))
+\end{equation*}
 
 \end{document}

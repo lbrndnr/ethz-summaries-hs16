@@ -309,7 +309,7 @@ Formell ist eine \textbf{Turingmaschine} (TM) ein Tupel $M = (Q, \Sigma, \Gamma,
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=4.5cm, noitemsep]
 	\item[$Q$:] Eine endliche Menge von Zust{\"a}nden
 	\item[$\Sigma$:] Das Eingabealphabet
-	\item[$\Gamma$:] Das Arbeitsalphabet, wobei $\Sigma \subseteq \Gamma$ und $\cent, \textvisiblespace \in \Gamma$ gelten, wie auch $\Gamma \cap Q = \emptyset$
+	\item[$\Gamma$:] Das Arbeitsalphabet (alle Symbole, die in Feldern des Bandes auftreten d{\"u}rfen), wobei $\Sigma \subseteq \Gamma$ und $\cent, \textvisiblespace \in \Gamma$ gelten, wie auch $\Gamma \cap Q = \emptyset$
 	\item[$\delta$:] Die {\"U}bergangsfunktion\\ ($\delta: (Q-\{q_\text{accept}, q_\text{reject}\}\times\Gamma) \mapsto Q\times\Gamma\times\{L,R,N\}$).  \\$M$ kann also eine Aktion $(q, X, Z) \in Q \times \Gamma \times \{L, R, N\}$ aus einem aktuellen Zustand $q$ beim Lesen eines Symbols $Y \in \Gamma$ durchf{\"u}hren, falls $\delta(p, Y) = (q, X, Z)$. Dies bedeutet der {\"u}bergang von $p$ nach $q$, das Ersetzen von $Y$ durch $X$ und die Bewegung des Kopfes gem{\"a}ss $Z$ (\textbf{L}inks, \textbf{R}echts, \textbf{N}ichts).
 	\item[$q_0 \in Q$:] Der Anfangszustand
 	\item[$q_\text{\normalfont accept} \in Q$:] Der akzeptierende Zustand
