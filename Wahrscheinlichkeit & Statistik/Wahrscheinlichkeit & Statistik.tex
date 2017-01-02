@@ -23,6 +23,7 @@
 \newcommand{\E}{\text{E}}
 \newcommand{\Var}{\text{Var}}
 \newcommand{\Cov}{\text{Cov}}
+\newcommand{\MSE}{\text{MSE}}
 
 \begin{document}
 
@@ -263,7 +264,7 @@ Alle Elementarereignisse treten mit der gleichen Wahrscheinlichkeit auf.
 
 Bei einem \textbf{0-1-Experiment} ist die Gewichtsfunktion mit einer \textbf{Bernoulli-Verteilung} wie folgt definiert:
 \begin{equation*}
-	p_X(x) = p^x(1-p)^{1-x} \quad\text{für } k = 1, 2, ..., N
+	p_X(x) = p^x(1-p)^{1-x} \quad\text{f{\"u}r } k = 1, 2, ..., N
 \end{equation*}
 
 Es folgt, dass folgende Formeln gelten:
@@ -274,7 +275,7 @@ Es folgt, dass folgende Formeln gelten:
 \end{split}
 \end{equation*}
 
-Anders ausgedrückt ist $X$ die Anzahl Erfolge bei einem einzelnen 0-1-Experiment mit \textbf{Erfolgsparameter} $p$, liefert also nur die Werte 1 oder 0. Wir schreiben $X \sim Be(p)$.
+Anders ausgedr{\"u}ckt ist $X$ die Anzahl Erfolge bei einem einzelnen 0-1-Experiment mit \textbf{Erfolgsparameter} $p$, liefert also nur die Werte 1 oder 0. Wir schreiben $X \sim Be(p)$.
 
 \textbf{Erwartungswert} und \textbf{Varianz} verhalten sich bei einer Bernoulli-verteilten Zufallsvariable wie folgt:
 \begin{equation*}
@@ -289,17 +290,17 @@ Anders ausgedrückt ist $X$ die Anzahl Erfolge bei einem einzelnen 0-1-Experimen
 Die \textbf{Binomialverteilung} mit Parametern $n$ und $p$ beschreibt $n$ \textbf{0-1-Experimente} mit \textbf{Erfolgsparameter} $p$. \\
 Der Wertebereich ist also $\mathcal{W} = \{0, 1, ..., n\}$. Die Gewichtsfunktion ist gleich
 \begin{equation*}
-	p_X(k) = P[X = k] = \binom{n}{k}p^k(1-p)^{n-k} \quad\text{für } k = 0, 1, ..., n
+	p_X(k) = P[X = k] = \binom{n}{k}p^k(1-p)^{n-k} \quad\text{f{\"u}r } k = 0, 1, ..., n
 \end{equation*}
 
 Wir schreiben $X \sim Bin(n,p)$. Falls $n = 1$ gilt $Bin(n,p) = Be(p)$
 
 \subsection{Geometrische Verteilung}
 
-Betrachten wir eine unendliche Folge von unabhängigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$, dann ist $X$ der Index der ersten Eins in der zufälligen 0-1-Folge. \\
+Betrachten wir eine unendliche Folge von unabh{\"a}ngigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$, dann ist $X$ der Index der ersten Eins in der zuf{\"a}lligen 0-1-Folge. \\
 Der Wertebereich ist dementsprechend $\mathcal{W} = \mathbb{N}$ und die Gewichtsfunktion gleich
 \begin{equation*}
-	p_X(k) = P[X = k] = p(1-p)^{k-1} \quad\text{für } k = 1, 2, 3,...
+	p_X(k) = P[X = k] = p(1-p)^{k-1} \quad\text{f{\"u}r } k = 1, 2, 3,...
 \end{equation*}
 
 Wir schreiben $X \sim Geom(p)$. $X = k$ heisst gerade, dass $A_1,..., A_{k-1}$ nicht eintreten und $A_k$ als erstes eintritt. Weiter ist der \textbf{Erwartungswert} und die \textbf{Varianz} gleich
@@ -312,10 +313,10 @@ Wir schreiben $X \sim Geom(p)$. $X = k$ heisst gerade, dass $A_1,..., A_{k-1}$ n
 
 \subsection{Negativbinomiale Verteilung}
 
-Eine \textbf{negativbinomiale Verteilung} mit Parametern $r$ und $p$ beschreibt eine unendliche Folge von unabhängigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$ und dem $r$-ten Erfolg. \\
+Eine \textbf{negativbinomiale Verteilung} mit Parametern $r$ und $p$ beschreibt eine unendliche Folge von unabh{\"a}ngigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$ und dem $r$-ten Erfolg. \\
 Der Wertebereich ist $\mathcal{W} = \{r, r+1, r+2,...\}$ und die Gewichtsfunktion
 \begin{equation*}
-	p_X(k) = P[X = k] = \binom{k-1}{r-1}p^r(1-p)^{k-r} \quad\text{für } k = r, r+1, r+2, ...
+	p_X(k) = P[X = k] = \binom{k-1}{r-1}p^r(1-p)^{k-r} \quad\text{f{\"u}r } k = r, r+1, r+2, ...
 \end{equation*}
 
 Wir schreiben kurz $X \sim NB(r,p)$. Es gilt:
@@ -328,17 +329,17 @@ Wir schreiben kurz $X \sim NB(r,p)$. Es gilt:
 
 \subsection{Hypergeometrische Verteilung}
 
-In einer Urne seien $n$ Gegenstände, davon $r$ vom Typ 1 und $n -r$ vom Typ 2. Man zieht ohne Zurücklegen $m$ der Gegenstände; die Zufallsvariable $X$ beschreibe die Anzahl der Gegenstände vom Typ 1 in dieser Stichprobe vom Umfang $m$. Dann hat $X$ eine \textbf{hypergeometrische Verteilung} mit Parametern $n \in \mathbb{N}$ und $m,r \in \{1, 2, ..., n\}$. \\
+In einer Urne seien $n$ Gegenst{\"a}nde, davon $r$ vom Typ 1 und $n -r$ vom Typ 2. Man zieht ohne Zur{\"u}cklegen $m$ der Gegenst{\"a}nde; die Zufallsvariable $X$ beschreibe die Anzahl der Gegenst{\"a}nde vom Typ 1 in dieser Stichprobe vom Umfang $m$. Dann hat $X$ eine \textbf{hypergeometrische Verteilung} mit Parametern $n \in \mathbb{N}$ und $m,r \in \{1, 2, ..., n\}$. \\
 Der Wertebereich ist gleich $\mathcal{W} = \{1, 2,... \min(r, m)\}$ und $X$ hat die Gewichtsfunktion
 \begin{equation*}
-	p_X(k) = \frac{\binom{r}{k}\binom{n-r}{m-k}}{\binom{n}{m}} \quad \text{für } k \in \mathcal{W}(X)
+	p_X(k) = \frac{\binom{r}{k}\binom{n-r}{m-k}}{\binom{n}{m}} \quad \text{f{\"u}r } k \in \mathcal{W}(X)
 \end{equation*}
 
 \subsection{Poisson-Verteilung}
 
 Die \textbf{Poisson-Verteilung} mit Parameter $\lambda \in (0, \infty)$ ist eine Verteilung auf der Menge $\mathbb{N}_0$ mit Gewichtsfunktion
 \begin{equation*}
-	p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!}\quad\text{für } k = 0, 1, 2,...
+	p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!}\quad\text{f{\"u}r } k = 0, 1, 2,...
 \end{equation*}
 
 Wir schreiben kurz $X \sim \mathcal{P}(\lambda)$
@@ -357,7 +358,7 @@ Die \textbf{Verteilungsfunktion $F_X$} ist durch $\mu_X$ festgelegt:
 
 Die \textbf{Dichtefunktion} $f_X: \mathbb{R} \mapsto [0,\infty[$ ist das allgemeine Analog zur Gewichtsfunktion. Die Zufallsvariable wird \textbf{(absolut) stetig}, falls gilt:
 \begin{equation*}
-	F_X(t) = \int_{-\infty}^t f_X(s)\ ds \quad\text{für alle }t\in \mathbb{R}
+	F_X(t) = \int_{-\infty}^t f_X(s)\ ds \quad\text{f{\"u}r alle }t\in \mathbb{R}
 \end{equation*}
 
 Die Dichtefunktion $f_X$ hat folgende Eigenschaften:
@@ -368,7 +369,7 @@ Die Dichtefunktion $f_X$ hat folgende Eigenschaften:
 \end{split}
 \end{equation*}
 
-In allen vernünftigen Situationen gilt
+In allen vern{\"u}nftigen Situationen gilt
 \begin{equation*}
 	\text{Dichtefunktion} = \text{Ableitung der Verteilungsfunktion}
 \end{equation*}
@@ -386,7 +387,7 @@ Sei weiter $X$ und $Y = g(X)$ zwei Zufallsvariablen. Ist $X$ stetig mit Dichte $
 	\E[Y] = \E[g(X)] = \int_{-\infty}^\infty g(x)f_X(x)\ dx
 \end{equation*} 
 
-\subsection{Gemeinsame Verteilungen, unabhängige Zufallsvariablen}
+\subsection{Gemeinsame Verteilungen, unabh{\"a}ngige Zufallsvariablen}
 
 Die \textbf{gemeinsame Verteilungsfunktion} von $n$ Zufallsvariablen $X_1,...,X_n$ ist die Abbildung $F: \mathbb{R}^n \mapsto [0,1]$
 \begin{equation*}
@@ -401,22 +402,22 @@ Somit ist $f: \mathbb{R}^n \mapsto [0, \infty[$ die \textbf{gemeinsame Dichte} v
 
 \subsubsection{Gleichverteilung}
 
-Die \textbf{Gleichverteilung} auf einem Intervall $[a,b]$ ist ein Modell für die zufällige Wahl eines Punktes in $[a,b]$. Die Zufallsvariable $X$ hat somit den Wertebereich $\mathcal{W} = [a,b]$. Dementsprechend sind \textbf{Dichtefunktion} und \textbf{Verteilungsfunktion} definiert:
+Die \textbf{Gleichverteilung} auf einem Intervall $[a,b]$ ist ein Modell f{\"u}r die zuf{\"a}llige Wahl eines Punktes in $[a,b]$. Die Zufallsvariable $X$ hat somit den Wertebereich $\mathcal{W} = [a,b]$. Dementsprechend sind \textbf{Dichtefunktion} und \textbf{Verteilungsfunktion} definiert:
 \begin{equation*}
 \begin{split}
 	f_X(t) = \begin{cases}
-		\frac{1}{b-a}\quad\text{für }a\leq t \leq b \\
+		\frac{1}{b-a}\quad\text{f{\"u}r }a\leq t \leq b \\
 		0\quad\text{sonst }
 	\end{cases} \\
 	F_X(t) = \begin{cases}
-		0\quad\text{für } t < a \\
-		\frac{t-a}{b-a}\quad\text{für } a \leq t \leq b \\
-		1\quad\text{für } t > b
+		0\quad\text{f{\"u}r } t < a \\
+		\frac{t-a}{b-a}\quad\text{f{\"u}r } a \leq t \leq b \\
+		1\quad\text{f{\"u}r } t > b
 	\end{cases}
 \end{split}
 \end{equation*}
 
-Wir schreiben $X \sim \mathcal{U}(a,b)$ ($\mathcal{U}$ für uniform).
+Wir schreiben $X \sim \mathcal{U}(a,b)$ ($\mathcal{U}$ f{\"u}r uniform).
 
 \subsubsection{Exponentialverteilung}
 
@@ -425,27 +426,27 @@ Die Zufallsvariable $X$ hat $\mathcal{W} = [0, \infty[$, \textbf{Dichte} und \te
 \begin{equation*}
 \begin{split}
 	f_X(t) & = \begin{cases}
-		\lambda e^{-\lambda t}\quad\text{für } t \geq 0 \\
-		0 \quad\text{für } t < 0 \\
+		\lambda e^{-\lambda t}\quad\text{f{\"u}r } t \geq 0 \\
+		0 \quad\text{f{\"u}r } t < 0 \\
 	\end{cases} \\
 	F_X(t) & = \int_{-\infty}^t f_X(s)\ ds = \begin{cases}
-		1 - e^{-\lambda t} \quad\text{für } t \geq 0 \\
-		0 \quad\text{für } t < 0 \\
+		1 - e^{-\lambda t} \quad\text{f{\"u}r } t \geq 0 \\
+		0 \quad\text{f{\"u}r } t < 0 \\
 	\end{cases}
 \end{split}
 \end{equation*}
 
-Wir schreiben $X \sim Exp(\lambda)$. Wie die geometrische Verteilung ist die Exponentialverteilung ein Modell für Wartezeiten oder Lebensdauern; der einzige Unterschied besteht darin, dass nicht nur ganzzahlige, sondern beliebige Werte $\geq 0$ angenommen werden können.
+Wir schreiben $X \sim Exp(\lambda)$. Wie die geometrische Verteilung ist die Exponentialverteilung ein Modell f{\"u}r Wartezeiten oder Lebensdauern; der einzige Unterschied besteht darin, dass nicht nur ganzzahlige, sondern beliebige Werte $\geq 0$ angenommen werden k{\"o}nnen.
 
 \subsubsection{Normalverteilung}
 
 Die \textbf{Normalverteilung} (NV, auch \textbf{Gaus-Verteilung}) hat zwei Parameter, $\mu \in \mathbb{R}$ und $\sigma^2 > 0$. \\
 Der Wertebereich entspricht $\mathcal{W} = \mathbb{R}$ und die \textbf{Dichtefunktion} ist gleich:
 \begin{equation*}
-	f_X(t) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(t-\mu)^2}{2\sigma^2}}\quad\text{für } t \in \mathbb{R}
+	f_X(t) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(t-\mu)^2}{2\sigma^2}}\quad\text{f{\"u}r } t \in \mathbb{R}
 \end{equation*}
 
-Wir schreiben kurz $X \sim \mathcal{N}(\mu, \sigma^2)$. Für den \textbf{Erwartungswert} und die \textbf{Varianz} gilt
+Wir schreiben kurz $X \sim \mathcal{N}(\mu, \sigma^2)$. F{\"u}r den \textbf{Erwartungswert} und die \textbf{Varianz} gilt
 \begin{equation*}
 \begin{split}
 	\E[X] & = \mu \\
@@ -455,7 +456,7 @@ Wir schreiben kurz $X \sim \mathcal{N}(\mu, \sigma^2)$. Für den \textbf{Erwartu
 
 \paragraph{Standard-Normalverteilung}
 
-Für die \textbf{Standard-Normalverteilung} gilt $\mu = 0$ und $\sigma^2 = 1$, also $\mathcal{N}(0,1)$. Weder die Dichte $\varphi(t)$ noch die Verteilungsfunktion $\Phi(t)$ können mit einer geschlossenen Formel ausgedrückt werden, das Integral ist jedoch \textbf{tabelliert}:
+F{\"u}r die \textbf{Standard-Normalverteilung} gilt $\mu = 0$ und $\sigma^2 = 1$, also $\mathcal{N}(0,1)$. Weder die Dichte $\varphi(t)$ noch die Verteilungsfunktion $\Phi(t)$ k{\"o}nnen mit einer geschlossenen Formel ausgedr{\"u}ckt werden, das Integral ist jedoch \textbf{tabelliert}:
 \begin{equation*}
 	\Phi(t) = \int_{-\infty}^t \phi(s)\ ds = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^t e^{-\frac{1}{2}s^2}\ ds
 \end{equation*}
@@ -469,16 +470,16 @@ Weiter gilt
 
 Eine \textbf{Cauchy-verteilte} Zufallsvariable $X$ hat den Wertebereich $\mathcal{W} = \mathbb{R}$ und die \textbf{Dichtefunktion}
 \begin{equation*}
-	f_X(x) = \frac{1}{\pi}\frac{1}{1+x^2}\quad\text{für }x \in \mathbb{R}
+	f_X(x) = \frac{1}{\pi}\frac{1}{1+x^2}\quad\text{f{\"u}r }x \in \mathbb{R}
 \end{equation*}
 
-Die zugehörige \textbf{Verteilungsfunktion} ist 
+Die zugeh{\"o}rige \textbf{Verteilungsfunktion} ist 
 \begin{equation*}
-	F_X(x) = \frac{1}{2}+\frac{1}{\pi}\arctan(x)\quad\text{für }x \in \mathbb{R}
+	F_X(x) = \frac{1}{2}+\frac{1}{\pi}\arctan(x)\quad\text{f{\"u}r }x \in \mathbb{R}
 \end{equation*}
 
-Die Cauchy-Verteilung ist eine \textbf{langschwänzige Verteilung}, dies, weil $X$ auch noch sehr grosse Werte mit substantieller Wahrscheinlichkeit annimmt. \\
-Für diese Verteilung gibt es keinen Erwartungswert.
+Die Cauchy-Verteilung ist eine \textbf{langschw{\"a}nzige Verteilung}, dies, weil $X$ auch noch sehr grosse Werte mit substantieller Wahrscheinlichkeit annimmt. \\
+F{\"u}r diese Verteilung gibt es keinen Erwartungswert.
 
 \section{Ungleichungen und Grenzwerte}
 
@@ -486,21 +487,21 @@ Für diese Verteilung gibt es keinen Erwartungswert.
 
 \subsubsection{Markov-Ungleichung}
 
-Sei $X$ eine Zufallsvariable und ferner $g: \mathcal{W}(X) \mapsto [0, \infty[$ eine wachsende Funktion. Für jedes $c \in mathbb{R}$ gilt dann
+Sei $X$ eine Zufallsvariable und ferner $g: \mathcal{W}(X) \mapsto [0, \infty[$ eine wachsende Funktion. F{\"u}r jedes $c \in mathbb{R}$ gilt dann
 \begin{equation*}
 	P[X \geq c] \leq \frac{\E[g(X)]}{g(c)}
 \end{equation*}
 
 \subsubsection{Chebyshev-Ungleichung}
 
-Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ gilt dann
+Sei $Y$ eine Zufallsvariable mit endlicher Varianz. F{\"u}r jedes $b > 0$ gilt dann
 \begin{equation*}
 	P[|Y - \E[Y]| \geq b] \leq \frac{\Var[Y]}{b^2}
 \end{equation*}
 
 \subsection{Gesetz der grossen Zahlen (GGZ)}
 
-Sei $X_1, X_2, ...$ eine Folge von unabhängigen Zufallsvariablen (i.i.d.) mit dem Erwartungswert $\E[X_i] = \mu$ und der Varianz $\Var[X_i] = \sigma^2$. Sei $\overline{X}_n = \frac{1}{n}S_n = \frac{1}{n}\sum_{i=1}^n X_i$. Dann \textbf{konvergiert} $\overline{X}_n$ für $n \mapsto \infty$ in Wahrscheinlichkeit gegen $\mu = E[X_i]$:
+Sei $X_1, X_2, ...$ eine Folge von unabh{\"a}ngigen Zufallsvariablen (i.i.d.) mit dem Erwartungswert $\E[X_i] = \mu$ und der Varianz $\Var[X_i] = \sigma^2$. Sei $\overline{X}_n = \frac{1}{n}S_n = \frac{1}{n}\sum_{i=1}^n X_i$. Dann \textbf{konvergiert} $\overline{X}_n$ f{\"u}r $n \mapsto \infty$ in Wahrscheinlichkeit gegen $\mu = E[X_i]$:
 \begin{equation*}
 \begin{split}
 	\text{schwach:} & \qquad P[|\overline{X}_n - \mu| > \varepsilon] \xrightarrow{n \mapsto \infty} 0 \\
@@ -508,11 +509,11 @@ Sei $X_1, X_2, ...$ eine Folge von unabhängigen Zufallsvariablen (i.i.d.) mit d
 \end{split}
 \end{equation*}
 
-Das heisst, dass mit beliebig grosser Wahrscheinlichkeit $1- \delta$ der Wert von $\overline{X}_n$ für hinreichend grosse $n$ beliebig nahe (bis auf $\varepsilon$) bei $\mu$ liegt.
+Das heisst, dass mit beliebig grosser Wahrscheinlichkeit $1- \delta$ der Wert von $\overline{X}_n$ f{\"u}r hinreichend grosse $n$ beliebig nahe (bis auf $\varepsilon$) bei $\mu$ liegt.
 
 \subsection{Zentraler Grenzwertsatz (ZGS)}
 
-Sei $X_1, X_2, ...$ eine Folge von i.i.d. Zufallsvariablen mit $\E[X_i] = \mu$ und $\Var[X_i] = \sigma^2$. Für die Summe $S_n = \sum_{i=1}^n X_i$ gilt dann
+Sei $X_1, X_2, ...$ eine Folge von i.i.d. Zufallsvariablen mit $\E[X_i] = \mu$ und $\Var[X_i] = \sigma^2$. F{\"u}r die Summe $S_n = \sum_{i=1}^n X_i$ gilt dann
 \begin{equation*}
 	\lim_{n\mapsto\infty} P[\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x] = \Phi(x)
 \end{equation*}
@@ -526,9 +527,35 @@ Die \textbf{momenterzeugende Funktion} einer Zufallsvariable $X$ ist
 \end{equation*}
 Sie ist immer wohldefiniert in $[0, \infty[$.
 
-Seien $X_1, ..., X_n$ i.i.d. Zufallsvariablen, für welche die momenterzeugende Funktion $M_X(t)$ für alle $t \in \mathbb{R}$ endlich ist. Für jedes $b \in \mathbb{R}$ gilt dann:
+Seien $X_1, ..., X_n$ i.i.d. Zufallsvariablen, f{\"u}r welche die momenterzeugende Funktion $M_X(t)$ f{\"u}r alle $t \in \mathbb{R}$ endlich ist. F{\"u}r jedes $b \in \mathbb{R}$ gilt dann:
 \begin{equation*}
 	P[S_n > b] \leq \exp(\inf_{t \in \mathbb{R}}(n \log M_X(t) - tb))
+\end{equation*}
+
+\section{Sch{\"a}tzer}
+
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=6cm, noitemsep]
+	\item[Sch{\"a}tzer $T$:] Eine Zufallsvariable
+	\item[Sch{\"a}tzwert:] Ist eine Zahl $T_j(\omega) = t_j(x_1,...,x_n)$, also das Ergebnis einer konkreten Berechnung
+	\item[erwartungstreuer Sch{\"a}tzer:] Falls $\E_\vartheta[T] = \vartheta$, $T$ sch{\"a}tzt im Durchschnitt also richtig
+	\item[Bias/Sch{\"a}tzfehler:] $\E_\vartheta[T] - \vartheta$ (0 falls $T$ erwartungstreu ist)
+	\item[MSE:] Mittlerer quadratische Sch{\"a}tzfehler\\ $\MSE_\vartheta[T] := \E_\vartheta[(T-\vartheta)^2]$
+	\item[konsistent:] Eine Folge von Sch{\"a}tzern $T^{(n)},\ n\in\mathbb{N}$, falls \\ $\lim_{n \mapsto \infty} P_\vartheta[|T^{(n)} -\vartheta| > \varepsilon] = 0$
+\end{description}
+
+\emph{Bemerkung:} F{\"u}r erwartungstreue Sch{\"a}tzer sind die Varianz und MSE dasselbe:
+\begin{equation*}
+	\MSE_\vartheta[T] = \E_\vartheta[(T-\vartheta)^2] = \Var_\vartheta[T] + (\E_\vartheta[T] - \vartheta)^2
+\end{equation*}
+
+\subsection{Maximum-Likelihood-Methode (ML-Methode)}
+
+Seien in einem Modell $P_\vartheta$ die Zufallsvariablen $X_1,...,X_n$ entweder diskret mit der geimensamen Gewichtsfunktion $p(x_1,...,x_n;\vartheta)$ oder stetig mit $f(x_1,...,x_n;\vartheta)$. Die \textbf{Likelihood-Funktion} ist dann definiert als:
+\begin{equation*}
+	L(x_1,...,x_n;\vartheta) := \begin{cases}
+		p(x_1,...,x_n; \vartheta), \text{im diskreten Fall} \\
+		f(x_1,...,x_n; \vartheta), \text{im stetigen Fall}
+	\end{cases}
 \end{equation*}
 
 \end{document}
