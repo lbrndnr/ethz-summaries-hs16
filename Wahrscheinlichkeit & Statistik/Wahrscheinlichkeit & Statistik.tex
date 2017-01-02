@@ -558,4 +558,25 @@ Seien in einem Modell $P_\vartheta$ die Zufallsvariablen $X_1,...,X_n$ entweder 
 	\end{cases}
 \end{equation*}
 
+\section{Tests}
+
+Das Grundproblem ist, eine Entscheidung zwischen zwei konkurrierenden Modellklassen zu treffen, der \textbf{Hypothese $\Theta_0 \subseteq \Theta$} und der \textbf{Alternative $\Theta_A \subseteq \Theta$}, wobei $\Theta_0 \cap \Theta_A = \emptyset$.
+
+\begin{center}
+	Hypothese $H_0$: $\vartheta \in \Theta_0$ \\
+	Alternative $H_A$: $\vartheta \in \Theta_A$
+\end{center}
+
+Die Hypothese $H_0$ besagt also, dass der wahre (aber unbekannte) Parameter $\vartheta$ in der Menge $\Theta_0$ liegt. \\
+Hypothesen und Alternativen heissen \textbf{einfach}, falls sie nur aus einem einzelnen Wert besteht, sonst heissen sie \textbf{zusammengesetzt}. \\
+
+Ein \textbf{Test} ist nun allgemein eine Entscheidungsregel, die zu gegebenen Daten $x_1,...,x_n$ einen von zwei Werten liefert; dabei nimmt man als diese zwei Werte 0 und 1, und man interpretiert den Wert 1 als die Entscheidung, die Hypothese $H_0$ bzw. $\Theta_0$ abzulehnen. Konkreter ausgedrückt bestimmt man einen \textbf{Verwerfungsbereich} $K \subseteq \mathbb{R}$. Man verwirft dann die Hypothese, wenn der realisierte Wert in den Verwerfungsbereich $K$ fällt. \\
+
+Es werden folgende Fehler unterscheidet:
+\begin{description}[labelindent=16pt,style=multiline,leftmargin=4cm, noitemsep]
+	\item[Fehler 1. Art:] Die Hypothese wird zu Unrecht abgelehnt, obwohl sie richtig ist
+	\item[Fehler 2. Art:] Die Hypothese wird zu Unrecht nicht verworfen. Man akzeptiert also die Hypothese, obwohl sie falsch ist.
+\end{description}
+
+
 \end{document}
