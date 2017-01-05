@@ -91,6 +91,7 @@ Die bedingte Wahrscheinlichkeit von $B$ unter der Bedingung, dass $A$ eintritt (
 
 \paragraph{Formel von Bayes:} Ist $A_1,...,A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$ und $B$ ein Ereignis mit $P[B] > 0$ so gilt f{\"u}r jedes $k$:
 \begin{equation*}
+	P[A_k|B] = \frac{P[B|A_k]P[A_k]}{\sum_{i=1}^n P[B|A_i]P[A_i]} = \frac{P[B|A_k]P[A_k]}{P[B]}
 \end{equation*}
 
 \subsection{Unabh{\"a}ngigkeit}
@@ -163,14 +164,14 @@ Dementsprechend ist die \textbf{Standardabweichung} von $X$ gleich
 
 Die \textbf{Kovarianz} von $X$ und $Y$ ist wie folgt definiert:
 \begin{equation*}
-	\Cov(X,Y) = \E[XY] - \E[X]\E[Y] = \E[(X - \E[X])(Y-\E[Y])]
+	\Cov[X,Y] = \E[XY] - \E[X]\E[Y] = \E[(X - \E[X])(Y-\E[Y])]
 \end{equation*}
 
 Es gelten:
 \begin{equation*}
 \begin{split}
-	& \Cov(X, X) = \Var(X) \\
-	& \Cov(X, Y) = 0 \Rightarrow \text{$X$ und $Y$ sind unkorreliert}
+	& \Cov[X, X] = \Var[X] \\
+	& \Cov[X, Y] = 0 \Rightarrow \text{$X$ und $Y$ sind unkorreliert}
 \end{split}
 \end{equation*}
 
@@ -307,6 +308,8 @@ Wir schreiben $X \sim Geom(p)$. $X = k$ heisst gerade, dass $A_1,..., A_{k-1}$ n
 \end{split}
 \end{equation*}
 
+\emph{Bermerkung:} Hat das "forgetfulness property"
+
 \subsection{Negativbinomiale Verteilung}
 
 Eine \textbf{negativbinomiale Verteilung} mit Parametern $r$ und $p$ beschreibt eine unendliche Folge von unabh{\"a}ngigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$ und dem $r$-ten Erfolg. \\
@@ -333,7 +336,7 @@ Der Wertebereich ist gleich $\mathcal{W} = \{1, 2,... \min(r, m)\}$ und $X$ hat 
 
 \subsection{Poisson-Verteilung}
 
-Die \textbf{Poisson-Verteilung} mit Parameter $\lambda \in (0, \infty)$ ist eine Verteilung auf der Menge $\mathbb{N}_0$ mit Gewichtsfunktion
+Die \textbf{Poisson-Verteilung} mit Parameter $\lambda \in (0, \infty)$ beschreibt die Anzahl Ereignisse in einem Zeitintervall. Sie ist eine Verteilung auf der Menge $\mathbb{N}_0$ mit Gewichtsfunktion
 \begin{equation*}
 	p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!}\quad\text{f{\"u}r } k = 0, 1, 2,...
 \end{equation*}
