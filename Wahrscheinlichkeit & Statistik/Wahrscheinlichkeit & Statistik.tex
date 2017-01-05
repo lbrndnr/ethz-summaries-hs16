@@ -91,7 +91,6 @@ Die bedingte Wahrscheinlichkeit von $B$ unter der Bedingung, dass $A$ eintritt (
 
 \paragraph{Formel von Bayes:} Ist $A_1,...,A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$ und $B$ ein Ereignis mit $P[B] > 0$ so gilt f{\"u}r jedes $k$:
 \begin{equation*}
-	P[A_k|B] = \frac{P[B|A_k]P[A_k]}{\sum_{i=1}^n P[B|A_i]P[A_i]} = \frac{P[B|A_k]P[A_k]}{P[B]}
 \end{equation*}
 
 \subsection{Unabh{\"a}ngigkeit}
@@ -113,6 +112,7 @@ Zwei Ereignisse $A, B$ sind unabh{\"a}ngig (stochastisch), falls gilt:
 	\item[Zufallsvariable $X: \Omega \mapsto \mathbb{R}$:] Eine eindeutige Zuordnung, die jedem Elementarereignisses im Ereignisraum eine Zahl zuordnet.
 	\item[Verteilungsfunktion $F_X: \mathbb{R} \mapsto \lbrack 0,1 \rbrack$:] $F_X(t) := P[X \leq t] := P[\{\omega | X(\omega) \leq t\}]$ \\ Der Wert an der Stelle $x$  entspricht der Wahrscheinlichkeit, dass die zugeh{\"o}rige Zufallsvarible $X$ einen Wert kleiner oder gleich $x$ annimmt.
 	\item[Gewichtsfunktion $p_X:\mathcal{W}(X) \mapsto \lbrack 0,1 \rbrack$:] $p_X(x_k) := P[X = x_k] = P[\{\omega | X(\omega) = x_k\}]$ \\ Die Summe aller Gewicht aller Ereignisse muss zusammen 1 ergeben.
+	\item[Verteilung $\mu_X(B)$:] $\mu_X(B) = P[X \in B] = \sum_{x_k \in B} p_X(x_k)$
 	\item[Indikatorfunktion $I_A$:] $I_A(\omega) = 1$, falls $\omega \in A$, $0$ sonst. Eine diskrete Zufallsvariable, falls $\Omega$ endlich und abz{\"a}hlbar ist.
 \end{description}
 
@@ -132,12 +132,22 @@ Sei weiter $Y = g(X)$ eine Zufallsvariable gem{\"a}ss $g: \mathbb{R}\mapsto\math
 
 \emph{Veranschaulichung:} Der Erwartungswert beschreibt die Zahl, die der Erwartungswert im Durchschnitt annimmt.
 
-F{\"u}r zwei Zufallsvariablen $X$ und $Y$, die jeweils einen Erwartungswert definiert haben, gilt:
-\begin{description}[labelindent=16pt,style=multiline,leftmargin=4cm, noitemsep]
-	\item[Monotonie:] Ist $X \leq Y$ (bzw. $\forall\omega: X(\omega) \leq Y(\omega)$), so gilt auch $\E[X] \leq \E[Y]$
-	\item[Linearit{\"a}t:] F{\"u}r beliebige $a,b \in \mathbb{R}$ gilt $\E[aX + b] = a\E[X]+b$
-	\item[Werte in $\mathbb{N}_0$:] Falls $X$ nur Werte in $\mathbb{N}_0$ annimmt, so gilt \\ $\E[X] = \sum^\infty_{j=1}P[X \geq j] = \sum^\infty_{l=0}P[X > l]$
-\end{description}
+Für Erwartungswerte gelten folgende Identitäten:
+\begin{equation*}
+\begin{split}
+	\forall\omega: X(\omega) \leq Y(\omega) & \Rightarrow \E[X] \leq \E[Y] \\
+	\E[aX + b] & = a\E[X]+b \\
+	\E[X^2] & = \sum_{x_k \in \mathcal{W}(X)} x_k^2 \cdot P[X = x_k] \\
+	\E[Z] = \E[X_1 - 3X_2 + X_3] & = \E[X_1] - 3\E[X_2] + \E[X_3]
+\end{split}
+\end{equation*}
+
+Falls die Zufallsvariablen zusätzlich \textbf{unabhängig} sind:
+\begin{equation*}
+\begin{split}
+	\E\Bigg[\prod_{i=1}^n X_i\Bigg] & = \prod_{i=1}^n \E[X_i] \\
+\end{split}
+\end{equation*}
 
 \subsection{Varianz}
 
@@ -151,13 +161,37 @@ Dementsprechend ist die \textbf{Standardabweichung} von $X$ gleich
 	\text{sd}(X) = \sigma(X) := \sqrt{\Var[X]}
 \end{equation*}
 
-Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} der Verteilung von $X$. Je kleiner die Varianz, desto eher liegen die Werte von $X$ nahe beim Erwatungswert $\E[X]$. F{\"u}r beliebiges $X$ und $Y = aX +b$ gilt:
+Die \textbf{Kovarianz} von $X$ und $Y$ ist wie folgt definiert:
+\begin{equation*}
+	\Cov(X,Y) = \E[XY] - \E[X]\E[Y] = \E[(X - \E[X])(Y-\E[Y])]
+\end{equation*}
 
+Es gelten:
+\begin{equation*}
+\begin{split}
+	& \Cov(X, X) = \Var(X) \\
+	& \Cov(X, Y) = 0 \Rightarrow \text{$X$ und $Y$ sind unkorreliert}
+\end{split}
+\end{equation*}
+
+Die Varianz wie auch die Standardabweichung beschreiben die \textbf{Streuung} der Verteilung von $X$. Je kleiner die Varianz, desto eher liegen die Werte von $X$ nahe beim Erwatungswert $\E[X]$. \\
+
+F{\"u}r beliebige Zufallsvariablen gilt:
 \begin{equation*}
 \begin{split}
 	\Var[X] & = \E[X^2] - \E[X]^2 \\
-	\Var[Y] & = \Var[aX +b] = a^2\Var[X]
+	\Var[Y] & = \Var[aX +b] = a^2\Var[X] \\
+	\Var\Bigg[\sum_{i=1}^n X_i \Bigg] & = \sum_{i=1}^n\Var[X_i] + 2\sum_{i<j}\Cov(X_i, X_j)
 \end{split}	
+\end{equation*}
+
+Sind die Zufallsvariablen \textbf{unabhängig}, gilt:
+
+\begin{equation*}
+\begin{split}
+	\Var\Bigg[\prod_{i=1}^n X_i\Bigg] & = \prod_{i=1}^n \Var[X_i] \\
+	\Var\Bigg[\sum_{i=1}^n X_i \Bigg]  & = \sum_{i=1}^n\Var[X_i]
+\end{split}
 \end{equation*}
 
 \subsection{Gemeinsame Verteilungen}
@@ -197,6 +231,53 @@ Die Zufallsvariablen $X_1,...,X_n$ heissen \textbf{unabh{\"a}ngig}, falls
 \begin{equation*}
 	\text{unabh{\"a}ngig} \Rightarrow \text{paarweise unabh{\"a}ngig} \Rightarrow \text{unkorreliert}
 \end{equation*}
+
+\subsection{Funktionen von mehreren Zufallsvariablen}
+
+Seien $X_1,...,X_n$ diskrete Zufallsvariablen mit endlichen Erwartungswerten $\E[X_1],...,\E[X_n]$...
+
+\subsubsection{Summen von Erwartungswerte}
+
+Sei weiter $Y = a + \sum_{l=1}^n b_lX_l$ mit Konstanten $a,_1,...,b_n$, dann gilt:
+\begin{equation*}
+	\E[Y] = a + \sum_{l=1}^n b_l\E[X_l]
+\end{equation*}
+
+Es folgt, dass Erwartungswerte sich \textbf{immer linear verhalten}. Der Erwartungswert einer Summe von Zufallsvariablen ist also immer die Summe der Erwartungswerte.
+	
+\subsubsection{Summen von Varianzen}
+
+Die \textbf{Kovarianz} von $X$ und $Y$ ist wie folgt definiert:
+\begin{equation*}
+	\Cov(X,Y) = \E[XY] - \E[X]\E[Y] = \E[(X - \E[X])(Y-\E[Y])]
+\end{equation*}
+
+Es gelten:
+\begin{equation*}
+\begin{split}
+	& \Cov(X, X) = \Var(X) \\
+	& \Cov(X, Y) = 0 \Rightarrow \text{$X$ und $Y$ sind unkorreliert}
+\end{split}
+\end{equation*}
+
+Daraus folgt die \textbf{allgemeine Summenformel f{\"u}r Varianzen}:
+
+\begin{equation*}
+\begin{split}
+	\text{korreliert:} \quad & \Var\Bigg[\sum_{i=1}^n X_i \Bigg] = \sum_{i=1}^n\Var[X_i] + 2\sum_{i<j}\Cov(X_i, X_j) \\
+	\text{unkorreliert:} \quad & \Var\Bigg[\sum_{i=1}^n X_i \Bigg] = \sum_{i=1}^n\Var[X_i]
+\end{split}
+\end{equation*}
+
+\subsubsection{Produkte von Zufallsvariablen und Varianzen}
+
+Falls $X_1,...X_n$ unabh{\"a}ngig sind und der Erwartungswert links {\"u}berhaupt existiert, gilt
+
+\begin{equation*}
+	E\Bigg[\prod_{i=1}^n X_i\Bigg] = \prod_{i=1}^n \E[X_i]
+\end{equation*}
+
+In diesem Fall sind dann $X_1,...,X_n$ paarweise unkorreliert.
 
 \subsection{Funktionen von mehreren Zufallsvariablen}
 
