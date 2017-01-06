@@ -257,7 +257,7 @@ Alle Elementarereignisse treten mit der gleichen Wahrscheinlichkeit auf.
 	p_X(x_k) = P[X = x_k] = \frac{1}{N}
 \end{equation*}
 
-\subsection{Bernoulli-Verteilung}
+\subsection{Bernoulli-Verteilung $X \sim Be(p) = Bin(1,p)$}
 
 Bei einem \textbf{0-1-Experiment} ist die Gewichtsfunktion mit einer \textbf{Bernoulli-Verteilung} wie folgt definiert:
 \begin{equation*}
@@ -272,17 +272,16 @@ Es folgt, dass folgende Formeln gelten:
 \end{split}
 \end{equation*}
 
-Anders ausgedr{\"u}ckt ist $X$ die Anzahl Erfolge bei einem einzelnen 0-1-Experiment mit \textbf{Erfolgsparameter} $p$, liefert also nur die Werte 1 oder 0. Wir schreiben $X \sim Be(p)$.
+Anders ausgedr{\"u}ckt ist $X$ die Anzahl Erfolge bei einem einzelnen 0-1-Experiment mit \textbf{Erfolgsparameter} $p$, liefert also nur die Werte 1 oder 0.
 
-\textbf{Erwartungswert} und \textbf{Varianz} verhalten sich bei einer Bernoulli-verteilten Zufallsvariable wie folgt:
 \begin{equation*}
 \begin{split}
-	\E[X] & = 1 \cdot P[X = 1] + 0 \cdot P[X = 0] = p \\
-	\Var[X] & = \E[X^2] - (\E[X])^2 = p(1-p) \quad \text{da } X^2 = X
+	\E[X] & = p \\
+	\Var[X] & = p(1-p) \quad \text{da } X^2 = X
 \end{split}
 \end{equation*}
 
-\subsection{Binomialverteilung}
+\subsection{Binomialverteilung $X \sim Bin(n,p)$}
 
 Die \textbf{Binomialverteilung} mit Parametern $n$ und $p$ beschreibt $n$ \textbf{0-1-Experimente} mit \textbf{Erfolgsparameter} $p$. \\
 Der Wertebereich ist also $\mathcal{W} = \{0, 1, ..., n\}$. Die Gewichtsfunktion ist gleich
@@ -290,9 +289,14 @@ Der Wertebereich ist also $\mathcal{W} = \{0, 1, ..., n\}$. Die Gewichtsfunktion
 	p_X(k) = P[X = k] = \binom{n}{k}p^k(1-p)^{n-k} \quad\text{f{\"u}r } k = 0, 1, ..., n
 \end{equation*}
 
-Wir schreiben $X \sim Bin(n,p)$. Falls $n = 1$ gilt $Bin(n,p) = Be(p)$
+\begin{equation*}
+\begin{split}
+	\E[X] & = np \\
+	\Var[X] & = np(1-p)
+\end{split}
+\end{equation*}
 
-\subsection{Geometrische Verteilung}
+\subsection{Geometrische Verteilung $X \sim Geom(p)$}
 
 Betrachten wir eine unendliche Folge von unabh{\"a}ngigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$, dann ist $X$ der Index der ersten Eins in der zuf{\"a}lligen 0-1-Folge. \\
 Der Wertebereich ist dementsprechend $\mathcal{W} = \mathbb{N}$ und die Gewichtsfunktion gleich
@@ -300,17 +304,17 @@ Der Wertebereich ist dementsprechend $\mathcal{W} = \mathbb{N}$ und die Gewichts
 	p_X(k) = P[X = k] = p(1-p)^{k-1} \quad\text{f{\"u}r } k = 1, 2, 3,...
 \end{equation*}
 
-Wir schreiben $X \sim Geom(p)$. $X = k$ heisst gerade, dass $A_1,..., A_{k-1}$ nicht eintreten und $A_k$ als erstes eintritt. Weiter ist der \textbf{Erwartungswert} und die \textbf{Varianz} gleich
+$X = k$ heisst gerade, dass $A_1,..., A_{k-1}$ nicht eintreten und $A_k$ als erstes eintritt. Weiter ist der \textbf{Erwartungswert} und die \textbf{Varianz} gleich
 \begin{equation*}
 \begin{split}
-	\E[X] & = \sum_{l=0}^\infty P[X > l] = \frac{1}{p} \\
+	\E[X] & = \frac{1}{p} \\
 	\Var[X] & = \frac{1-p}{p^2}
 \end{split}
 \end{equation*}
 
 \emph{Bermerkung:} Hat das "forgetfulness property"
 
-\subsection{Negativbinomiale Verteilung}
+\subsection{Negativbinomiale Verteilung $X \sim NB(r,p)$}
 
 Eine \textbf{negativbinomiale Verteilung} mit Parametern $r$ und $p$ beschreibt eine unendliche Folge von unabh{\"a}ngigen \textbf{0-1-Experimenten} mit \textbf{Erfolgsparameter} $p$ und dem $r$-ten Erfolg. \\
 Der Wertebereich ist $\mathcal{W} = \{r, r+1, r+2,...\}$ und die Gewichtsfunktion
@@ -318,11 +322,10 @@ Der Wertebereich ist $\mathcal{W} = \{r, r+1, r+2,...\}$ und die Gewichtsfunktio
 	p_X(k) = P[X = k] = \binom{k-1}{r-1}p^r(1-p)^{k-r} \quad\text{f{\"u}r } k = r, r+1, r+2, ...
 \end{equation*}
 
-Wir schreiben kurz $X \sim NB(r,p)$. Es gilt:
 \begin{equation*}
 \begin{split}
-	\E[X] & = \sum_{i=1}^r E[X_i] = \frac{r}{p} \\
-	\Var[X] & = \sum_{i=1}^r \Var[X_i] = \frac{r(1-p)}{p^2}
+	\E[X] & = \frac{r}{p} \\
+	\Var[X] & = \frac{r(1-p)}{p^2}
 \end{split}
 \end{equation*}
 
@@ -334,14 +337,19 @@ Der Wertebereich ist gleich $\mathcal{W} = \{1, 2,... \min(r, m)\}$ und $X$ hat 
 	p_X(k) = \frac{\binom{r}{k}\binom{n-r}{m-k}}{\binom{n}{m}} \quad \text{f{\"u}r } k \in \mathcal{W}(X)
 \end{equation*}
 
-\subsection{Poisson-Verteilung}
+\subsection{Poisson-Verteilung $X \sim \mathcal{P}(\lambda)$}
 
 Die \textbf{Poisson-Verteilung} mit Parameter $\lambda \in (0, \infty)$ beschreibt die Anzahl Ereignisse in einem Zeitintervall. Sie ist eine Verteilung auf der Menge $\mathbb{N}_0$ mit Gewichtsfunktion
 \begin{equation*}
 	p_X(k) = e^{-\lambda}\frac{\lambda^k}{k!}\quad\text{f{\"u}r } k = 0, 1, 2,...
 \end{equation*}
 
-Wir schreiben kurz $X \sim \mathcal{P}(\lambda)$
+\begin{equation*}
+\begin{split}
+	\E[X] & = \lambda \\
+	\Var[X] & = \lambda
+\end{split}
+\end{equation*}
 
 \section{Allgemeine Zufallsvariablen}
 
