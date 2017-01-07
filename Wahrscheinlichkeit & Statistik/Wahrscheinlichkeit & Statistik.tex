@@ -456,7 +456,16 @@ Die Zufallsvariable $X$ hat $\mathcal{W} = [0, \infty[$.
 \end{split}
 \end{equation*}
 
-Wie die geometrische Verteilung ist die Exponentialverteilung ein Modell f{\"u}r Wartezeiten oder Lebensdauern (forgetfulness property); der einzige Unterschied besteht darin, dass nicht nur ganzzahlige, sondern beliebige Werte $\geq 0$ angenommen werden k{\"o}nnen.
+Wie die geometrische Verteilung ist die Exponentialverteilung ein Modell f{\"u}r Wartezeiten oder Lebensdauern (forgetfulness property). \\
+Die Summe $n$ unabhängiger, $Exp(\lambda)$-verteilter Zufallsvariablen ist $Ga(n, \lambda)$-verteilt.
+
+\subsubsection{Gamma-verteilung $Z \sim Ga(\alpha, \lambda)$}
+
+\begin{equation*}
+	f_Z(z) = \frac{1}{\Gamma (\alpha)}\lambda^\alpha z^{\alpha-1} e^{-\lambda z} \quad\text{mit}\quad \Gamma(\alpha) := \int_0^\infty u^{\alpha-1}e^{-u}\ du
+\end{equation*}
+
+
 
 \subsection{Normalverteilung $X \sim \mathcal{N}(\mu, \sigma^2)$}
 
