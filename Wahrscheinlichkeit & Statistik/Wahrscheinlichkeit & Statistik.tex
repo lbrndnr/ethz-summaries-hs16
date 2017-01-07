@@ -402,6 +402,41 @@ Die \textbf{gemeinsame Verteilungsfunktion} von $n$ Zufallsvariablen $X_1,...,X_
 
 Somit ist $f: \mathbb{R}^n \mapsto [0, \infty[$ die \textbf{gemeinsame Dichte} von $X_1,...,X_n$.
 
+\subsection{Transformationen}
+
+Sei $X$ eine Zufallsvariable mit Verteilungsfunktion $F_X$ und Dichte $f_X$. Betrachten wir nun die Transformation $g: \mathbb{R} \mapsto \mathbb{R}$ und die neue Zufallsvariable $Y = g(X)$. Wie sieht nun $F_Y$ und $f_Y$ aus?
+
+\begin{equation*}
+	\textbf{Ansatz:}\quad F_Y(t) = P[Y \leq t] = P[g(X) \leq t] = \int_{A_g} f_X(s)\ ds
+\end{equation*}
+
+\subsubsection{Affin/Linear: $g(x) = ax + b$}
+
+\begin{equation*}
+\begin{split}
+	F_Y(t) & = F_X(\frac{t-b}{a}) \\
+	f_Y(t) & = \frac{d}{dt} F_Y(t) = \frac{1}{a}f_X(\frac{t-b}{a})
+\end{split}
+\end{equation*}
+
+\subsubsection{Nichtlinear: $g(x) = x^2$}
+
+\begin{equation*}
+\begin{split}
+	F_Y(t) & = F_X(\sqrt{t}) - F_X(-\sqrt{t}) \\
+	f_Y(t) & = \frac{1}{\sqrt{2\pi}}t^{-\frac{1}{2}}e^{-\frac{1}{2}t} \quad\text{für}\quad t \geq 0
+\end{split}
+\end{equation*}
+
+\subsubsection{Nichtlinear: $g(x) = \frac{1}{x}$}
+
+\begin{equation*}
+\begin{split}
+	F_Y(t) & = 1 - F_X(\frac{1}{t}) \\
+	f_Y(t) & = \frac{1}{t^2}f_X(\frac{1}{t})
+\end{split}
+\end{equation*}
+
 \subsection{Randverteilungen}
 
 Haben $X$ und $Y$ die gemeinsame Verteilungsfunktion $F$, so ist die \textbf{Verteilungsfunktion der Randverteilung} von $X$ gleich
@@ -439,7 +474,7 @@ Die \textbf{Gleichverteilung} auf einem Intervall $[a,b]$ ist ein Modell f{\"u}r
 \end{split}
 \end{equation*}
 
-\subsection{Exponentialverteilung $X \sim Exp(\lambda)$}
+\subsection{Exponentialverteilung $X \sim Exp(\lambda) = Ga(1, \lambda)$}
 
 Die \textbf{Exponentialverteilung} mit Parameter $\lambda > 0$ ist das stetige Analog der \textbf{geometrischen Verteilung}. \\
 Die Zufallsvariable $X$ hat $\mathcal{W} = [0, \infty[$.
@@ -459,13 +494,14 @@ Die Zufallsvariable $X$ hat $\mathcal{W} = [0, \infty[$.
 Wie die geometrische Verteilung ist die Exponentialverteilung ein Modell f{\"u}r Wartezeiten oder Lebensdauern (forgetfulness property). \\
 Die Summe $n$ unabhängiger, $Exp(\lambda)$-verteilter Zufallsvariablen ist $Ga(n, \lambda)$-verteilt.
 
-\subsubsection{Gamma-verteilung $Z \sim Ga(\alpha, \lambda)$}
+\subsubsection{Gamma-Verteilung $Z \sim Ga(\alpha, \lambda)$}
 
 \begin{equation*}
 	f_Z(z) = \frac{1}{\Gamma (\alpha)}\lambda^\alpha z^{\alpha-1} e^{-\lambda z} \quad\text{mit}\quad \Gamma(\alpha) := \int_0^\infty u^{\alpha-1}e^{-u}\ du
 \end{equation*}
-
-
+\begin{equation*}
+	\text{wobei}\quad \Gamma(n) = (n-1)! \quad \forall \alpha = n \in \mathbb{N}
+\end{equation*}
 
 \subsection{Normalverteilung $X \sim \mathcal{N}(\mu, \sigma^2)$}
 
