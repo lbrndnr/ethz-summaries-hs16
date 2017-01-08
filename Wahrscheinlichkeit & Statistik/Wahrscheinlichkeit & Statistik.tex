@@ -139,14 +139,14 @@ F{\"u}r Erwartungswerte gelten folgende Identit{\"a}ten:
 	\forall\omega: X(\omega) \leq Y(\omega) & \Rightarrow E[X] \leq E[Y] \\
 	E[aX + b] & = aE[X]+b \\
 	E[X^2] & = \sum_{x_k \in \mathcal{W}(X)} x_k^2 \cdot P[X = x_k] \\
-	E[Z] = E[X_1 - 3X_2 + X_3] & = E[X_1] - 3E[X_2] + E[X_3]
+	E\Bigg[\sum_{i=1}^n X_i\Bigg] & = \sum_{i=1}^n E[X_i] \\
 \end{split}
 \end{equation*}
 
 Falls die Zufallsvariablen zus{\"a}tzlich \textbf{unabh{\"a}ngig} sind:
 \begin{equation*}
 \begin{split}
-	\E\Bigg[\prod_{i=1}^n X_i\Bigg] & = \prod_{i=1}^n E[X_i] \\
+	E\Bigg[\prod_{i=1}^n X_i\Bigg] & = \prod_{i=1}^n E[X_i] \\
 \end{split}
 \end{equation*}
 
