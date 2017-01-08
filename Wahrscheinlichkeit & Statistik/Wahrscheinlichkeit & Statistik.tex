@@ -589,11 +589,16 @@ Die \textbf{momenterzeugende Funktion} einer Zufallsvariable $X$ ist
 \begin{equation*}
 	M_X(t) := E[e^{tX}]
 \end{equation*}
-Sie ist immer wohldefiniert in $[0, \infty[$.
+Sie ist immer wohldefiniert in $[0, \infty[$. \\
 
 Seien $X_1, ..., X_n$ i.i.d. Zufallsvariablen, f{\"u}r welche die momenterzeugende Funktion $M_X(t)$ f{\"u}r alle $t \in \mathbb{R}$ endlich ist. F{\"u}r jedes $b \in \mathbb{R}$ gilt dann:
 \begin{equation*}
 	P[S_n > b] \leq \exp(\inf_{t \in \mathbb{R}}(n \log M_X(t) - tb))
+\end{equation*}
+
+Seien $X_1,...,X_n$ unabhängig mit $X_i \sim Be(p_i)$ und $S_n = \sum_{i=1}^n X_i$. Sei ferner $\mu_n := E[S_n] = \sum_{i = 1}^n p_i$ und $\delta > 0$, dann gilt:
+\begin{equation*}
+	P[S_n \geq (1+\delta)\mu_n] \leq \biggl(\frac{e^\delta}{(1+\delta)^{1+\delta}}\biggr)^{\mu_n}
 \end{equation*}
 
 \section{Sch{\"a}tzer}
