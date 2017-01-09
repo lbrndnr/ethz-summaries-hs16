@@ -41,6 +41,68 @@
 \end{tabular}
 \end{table}
 
+\begin{minipage}[c]{0.5\textwidth}
+\subsection{Potenzgesetze}
+
+\begin{equation*}
+\begin{split}
+	a^0 & = 1 \\
+	a^1 & = a \\
+	a^m \cdot a^n & = a^{m+n} \\
+	(a^n)^m & = a^{nm} \\
+	\frac{a^n}{a^m} & = a^{n-m} \\
+	a^{-n} & = \frac{1}{a^n} \\
+	a^{\frac{b}{n}} & = \sqrt[n]	{a^b} \\
+\end{split}
+\end{equation*}
+\end{minipage}
+%
+\begin{minipage}[c]{0.5\textwidth}
+\subsection{Logarithmus}
+
+\begin{equation*}
+\begin{split}
+	\log(0) & = \text{undef.} \\
+	\log(1) & = 0 \\
+	x \log_a(y) & \Leftrightarrow a^x = y \\
+	- \log(x) & = \log(\frac{1}{x}) \\
+	\log(x) - \log(y) & = \log(\frac{x}{y}) \\
+	\frac{\log(x)}{\log(a)} & = \log_a(x)
+\end{split}
+\end{equation*}
+\end{minipage}
+
+\subsection{Elementare Integrale}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+$f'(x)$ & $f(x)$ & $F(x)$ \\ \specialrule{.1em}{0em}{0em} 
+$\frac{f'(x)g(x) - f(x)g'(x)}{g(x)^2}$ & $\frac{f(x)}{g(x)}$ &  \\ \hline
+$0$ & $c$ & $cx$ \\ \hline
+$r\cdot x^{r-1}$ & $x^r$ & $\frac{x^{r+1}}{r+1}$ \\ \hline
+$-\frac{1}{x^2} = -x^{-2}$ & $\frac{1}{x} = x^{-1}$ & $\ln|x|$ \\ \hline
+$\frac{1}{2\sqrt{x}} = \frac{1}{2}x^{-\frac{1}{2}}$ & $\sqrt{x} = x^{\frac{1}{2}}$ & $\frac{2}{3}x^\frac{3}{2}$ \\ \hline
+$\cos(x)$ & $\sin(x)$ & $-\cos(x)$ \\ \hline
+$-\sin(x)$ & $\cos(x)$ & $\sin(x)$ \\ \hline
+$1 + \tan^2(x) = \frac{1}{\cos^2(x)}$ & $\tan(x)$ & $-\ln|\cos(x)|$ \\ \hline
+$e^x$ & $e^x$ & $e^x$ \\ \hline
+$c\cdot e^{cx}$ & $e^{cx}$ & $\frac{1}{c}\cdot e^{cx}$ \\ \hline
+$\ln(c)\cdot c^x$ & $c^x$ & $\frac{c^x}{\ln(c)}$ \\ \hline
+$\frac{1}{x}$ & $\ln|x|$ & $x(\ln|x| - 1)$ \\ \hline
+$\frac{1}{\ln(a) \cdot x}$ & $\log_a|x|$ & $\frac{x}{\ln(a)}(\ln|x| -1)$ \\ \hline
+$\frac{1}{\sqrt{1-x^2}}$ & $\arcsin(x)$ & $x\cdot\arcsin(x) + \sqrt{1-x^2}$ \\ \hline
+$-\frac{1}{\sqrt{1-x^2}}$ & $\arccos(x)$ & $x\cdot\arccos(x) - \sqrt{1-x^2}$ \\ \hline
+$\frac{1}{1+x^2}$ & $\arctan(x)$ & $x\cdot \arctan(x) - \frac{1}{2}\ln(1+x^2)$ \\ \hline
+$\cosh(x)$ & $\sinh(x) = \frac{e^x - e^{-x}}{2}$ & $\cosh(x)$ \\ \hline
+$\sinh(x)$ & $\cosh(x) = \frac{e^x + e^{-x}}{2}$ & $\sinh(x)$ \\ \hline
+$\frac{1}{\cosh^2(x)}$ & $\tanh(x)$ & $\log(\cosh(x))$ \\ \hline
+\end{tabular}
+\end{table}
+
+\pagebreak
+
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=9cm, noitemsep]
 	\item[Ereignisraum $\Omega$:] Die Menge aller m{\"o}glichen Ergebnisse
 	\item[Elementarereignis $\omega \in \Omega$:] Elemente vom Ereignisraum
@@ -491,6 +553,13 @@ Die Zufallsvariable $X$ hat $\mathcal{W} = [0, \infty[$.
 \end{split}
 \end{equation*}
 
+\begin{equation*}
+\begin{split}
+	E[X] & = \frac{1}{\lambda} \\
+	\Var[X] & = \frac{1}{\lambda^2} \\
+\end{split}
+\end{equation*}
+
 Wie die geometrische Verteilung ist die Exponentialverteilung ein Modell f{\"u}r Wartezeiten oder Lebensdauern (forgetfulness property). \\
 Die Summe $n$ unabh{\"a}ngiger, $Exp(\lambda)$-verteilter Zufallsvariablen ist $Ga(n, \lambda)$-verteilt.
 
@@ -550,7 +619,7 @@ Die Cauchy-Verteilung ist eine \textbf{langschw{\"a}nzige Verteilung}, dies, wei
 
 \subsubsection{Markov-Ungleichung}
 
-Sei $X$ eine Zufallsvariable und ferner $g: \mathcal{W}(X) \mapsto [0, \infty[$ eine wachsende Funktion. F{\"u}r jedes $c \in mathbb{R}$ gilt dann
+Sei $X$ eine Zufallsvariable und ferner $g: \mathcal{W}(X) \mapsto [0, \infty[$ eine wachsende Funktion. F{\"u}r jedes $c \in \mathbb{R}$ gilt dann
 \begin{equation*}
 	P[X \geq c] \leq \frac{E[g(X)]}{g(c)}
 \end{equation*}
@@ -621,8 +690,8 @@ Seien $X_1,...,X_n$ unabhängig mit $X_i \sim Be(p_i)$ und $S_n = \sum_{i=1}^n X
 Seien in einem Modell $P_\vartheta$ die Zufallsvariablen $X_1,...,X_n$ entweder diskret mit der geimensamen Gewichtsfunktion $p(x_1,...,x_n;\vartheta)$ oder stetig mit $f(x_1,...,x_n;\vartheta)$. Die \textbf{Likelihood-Funktion} ist dann definiert als:
 \begin{equation*}
 	L(x_1,...,x_n;\vartheta) := \begin{cases}
-		p(x_1,...,x_n; \vartheta), \text{im diskreten Fall} \\
-		f(x_1,...,x_n; \vartheta), \text{im stetigen Fall}
+		p(x_1,...,x_n; \vartheta) = \prod_{i=1}^n p_X(x_i; \vartheta), \text{im diskreten Fall} \\
+		f(x_1,...,x_n; \vartheta) = \prod_{i=1}^n f_X(x_i; \vartheta), \text{im stetigen Fall}
 	\end{cases}
 \end{equation*}
 
