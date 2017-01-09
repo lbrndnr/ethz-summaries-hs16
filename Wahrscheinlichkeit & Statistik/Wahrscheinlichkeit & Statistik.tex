@@ -576,7 +576,10 @@ Die Summe $n$ unabh{\"a}ngiger, $Exp(\lambda)$-verteilter Zufallsvariablen ist $
 
 Die \textbf{Normalverteilung} (NV, auch \textbf{Gauss-Verteilung}) hat zwei Parameter, $\mu \in \mathbb{R}$ und $\sigma^2 > 0$. Der Wertebereich entspricht $\mathcal{W} = \mathbb{R}$.
 \begin{equation*}
-	f_X(t) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(t-\mu)^2}{2\sigma^2}}\quad\text{f{\"u}r } t \in \mathbb{R}
+\begin{split}
+	f_X(t) & = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(t-\mu)^2}{2\sigma^2}}\quad\text{f{\"u}r } t \in \mathbb{R} \\
+	F_X(t) & = \Phi(\frac{t-\mu}{\sigma})
+\end{split}
 \end{equation*}
 
 \begin{equation*}
@@ -591,10 +594,6 @@ Die \textbf{Normalverteilung} (NV, auch \textbf{Gauss-Verteilung}) hat zwei Para
 Weder die Dichte $\varphi(t)$ noch die Verteilungsfunktion $\Phi(t)$ k{\"o}nnen mit einer geschlossenen Formel ausgedr{\"u}ckt werden, das Integral ist jedoch \textbf{tabelliert}:
 \begin{equation*}
 	\Phi(t) = \int_{-\infty}^t \varphi(s)\ ds = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^t e^{-\frac{1}{2}s^2}\ ds
-\end{equation*}
-
-\begin{equation*}
-	F_X(t) = P[X \leq t] = \Phi(\frac{t-\mu}{\sigma})
 \end{equation*}
 
 \subsection{Cauchy-Verteilung}
