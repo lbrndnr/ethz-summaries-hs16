@@ -889,6 +889,22 @@ AB = BA, and A has n distinct eigenvalues, then the eigenspaces of A and B coinc
 	\includegraphics[width=380pt]{convDFT.png}
 \end{center}
 
+\section{Quadrature}
+
+\subsection{Error Estimates}
+
+The \textbf{asymptotic decay} of the quadrature error for $n$-point \textbf{Gauss-Legendre} and \textbf{Clenshaw-Curtis} quadrature behaves as follows:
+\begin{equation*}
+\begin{split}
+	f \in C^r([a,b]) & \Rightarrow E_n(f) \rightarrow 0 \quad\textbf{algebraically}\text{ with rate $r$} \\
+	f \in C^\infty([a,b]) & \Rightarrow E_n(f) \rightarrow 0 \quad\textbf{exponentially}
+\end{split}
+\end{equation*}
+
+\begin{center}
+	\includegraphics[width=380pt]{quadrature_error}
+\end{center}
+
 
 \end{document}
 
