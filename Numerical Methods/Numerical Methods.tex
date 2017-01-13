@@ -149,7 +149,7 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 \subsubsection{Initializing Matrices, Vectors}
 
 \textbf{Vector Creation \hspace{32mm} \color{blue}VectorXd (dynamic), VectorNd (fixed size)} \color{black}
-\begin{lstlisting}[language=C++, caption=Initializing vectors]
+\begin{lstlisting}[language=C++]
 	#include <Eigen/Dense>
 
 	// Just allocate space for vector, no initialisation --> Exp: 20x1 vector
@@ -166,7 +166,7 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 \textbf{Dense Matrix Creation \hspace{20mm} \color{blue}MatrixXd (dynamic), MatrixNd (fixed size)}
 
-\begin{lstlisting}[language=C++, caption=Initializing dense matrices]
+\begin{lstlisting}[language=C++]
 	#include <Eigen/Dense>
 	#include <Eigen/Sparse>
 	using namespace Eigen;
@@ -177,7 +177,7 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 \end{lstlisting}
 
 \textbf{Sparse Matrix Creation (CRS, and from Triplets(COO))}
-\begin{lstlisting}[language=C++, caption=sparse matrix creation]
+\begin{lstlisting}[language=C++]
 	#include <Eigen/Sparse>
 	using namespace Eigen;
 	
@@ -204,7 +204,9 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 
 \subsubsection{Matrix/Vector Access}
-\begin{lstlisting}[language=C++, caption=matrix manipulation]
+\begin{lstlisting}[language=C++]
+	#include <Eigen/Sparse>
+	using namespace Eigen;
 	
 	// Get col, row size of matrix & number of elements
 	int cols = A.cols();
@@ -233,16 +235,48 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 
 \subsubsection{Matrix Reshapening}
-...
+\begin{lstlisting}[language=C++]
+	#include <Eigen/Sparse>
+	using namespace Eigen;
+	
+	MatrixXd A(4, 4);
+	VectorXd y(4);
+	
+	// Transpose a matrix/vector
+	MatrixXd transposedA = A.transpose();
+	
+	// Convert a vector into a diagonal matrix
+	MatrixXd diagonalY = y.asDiagonal();
+	
+	// To convert a vector with 4 components into a 2x2 matrix
+	MatrixXd X = Map<MatrixXd>(y.data(), 2, 2);
+	
+	// To convert a 4x4 matrix into a vector with 16 components
+	VectorXd b = Map<VectorXd>(A.data(), n*n);
+\end{lstlisting}
 
 \subsubsection{Operations}
-...
+\begin{lstlisting}[language=C++]
+	#include <Eigen/Sparse>
+	using namespace Eigen;
+	
+	MatrixXd A(3, 3);
+	VectorXd y(3);
+	
+	// Normalize a vector (y = y/|y|)
+	y.normalize();
+	
+	// Inverse of a matrix
+	MatrixXd invA = A.inverse();
+	
+	
+\end{lstlisting}
 
 \subsubsection{Runtime plotting with FigureClass}
 ...
 
 \subsubsection{Solvers for LSE in Eigen }
-	\begin{lstlisting}[language=C++, caption=LSE solvers]
+	\begin{lstlisting}[language=C++]
 	
 	// Gaussian elimination with partial pivoting, Code 2.3.41
 	x = A. lu().solve(b); // lu() is short for partialPivLu()
@@ -260,7 +294,7 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 
 \subsubsection{Solvers for sparse LSE}
-	\begin{lstlisting}[language=C++, caption=LSE solvers (sparse)]
+	\begin{lstlisting}[language=C++]
 		Eigen::SparseLU<SparseMatrix> solver(A) ;
 		x = solver.solve(b) ;
 	\end{lstlisting}
