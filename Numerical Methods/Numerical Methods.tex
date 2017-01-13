@@ -288,10 +288,12 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 	// Gaussian elimination with total pivoting
 	x = A. fullPivLu().solve(b); // total pivoting
 	
-	// An elimination solver based on Householder transformations		
-	Eigen::HouseholderQR<MatrixXd> solver(A);	x = solver.solve(b) ;	
+	// An elimination solver based on Householder transformations
+	// Can also be used for Least Square Problems	
+	Eigen::HouseholderQR<MatrixXd> solver(A);	x = solver.solve(b);	
 	
-	// Use singular value decomposition (SVD)	
+	// Use singular value decomposition (SVD)
+	// Can also be used for Least Square Problems	
 	x = A.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).solve(b);	
 		
 	\end{lstlisting}
