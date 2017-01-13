@@ -144,7 +144,7 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 
 
-\subsection{Important Eigen Commands}
+\subsection{Code Snippets}
 
 \subsubsection{Initializing Matrices, Vectors}
 
@@ -154,12 +154,15 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 	// Just allocate space for vector, no initialisation --> Exp: 20x1 vector
 	VectorXd a(20);
+	
 	// Create vector with random entries of size nx1
 	VectorXd b = VectorXd::Random( n , 1 )
+	
 	// Create row vector --> better: use of normal vector and transpose
 	RowVectorXd c(10);
 	
-	
+	// Create a copy of vector b
+	VectorXd c(b);
 \end{lstlisting}
 
 
@@ -269,7 +272,8 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 	// Inverse of a matrix
 	MatrixXd invA = A.inverse();
 	
-	
+	// Norm of  a matrix or vector
+	double norm = A.norm(); // or y.norm();
 \end{lstlisting}
 
 \subsubsection{Runtime plotting with FigureClass}
@@ -296,7 +300,7 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 \subsubsection{Solvers for sparse LSE}
 	\begin{lstlisting}[language=C++]
 		Eigen::SparseLU<SparseMatrix> solver(A) ;
-		x = solver.solve(b) ;
+		x = solver.solve(b);
 	\end{lstlisting}
 
 \begin{tcolorbox}
@@ -305,8 +309,14 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 \end{tcolorbox}
 
 
-
-
+\subsubsection{General C++ Code}
+\begin{lstlisting}[language=C++]
+	// Sort a vector using a custom closure
+	std::vector<Triplet<double>> vec(20);
+	std:: sort(vec.begin(), vec.end(), [](const Triplet& lhs, const Triplet& rhs) {
+		return lhs.col() < rhs.col(); 
+	});
+\end{lstlisting}
 
 % -------------------------------------------------------------
 % Machine Arithmetic
