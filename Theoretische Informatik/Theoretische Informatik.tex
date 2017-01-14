@@ -186,6 +186,15 @@ Sei $L$ regul{\"a}r, dann existiert eine Konstante $n_0 \in \mathbb{N}$, so dass
 
 \paragraph{Vorgehen:} W{\"a}hle ein \textbf{konkretes} Wort mit L{\"a}nge $|w| \geq n_0 \in \mathbb{N}$ aus, so dass keine seiner Zerlegungen die Eigenschaften (i), (ii) und (iii) erf{\"u}llt.
 
+\subsubsection{Pumping Lemma für kontextfreie Sprachen}
+
+Sei $L$ kontextfrei. Dann existiert eine nur von $L$ abhängige Kontante $n_L$, so dass für alle Wörter $z \in L$ mit $|z| \geq n_L$ eine Zerlegung $z = uvwxy$ von $z$ existiert, so dass:
+\begin{enumerate}[label=(\roman*), noitemsep]
+	\item $|vx| \geq 1$
+	\item $|vwx| \leq n_L$
+	\item $\{uv^iwx^iy\ |\ i \in \mathbb{N}\} \subseteq L$
+\end{enumerate}
+
 \subsubsection{Methode der Kolmogorov Komplexit{\"a}t}
 
 Sei $L \subseteq \Sigma_\text{bool}^*$ eine regul{\"a}re Sprache. Sei $L_x = \{y \in \Sigma_\text{bool}^*\ |\ xy \in L\}$ f{\"u}r jedes $x \in \Sigma_\text{bool}^*$. Dann existiert eine Konstante $c$, so dass f{\"u}r alle $x,y \in \Sigma_\text{bool}^*$ gilt
