@@ -314,11 +314,6 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 
 \subsubsection{Fourier Transform}
 \begin{lstlisting}[language=C++]
-	
-\end{lstlisting}
-
-\subsubsection{General C++ Code}
-\begin{lstlisting}[language=C++]
 	// Prepare FFT
 	FFT<double> fft;
 	
@@ -327,6 +322,15 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 	
 	// Transform back
 	VectorXd uv = fft.inv(vec).real();
+\end{lstlisting}
+
+\subsubsection{General C++ Code}
+\begin{lstlisting}[language=C++]
+	// Sort a vector using a custom closure
+	std::vector<Triplet<double>> vec(20);
+	std:: sort(vec.begin(), vec.end(), [](const Triplet& lhs, const Triplet& rhs) {
+		return lhs.col() < rhs.col(); 
+	});
 \end{lstlisting}
 
 % -------------------------------------------------------------
