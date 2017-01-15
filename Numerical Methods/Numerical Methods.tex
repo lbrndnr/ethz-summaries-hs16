@@ -312,14 +312,21 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 		$\rightarrow$ System matrices are passed to these algorithms in sparse storage formats to convey information about zero entries.	
 \end{tcolorbox}
 
+\subsubsection{Fourier Transform}
+\begin{lstlisting}[language=C++]
+	
+\end{lstlisting}
 
 \subsubsection{General C++ Code}
 \begin{lstlisting}[language=C++]
-	// Sort a vector using a custom closure
-	std::vector<Triplet<double>> vec(20);
-	std:: sort(vec.begin(), vec.end(), [](const Triplet& lhs, const Triplet& rhs) {
-		return lhs.col() < rhs.col(); 
-	});
+	// Prepare FFT
+	FFT<double> fft;
+	
+	// Transform to Fourier Space
+	VectorXcd u_ = fft.fwd(u);
+	
+	// Transform back
+	VectorXd uv = fft.inv(vec).real();
 \end{lstlisting}
 
 % -------------------------------------------------------------
@@ -611,6 +618,12 @@ For certain classes of matrices, however, pivoting isn't required to for a stabl
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=7cm, noitemsep]
 	\item[Diagonally Dominant Matrix:] The absolute value of the components in the diagonal are larger than the sum of the absolute values of their respective row. $\sum_{j\neq k}|a_{jk}| \leq |a_{kk}|$
 	\item[s.p.d. Matrix:] Symmetric/Hermitian positive definite matrices
+	Satisfies:
+	\begin{enumerate}[noitemsep]
+		\item $A_{ii} > 0$
+		\item $A_{ii}A_{jj} - |A_{ij}|^2 > 0$
+		\item All eigenvalues are positive
+	\end{enumerate}
 \end{description}
 
 
