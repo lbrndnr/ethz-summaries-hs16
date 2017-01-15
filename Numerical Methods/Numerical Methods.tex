@@ -292,18 +292,20 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 	// Can also be used for Least Square Problems	
 	Eigen::HouseholderQR<MatrixXd> solver(A);	x = solver.solve(b);	
 	
+	// Solve a LSE problem using the normal equations (Cholesky decomposition)
+	x = (A.transpose() * A).ldlt().solve(A.transpose() * b);
+	
 	// Use singular value decomposition (SVD)
 	// Can also be used for Least Square Problems	
 	x = A.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).solve(b);	
-		
-	\end{lstlisting}
+\end{lstlisting}
 
 
 \subsubsection{Solvers for sparse LSE}
-	\begin{lstlisting}[language=C++]
-		Eigen::SparseLU<SparseMatrix> solver(A) ;
-		x = solver.solve(b);
-	\end{lstlisting}
+\begin{lstlisting}[language=C++]
+	Eigen::SparseLU<SparseMatrix> solver(A) ;
+	x = solver.solve(b);
+\end{lstlisting}
 
 \begin{tcolorbox}
 	When solving linear systems of equations directly dedicated sparse elimination \textbf{solvers from numerical libraries} have to be used! \\
