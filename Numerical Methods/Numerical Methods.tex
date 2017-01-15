@@ -232,8 +232,8 @@ Access to matrix entry $a_{ij} \not = 0,1 \leq i,j \leq n$:
 	// Block containing the first n elements (vector)
 	std::cout <<	vector.head(n)	<< std::endl;
 	
-	// Get block(submatrix) --> Block starting from (0,0) with dimension ixi
-	std::cout << M.block(0,0,i,i) << std::endl;
+	// Get block(submatrix) --> Block starting from (rowi,coli) with dimension (rown, coln)
+	std::cout << M.block(rowi, coli, rown, coln) << std::endl;
 \end{lstlisting}
 
 
