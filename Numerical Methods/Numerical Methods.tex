@@ -966,7 +966,15 @@ The \textbf{asymptotic decay} of the quadrature error for $n$-point \textbf{Gaus
 \end{split}
 \end{equation*}
 
-\emph{Remark:} In order to make an integrand smoother, transform it so that its derivative doesn't have any singularities.
+In order to make an integrand smoother, transform it so that its derivative doesn't have any singularities:
+\begin{equation*}
+	x = \sin(t)
+\end{equation*}
+
+To adapt the boundaries of the integral, use the following affine transformation:
+\begin{equation*}
+	\Phi: [-1, 1] \mapsto [a, b], \qquad \Phi(t) = a + \frac{1}{2}(t + 1)(b -a)
+\end{equation*}
 
 \begin{center}
 	\includegraphics[width=380pt]{quadrature_error}
