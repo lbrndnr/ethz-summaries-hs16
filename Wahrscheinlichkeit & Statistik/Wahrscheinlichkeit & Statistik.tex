@@ -41,6 +41,8 @@
 \end{tabular}
 \end{table}
 
+\emph{Tipp:} $\bigl(\begin{smallmatrix}n\\0 \end{smallmatrix} \bigr) = \bigl(\begin{smallmatrix}n\\n \end{smallmatrix} \bigr) = 1$, $\bigl(\begin{smallmatrix}n\\1 \end{smallmatrix} \bigr) = \bigl(\begin{smallmatrix}n\\n-1 \end{smallmatrix} \bigr) = n$ \\
+
 \begin{minipage}[c]{0.5\textwidth}
 \subsection{Potenzgesetze}
 
@@ -101,7 +103,14 @@ $\frac{1}{\cosh^2(x)}$ & $\tanh(x)$ & $\log(\cosh(x))$ \\ \hline
 \end{tabular}
 \end{table}
 
-\pagebreak
+\begin{equation*}
+\begin{split}
+	\textbf{Direkter Integral}\quad & \int f(g(x))g'(x)\ dx = F(g(x)) \\
+	\textbf{Partielle Integration}\quad & \int f' \cdot g\ dx = f \cdot g - \int f \cdot g'\ dx \\
+	\textbf{mit Polynomen}\quad & \int\frac{p(x)}{q(x)}\ dx \Rightarrow\ \text{Partialbruchzerlegung} \\
+	\textbf{Substitution}\quad & \int_a^b f(\varphi(t))\varphi'(t)\ dt = \int_{\varphi(a)}^{\varphi(b)} f(x)\ dx\ \text{mit}\ x = \varphi(t)
+\end{split}
+\end{equation*}
 
 \begin{description}[labelindent=16pt,style=multiline,leftmargin=9cm, noitemsep]
 	\item[Ereignisraum $\Omega$:] Die Menge aller m{\"o}glichen Ergebnisse

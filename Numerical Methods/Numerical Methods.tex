@@ -973,12 +973,12 @@ In order to make an integrand smoother, transform it so that its derivative does
 
 To adapt the boundaries of the integral, use the following affine transformation:
 \begin{equation*}
-	\Phi: [-1, 1] \mapsto [a, b], \qquad \Phi(t) = \frac{b-a}{2}t + \frac{a+b}{2}
+	\Phi: [-1, 1] \mapsto [a, b], \qquad \Phi(t) = a + \frac{1}{2}(t + 1)(b -a)
 \end{equation*}
 
-So an integrand can be transformed as follows:
+The nodes and weights are transformed as follows:
 \begin{equation*}
-	\int_a^b f(x)\ dx = \frac{b-a}{2}\int_{-1}^1 f(\frac{b-a}{2}t + \frac{a+b}{2})\ dt
+\omega_i = \frac{b-a}{2}\hat\omega_i \qquad x_i = \Phi(\hat x)
 \end{equation*}
 
 \begin{center}
