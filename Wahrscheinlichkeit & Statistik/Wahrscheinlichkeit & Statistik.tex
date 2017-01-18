@@ -753,6 +753,25 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 
 \subsection{z-Test, Test für Erwartungswerte bei bekannter Varianz}
 
+\begin{equation*}
+\begin{split}
+	\textbf{Annahme:}\quad & \Var[X_i] = \sigma^2 \\
+	\textbf{Hypothese:}\quad & H_0:\ \vartheta = \vartheta_0 \\
+	\textbf{Teststatistik:}\quad & T := \frac{\overline{X}_n - \vartheta_0}{\sigma/ \sqrt{n}} \\
+	\textbf{Verwerfungsbereich:}\quad & |T| > \Phi^{-1}(1- \frac{\alpha}{2})  \qquad\text{für } H_A: \vartheta \neq \vartheta_0 \text{ (beidseitig)} \\ 
+	& T < - \Phi^{-1}(1 - \alpha) \qquad\text{für } H_A: \vartheta < \vartheta_0 \text{ (einseitig)} \\ 
+	& T > \Phi^{-1}(1 - \alpha) \qquad\text{für } H_A: \vartheta > \vartheta_0 \text{ (einseitig)}
+\end{split}
+\end{equation*}
 
+\subsection{t-Test, Test für Erwartungswerte bei unbekannter Varianz}
+
+\begin{equation*}
+\begin{split}
+	\textbf{Annahme:}\quad & E[X_i] = \mu,\ \Var[X_i] = S^2 = \frac{1}{n-1}\sum_{i =1}^n (X_i - \overline{X}_n)^2 \text{ (abgeschätzt) } \\
+	\textbf{Hypothese:}\quad & H_0:\ \vartheta = \vartheta_0 \\
+	\textbf{Teststatistik:}\quad & T := \frac{\overline{X}_n - \mu_0}{S/\sqrt{n}}
+\end{split}
+\end{equation*}
 
 \end{document}
