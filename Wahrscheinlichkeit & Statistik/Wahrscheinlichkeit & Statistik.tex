@@ -473,7 +473,7 @@ Somit ist $f: \mathbb{R}^n \mapsto [0, \infty[$ die \textbf{gemeinsame Dichte} v
 Sei $X$ eine Zufallsvariable mit Verteilungsfunktion $F_X$ und Dichte $f_X$. Betrachten wir nun die Transformation $g: \mathbb{R} \mapsto \mathbb{R}$ und die neue Zufallsvariable $Y = g(X)$. Wie sieht nun $F_Y$ und $f_Y$ aus?
 
 \begin{equation*}
-	\textbf{Ansatz:}\quad F_Y(t) = P[Y \leq t] = P[g(X) \leq t] = \int_{A_g} f_X(s)\ ds
+	\textbf{Ansatz:}\quad F_Y(t) = P[Y \leq t] = P[g(X) \leq t] = \int_{g(l)}^{g(r)} f_X(g(t))\ dt
 \end{equation*}
 
 \subsubsection{Affin/Linear: $g(x) = ax + b$}
@@ -649,11 +649,24 @@ Das heisst, dass mit beliebig grosser Wahrscheinlichkeit $1- \delta$ der Wert vo
 
 \subsection{Zentraler Grenzwertsatz (ZGS)}
 
-Sei $X_1, X_2, ...$ eine Folge von i.i.d. Zufallsvariablen mit $E[X_i] = \mu$ und $\Var[X_i] = \sigma^2$. F{\"u}r die Summe $S_n = \sum_{i=1}^n X_i$ gilt dann
 \begin{equation*}
-	\lim_{n\rightarrow\infty} P[\frac{S_n - E[S_n]}{\sqrt{\Var[S_n]}} \leq x] =	\lim_{n\rightarrow\infty} P[\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x] = \Phi(x)
+\begin{split}
+	\textbf{gegeben:} \quad & X_1, X_2, ... \text{eine Folge von i.i.d. Zufallsvariablen mit} \\
+	& E[X_i] = \mu \text{ und } \Var[X_i] = \sigma^2 \\
+	& S_n = \sum_{i=1}^n X_i \\
+	\textbf{Ansatz:}\quad & \lim_{n\rightarrow\infty} P[\frac{S_n - E[S_n]}{\sqrt{\Var[S_n]}} \leq x] =	\lim_{n\rightarrow\infty} P[\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x] = \Phi(x)
+\end{split}
 \end{equation*}
-wobei $\Phi$ die Verteilungsfunktion der $\mathcal{N}(0,1)$-Verteilung ist.
+
+\subsubsection{Beispiel}
+
+\begin{equation*}
+\begin{split}
+	\textbf{gegeben:} \quad & S_{100} = \sum_{i=1}^100 X_i, E[X_i] = \frac{1}{2}, \Var[X_i] = \frac{1}{4} \\
+	\textbf{gesucht:} \quad & P[S_{100} \geq 60] \\
+	\textbf{einsetzen:}\quad & P[S_{100} \geq 60] = P[\frac{S_{100} - 50}{\sqrt{25}} \geq \frac{60 - 50}{5}] = 1 - P[S_{100}^* \leq 2] \approx 1 - \Phi(2)
+\end{split}
+\end{equation*}
 
 \subsection{Grosse Abweichungen und Chernoff-Schnranken}
 
