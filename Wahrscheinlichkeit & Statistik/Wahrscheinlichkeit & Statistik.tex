@@ -654,7 +654,8 @@ Das heisst, dass mit beliebig grosser Wahrscheinlichkeit $1- \delta$ der Wert vo
 	\textbf{gegeben:} \quad & X_1, X_2, ... \text{eine Folge von i.i.d. Zufallsvariablen mit} \\
 	& E[X_i] = \mu \text{ und } \Var[X_i] = \sigma^2 \\
 	& S_n = \sum_{i=1}^n X_i \\
-	\textbf{Ansatz:}\quad & \lim_{n\rightarrow\infty} P[\frac{S_n - E[S_n]}{\sqrt{\Var[S_n]}} \leq x] =	\lim_{n\rightarrow\infty} P[\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x] = \Phi(x)
+	\textbf{Ansatz:}\quad & \lim_{n\rightarrow\infty} P[\frac{S_n - E[S_n]}{\sqrt{\Var[S_n]}} \leq \frac{x - n\mu}{\sigma \sqrt{n}}] \\
+	& = \lim_{n\rightarrow\infty} P[\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq \frac{x - n\mu}{\sigma \sqrt{n}}] = \Phi(\frac{x - n\mu}{\sigma \sqrt{n}})
 \end{split}
 \end{equation*}
 
@@ -731,6 +732,27 @@ Es werden folgende Fehler unterscheidet:
 	\item[Fehler 1. Art:] Die Hypothese wird zu Unrecht abgelehnt, obwohl sie richtig ist
 	\item[Fehler 2. Art:] Die Hypothese wird zu Unrecht nicht verworfen. Man akzeptiert also die Hypothese, obwohl sie falsch ist.
 \end{description}
+
+\subsection{Konstruktion eines Tests}
+
+\subsubsection{Signifikanzniveau $\alpha$}
+
+Man kontrolliert die Wahrscheinlichkeit eines \textbf{Fehlers 1. Art} mit $\alpha$. Man wählt also $K$ bzw. $\alpha$ (je nach dem was gegeben ist) wie folgt:
+\begin{equation*}
+	P_\vartheta[T \in K] \leq \alpha
+\end{equation*}
+
+\subsubsection{Macht}
+
+Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man die Funktion $\beta$ möglichst gross wählen:
+\begin{equation*}
+	\beta: \Theta_A \mapsto [0, 1] \qquad \vartheta \mapsto \beta(\vartheta) := P[T \in K]
+\end{equation*}
+
+\section{Wichtige Tests}
+
+\subsection{z-Test, Test für Erwartungswerte bei bekannter Varianz}
+
 
 
 \end{document}
