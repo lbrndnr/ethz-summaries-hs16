@@ -423,22 +423,13 @@ Die \textbf{Poisson-Verteilung} mit Parameter $\lambda \in (0, \infty)$ beschrei
 
 \section{Allgemeine Zufallsvariablen}
 
-Das \textbf{stochastiche Verhalten} einer \textbf{allgemeinen Zufallsvariable} $X$ wird durch ihre Verteilung beschrieben:
 \begin{equation*}
-	\mu_X(B) := P[X \in B] 
+\begin{split}
+	\textbf{Verteilungsfunktion:}&\qquad F_X(t) = P[X \leq t] = \int_{-\infty}^t f_X(s)\ ds \\
+	\textbf{Dichtefunktion:}&\qquad f_X(t) = P[X = t]
+\end{split}
 \end{equation*}
 
-Die \textbf{Verteilungsfunktion $F_X$} ist durch $\mu_X$ festgelegt:
-\begin{equation*}
-	F_X(t) = P[X \leq t] = \mu_X(]-\infty,t])
-\end{equation*}
-
-Die \textbf{Dichtefunktion} $f_X: \mathbb{R} \mapsto [0,\infty[$ ist das allgemeine Analog zur Gewichtsfunktion. Die Zufallsvariable wird \textbf{(absolut) stetig}, falls gilt:
-\begin{equation*}
-	F_X(t) = \int_{-\infty}^t f_X(s)\ ds \quad\text{f{\"u}r alle }t\in \mathbb{R}
-\end{equation*}
-
-Die Dichtefunktion $f_X$ hat folgende Eigenschaften:
 \begin{equation*}
 \begin{split}
 	f_X \geq 0 \text{ und } f_X & = 0\text{ ausserhalb von } \mathcal{W}(X) \\
@@ -456,12 +447,17 @@ Ist $X$ stetig mit Dichte $f_X(x)$, so ist der Erwartungswert gleich
 \begin{equation*}
 	E[X] = \int_{-\infty}^\infty x f_X(x)\ dx
 \end{equation*}
-sofer das Integral absolut konvergiert.
+sofern das Integral absolut konvergiert.
 
 Sei weiter $X$ und $Y = g(X)$ zwei Zufallsvariablen. Ist $X$ stetig mit Dichte $f_X(x)$, so ist
 \begin{equation*}
 	E[Y] = E[g(X)] = \int_{-\infty}^\infty g(x)f_X(x)\ dx
 \end{equation*} 
+
+Sei $Z = XY$, dann giltet:
+\begin{equation*}
+	E[Z] = E[XY] = \int_{-\infty}^\infty \int_{-\infty}^\infty x y f_{XY}(x, y)\ dx\ dy
+\end{equation*}
 
 \subsection{Gemeinsame Verteilungen, unabh{\"a}ngige Zufallsvariablen}
 
