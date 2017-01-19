@@ -750,6 +750,19 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 
 \section{Wichtige Tests}
 
+\subsection{Allgemein}
+
+\begin{equation*}
+\begin{split}
+	\textbf{Verwerfungsbereich:}\quad & (-\infty, -c_{\not =}) \cup (c_{\not =}, \infty) \qquad\text{für } H_A: \vartheta \neq \vartheta_0 \text{ (beidseitig)} \\ 
+	& (-\infty, c_<) \qquad\text{für } H_A: \vartheta < \vartheta_0 \text{ (einseitig)} \\ 
+	& (c_>, \infty) \qquad\text{für } H_A: \vartheta > \vartheta_0 \text{ (einseitig)} \\
+	\textbf{P-Wert:}\quad & P_{H_0}[|T| > x] = 2(1- \Phi(x)) \\ 
+	& P_{H_0}[T > x] = 1- \Phi(x) \\ 
+	& P_{H_0}[|T| \leq x] = \Phi(x) \\
+\end{split}
+\end{equation*}
+
 \subsection{z-Test, Test für Erwartungswerte bei bekannter Varianz}
 
 \begin{equation*}
@@ -757,9 +770,6 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 	\textbf{Annahme:}\quad & X_i \sim \mathcal{N}(\vartheta, \sigma^2) \Rightarrow E[X_i] = \vartheta,\ \Var[X_i] = \sigma^2 \\
 	\textbf{Hypothese:}\quad & H_0:\ \vartheta = \vartheta_0 \\
 	\textbf{Teststatistik:}\quad & T := \frac{\overline{X}_n - \vartheta_0}{\sigma/ \sqrt{n}} \sim \mathcal{N}(0, 1) \\
-	\textbf{Verwerfungsbereich:}\quad & (-\infty, -c_{\not =}) \cup (c_{\not =}, \infty) \qquad\text{für } H_A: \vartheta \neq \vartheta_0 \text{ (beidseitig)} \\ 
-	& (-\infty, c_<) \qquad\text{für } H_A: \vartheta < \vartheta_0 \text{ (einseitig)} \\ 
-	& (c_>, \infty) \qquad\text{für } H_A: \vartheta > \vartheta_0 \text{ (einseitig)} \\
 	\textbf{Kritischer Wert:} \quad & c_{\not =} = \Phi^{-1}(1- \frac{\alpha}{2}) = z_{1-\frac{\alpha}{2}} \\
 	& c_< = - \Phi^{-1}(1-\alpha) = z_\alpha = -z_{1-\alpha} \\
 	& c_> = \Phi^{-1}(1-\alpha) = z_{1-\alpha}
@@ -775,9 +785,6 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 	\textbf{Annahme:}\quad & E[X_i] = \mu,\ \Var[X_i] = S^2 = \frac{1}{n-1}\sum_{i =1}^n (X_i - \overline{X}_n)^2 \text{ (abgeschätzt) } \\
 	\textbf{Hypothese:}\quad & H_0:\ \mu = \mu_0 \\
 	\textbf{Teststatistik:}\quad & T := \frac{\overline{X}_n - \mu_0}{S/\sqrt{n}} \sim t_{n-1} \qquad \text{($t$-verteilt mit $n-1$ Freiheitsgraden)} \\
-	\textbf{Verwerfungsbereich:}\quad & (-\infty, -c_{\not =}) \cup (c_{\not =}, \infty) \qquad\text{für } H_A: \mu \neq \mu_0 \text{ (beidseitig)} \\ 
-	& (-\infty, c_<) \qquad\text{für } H_A: \mu < \mu_0 \text{ (einseitig)} \\ 
-	& (c_>, \infty) \qquad\text{für } H_A: \mu > \mu_0 \text{ (einseitig)} \\
 	\textbf{Kritischer Wert:} \quad & c_{\not =} = t_{n-1, 1-\frac{\alpha}{2}} \\
 	& c_< = t_{n-1, \alpha} = -t_{n-1, 1-\alpha} \\
 	& c_> = t_{n-1, 1-\alpha}
