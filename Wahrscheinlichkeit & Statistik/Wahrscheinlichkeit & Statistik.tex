@@ -171,8 +171,7 @@ Zwei Ereignisse $A, B$ sind unabh{\"a}ngig (stochastisch), falls gilt:
 \begin{equation*}
 \begin{split}
 	P[A \cap B] & = P[A]P[B] \quad\text{(Produktregel)}\\
-	P[B|A] & = P[B] \\
-	P[A|B] & = P[A] \\
+	P[B|A] & = P[B]
 \end{split}
 \end{equation*}
 
@@ -265,6 +264,13 @@ Sind die Zufallsvariablen \textbf{unabh{\"a}ngig}, gilt:
 \end{split}
 \end{equation*}
 
+\subsubsection{Korrelation}
+\begin{equation*}
+	\begin{split}
+		\text{Corr}[X,Y]=\frac{\Cov[X,Y]}{\sqrt{\Var[X]}\sqrt{\Var[Y]}}
+	\end{split}
+\end{equation*}
+
 \subsection{Gemeinsame Verteilungen}
 
 \begin{equation*}
@@ -301,13 +307,6 @@ Die Zufallsvariablen $X_1,...,X_n$ heissen \textbf{unabh{\"a}ngig}, falls
 
 \begin{equation*}
 	\text{unabh{\"a}ngig} \Rightarrow \text{paarweise unabh{\"a}ngig} \Rightarrow \text{unkorreliert}
-\end{equation*}
-
-\subsubsection{Korrelation}
-\begin{equation*}
-	\begin{split}
-		\text{Corr}[X,Y]=\frac{\Cov[X,Y]}{\sqrt{\Var[X]}\sqrt{\Var[Y]}}
-	\end{split}
 \end{equation*}
 
 \subsection{Bedingte Verteilungen}
@@ -426,7 +425,7 @@ Die \textbf{Poisson-Verteilung} mit Parameter $\lambda \in (0, \infty)$ beschrei
 \begin{equation*}
 \begin{split}
 	\textbf{Verteilungsfunktion:}&\qquad F_X(t) = P[X \leq t] = \int_{-\infty}^t f_X(s)\ ds \\
-	\textbf{Dichtefunktion:}&\qquad f_X(t) = P[X = t]
+	\textbf{Dichtefunktion:}&\qquad f_X(t) = P[X = t] = F_X'(t)
 \end{split}
 \end{equation*}
 
@@ -596,7 +595,7 @@ Die \textbf{Normalverteilung} (NV, auch \textbf{Gauss-Verteilung}) hat zwei Para
 
 \subsubsection{Standard-Normalverteilung $X \sim \mathcal{N}(0, 1)$}
 
-Weder die Dichte $\varphi(t)$ noch die Verteilungsfunktion $\Phi(t)$ k{\"o}nnen mit einer geschlossenen Formel ausgedr{\"u}ckt werden, das Integral ist jedoch \textbf{tabelliert}:
+Weder die Dichte $\varphi(t)$ noch die Verteilungsfunktion $\Phi(t)$ k{\"o}nnen mit einer geschlossenen Formel ausgedr{\"u}ckt werden. Das Integral ist jedoch \textbf{tabelliert}:
 \begin{equation*}
 	\Phi(t) = \int_{-\infty}^t \varphi(s)\ ds = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^t e^{-\frac{1}{2}s^2}\ ds
 \end{equation*}
@@ -755,26 +754,36 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 
 \begin{equation*}
 \begin{split}
-	\textbf{Annahme:}\quad & \Var[X_i] = \sigma^2 \\
+	\textbf{Annahme:}\quad & X_i \sim \mathcal{N}(\vartheta, \sigma^2) \Rightarrow E[X_i] = \vartheta,\ \Var[X_i] = \sigma^2 \\
 	\textbf{Hypothese:}\quad & H_0:\ \vartheta = \vartheta_0 \\
 	\textbf{Teststatistik:}\quad & T := \frac{\overline{X}_n - \vartheta_0}{\sigma/ \sqrt{n}} \sim \mathcal{N}(0, 1) \\
-	\textbf{Verwerfungsbereich:}\quad & |T| > \Phi^{-1}(1- \frac{\alpha}{2})  \qquad\text{für } H_A: \vartheta \neq \vartheta_0 \text{ (beidseitig)} \\ 
-	& T < - \Phi^{-1}(1 - \alpha) \qquad\text{für } H_A: \vartheta < \vartheta_0 \text{ (einseitig)} \\ 
-	& T > \Phi^{-1}(1 - \alpha) \qquad\text{für } H_A: \vartheta > \vartheta_0 \text{ (einseitig)}
+	\textbf{Verwerfungsbereich:}\quad & (-\infty, -c_{\not =}) \cup (c_{\not =}, \infty) \qquad\text{für } H_A: \vartheta \neq \vartheta_0 \text{ (beidseitig)} \\ 
+	& (-\infty, c_<) \qquad\text{für } H_A: \vartheta < \vartheta_0 \text{ (einseitig)} \\ 
+	& (c_>, \infty) \qquad\text{für } H_A: \vartheta > \vartheta_0 \text{ (einseitig)} \\
+	\textbf{Kritischer Wert:} \quad & c_{\not =} = \Phi^{-1}(1- \frac{\alpha}{2}) = z_{1-\frac{\alpha}{2}} \\
+	& c_< = - \Phi^{-1}(1-\alpha) = z_\alpha = -z_{1-\alpha} \\
+	& c_> = \Phi^{-1}(1-\alpha) = z_{1-\alpha}
 \end{split}
 \end{equation*}
+
+\emph{Bemerkung:} $z_{1-\alpha}$ bezeichnet das $(1-\alpha)$-Quantil.
 
 \subsection{t-Test, Test für Erwartungswerte bei unbekannter Varianz}
 
 \begin{equation*}
 \begin{split}
 	\textbf{Annahme:}\quad & E[X_i] = \mu,\ \Var[X_i] = S^2 = \frac{1}{n-1}\sum_{i =1}^n (X_i - \overline{X}_n)^2 \text{ (abgeschätzt) } \\
-	\textbf{Hypothese:}\quad & H_0:\ \vartheta = \vartheta_0 \\
+	\textbf{Hypothese:}\quad & H_0:\ \mu = \mu_0 \\
 	\textbf{Teststatistik:}\quad & T := \frac{\overline{X}_n - \mu_0}{S/\sqrt{n}} \sim t_{n-1} \qquad \text{($t$-verteilt mit $n-1$ Freiheitsgraden)} \\
-		\textbf{Verwerfungsbereich:}\quad & |T| > (t_{n-1})^{-1}(1-\frac{\alpha}{2})\qquad\text{für } H_A: \vartheta \neq \vartheta_0 \text{ (beidseitig)} \\ 
-	& T < - (t_{n-1})^{-1}(1 - \alpha) \qquad\text{für } H_A: \vartheta < \vartheta_0 \text{ (einseitig)} \\ 
-	& T > (t_{n-1})^{-1}(1 - \alpha) \qquad\text{für } H_A: \vartheta > \vartheta_0 \text{ (einseitig)}
+	\textbf{Verwerfungsbereich:}\quad & (-\infty, -c_{\not =}) \cup (c_{\not =}, \infty) \qquad\text{für } H_A: \mu \neq \mu_0 \text{ (beidseitig)} \\ 
+	& (-\infty, c_<) \qquad\text{für } H_A: \mu < \mu_0 \text{ (einseitig)} \\ 
+	& (c_>, \infty) \qquad\text{für } H_A: \mu > \mu_0 \text{ (einseitig)} \\
+	\textbf{Kritischer Wert:} \quad & c_{\not =} = t_{n-1, 1-\frac{\alpha}{2}} \\
+	& c_< = t_{n-1, \alpha} = -t_{n-1, 1-\alpha} \\
+	& c_> = t_{n-1, 1-\alpha}
 \end{split}
 \end{equation*}
+
+\emph{Bemerkung:} $z_{m, \gamma}$ bezeichnet das $\gamma$-Quantil einer $t_m$-Verteilung. Für diesen Wert gilt $P[X \leq t_{m, \gamma}] = \gamma$.
 
 \end{document}
