@@ -793,4 +793,42 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 
 \emph{Bemerkung:} $z_{m, \gamma}$ bezeichnet das $\gamma$-Quantil einer $t_m$-Verteilung. F{\"u}r diesen Wert gilt $P[X \leq t_{m, \gamma}] = \gamma$.
 
+\section{Wichtige Zweistichproben-Tests}
+Bei Zweistichproben-Tests geht man aus von Zufallsvariablen $X_1,...,X_n$ und $Y_1,...,Y_m$, die unter $P_{\vartheta}$ alle unabh{\"a}ngig sind; zudem sind die $X_i$ und die $Y_j$ unter $P_{\vartheta}$ jeweils f{\"u}r sich betrachtet i.i.d.
+
+\subsection{Gepaarter Zweistichprobentest ($m=n$)}
+\begin{equation*}
+\begin{split}	
+		\textbf{Stichproben:}\quad & X_1,...,X_n \overset{i.i.d.}{\sim} \mathcal{N}(\mu_X, \sigma^2)\\
+												  & Y_1,..., Y_n \overset{i.i.d.}{\sim} \mathcal{N}(\mu_Y, \sigma^2)\\
+		\textbf{Idee:} \quad & \text{Zur{\"u}ckf{\"u}rung auf den Fall einer Stichprobe (Vergleich von $\mu_X$ und $\mu_Y$}) \\
+											& Z_i := X_i  - Y_i \overset{i.i.d.}{\sim} \mathcal{N}(\mu_X - \mu_Y, 2\sigma^2) \quad \text{unter } P_\vartheta\\
+		\textbf{Ansatz:} \quad & 1) \text{ Falls Varianz $\sigma^2$ bekannt } \Rightarrow \text{z-Test} \\
+											& \qquad T = \frac{(\overline{X}_n - \overline{Y}_n)-(\mu_X - \mu_Y)}{\sigma \sqrt{2/n}}  \sim \mathcal{N}(0,1)  \\
+											& 2) \text{ Falls Varianz $\sigma^2$ unbekannt } \Rightarrow \text{t-Test} \\		
+											& \qquad T = \frac{(\overline{X}_n - \overline{Y}_n)-(\mu_X - \mu_Y)}{S \sqrt{2/n}}  \sim t_n  \\	
+											& \qquad \text{wobei } \quad S^2 = \frac{1}{2}(S_X^2 + S_Y^2) = \frac{1}{2} S_Z^2 \\
+											& \qquad \text{ mit } S_X^2 =\frac{1}{n-1}\sum_{i =1}^n (X_i - \overline{X}_n)^2	\qquad \text{analog f{\"u}r $S_Y^2 und S_Z^2$}												
+\end{split} 
+\end{equation*}
+
+
+
+\subsection{Ungepaarter Zweistichprobentest ($m \not = n$)}
+\begin{equation*}
+\begin{split}	
+		\textbf{Stichproben:}\quad & X_1,...,X_n \overset{i.i.d.}{\sim} \mathcal{N}(\mu_X, \sigma^2)\\
+												  & Y_1,..., Y_m \overset{i.i.d.}{\sim} \mathcal{N}(\mu_Y, \sigma^2)\\
+		\textbf{Problem:} \quad & \text{Man kann nicht mehr paarweise Differenzen bilden, auch wenn zuf{\"a}llig} \\
+										&m=n \text{ ist.}\\
+		\textbf{Ansatz:} \quad & 	1) \text{ Falls Varianz $\sigma^2$ bekannt} \Rightarrow \text{z-Test} \\	
+											& \qquad 	T = \frac{(\overline{X}_n - \overline{Y}_m)-(\mu_X - \mu_Y)}{\sigma \sqrt{\frac{1}{n} +\frac{1}{m}}}  \sim \mathcal{N}(0,1)  \\	
+											& 2) \text{ Falls Varianz $\sigma^2$ unbekannt}	\Rightarrow \text{t-Test} \\	
+											& \qquad T = \frac{(\overline{X}_n - \overline{Y}_m)-(\mu_X - \mu_Y)}{S \sqrt{\frac{1}{n} +\frac{1}{m}}}  \sim t_{n+m-2} \\	
+											& \qquad 	\text{wobei } \quad S^2 = \frac{1}{m+n-2}((n-1)S_X^2 + (m-1)S_Y^2)	\\
+											& \qquad \text{mit } \quad 	S_X^2 =\frac{1}{n-1}\sum_{i =1}^n (X_i - \overline{X}_n)^2	\quad \text{und}	\quad S_Y^2 =\frac{1}{m-1}\sum_{i =1}^m (Y_i - \overline{Y}_m)^2					  
+\end{split} 
+\end{equation*}
+
+
 \end{document}
