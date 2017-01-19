@@ -681,7 +681,7 @@ Seien $X_1, ..., X_n$ i.i.d. Zufallsvariablen, f{\"u}r welche die momenterzeugen
 	P[S_n > b] \leq \exp(\inf_{t \in \mathbb{R}}(n \log M_X(t) - tb))
 \end{equation*}
 
-Seien $X_1,...,X_n$ unabhängig mit $X_i \sim Be(p_i)$ und $S_n = \sum_{i=1}^n X_i$. Sei ferner $\mu_n := E[S_n] = \sum_{i = 1}^n p_i$ und $\delta > 0$, dann gilt:
+Seien $X_1,...,X_n$ unabh{\"a}ngig mit $X_i \sim Be(p_i)$ und $S_n = \sum_{i=1}^n X_i$. Sei ferner $\mu_n := E[S_n] = \sum_{i = 1}^n p_i$ und $\delta > 0$, dann gilt:
 \begin{equation*}
 	P[S_n \geq (1+\delta)\mu_n] \leq \biggl(\frac{e^\delta}{(1+\delta)^{1+\delta}}\biggr)^{\mu_n}
 \end{equation*}
@@ -736,14 +736,14 @@ Es werden folgende Fehler unterscheidet:
 
 \subsubsection{Signifikanzniveau $\alpha$}
 
-Man kontrolliert die Wahrscheinlichkeit eines \textbf{Fehlers 1. Art} mit $\alpha$. Man wählt also $K$ bzw. $\alpha$ (je nach dem was gegeben ist) wie folgt:
+Man kontrolliert die Wahrscheinlichkeit eines \textbf{Fehlers 1. Art} mit $\alpha$. Man w{\"a}hlt also $K$ bzw. $\alpha$ (je nach dem was gegeben ist) wie folgt:
 \begin{equation*}
 	P_\vartheta[T \in K] \leq \alpha
 \end{equation*}
 
 \subsubsection{Macht}
 
-Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man die Funktion $\beta$ möglichst gross wählen:
+Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man die Funktion $\beta$ m{\"o}glichst gross w{\"a}hlen:
 \begin{equation*}
 	\beta: \Theta_A \mapsto [0, 1] \qquad \vartheta \mapsto \beta(\vartheta) := P[T \in K]
 \end{equation*}
@@ -754,16 +754,16 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 
 \begin{equation*}
 \begin{split}
-	\textbf{Verwerfungsbereich:}\quad & (-\infty, -c_{\not =}) \cup (c_{\not =}, \infty) \qquad\text{für } H_A: \vartheta \neq \vartheta_0 \text{ (beidseitig)} \\ 
-	& (-\infty, c_<) \qquad\text{für } H_A: \vartheta < \vartheta_0 \text{ (einseitig)} \\ 
-	& (c_>, \infty) \qquad\text{für } H_A: \vartheta > \vartheta_0 \text{ (einseitig)} \\
+	\textbf{Verwerfungsbereich:}\quad & (-\infty, -c_{\not =}) \cup (c_{\not =}, \infty) \qquad\text{f{\"u}r } H_A: \vartheta \neq \vartheta_0 \text{ (beidseitig)} \\ 
+	& (-\infty, c_<) \qquad\text{f{\"u}r } H_A: \vartheta < \vartheta_0 \text{ (einseitig)} \\ 
+	& (c_>, \infty) \qquad\text{f{\"u}r } H_A: \vartheta > \vartheta_0 \text{ (einseitig)} \\
 	\textbf{P-Wert:}\quad & P_{H_0}[|T| > x] = 2(1- \Phi(x)) \\ 
 	& P_{H_0}[T > x] = 1- \Phi(x) \\ 
 	& P_{H_0}[|T| \leq x] = \Phi(x) \\
 \end{split}
 \end{equation*}
 
-\subsection{z-Test, Test für Erwartungswerte bei bekannter Varianz}
+\subsection{z-Test, Test f{\"u}r Erwartungswerte bei bekannter Varianz}
 
 \begin{equation*}
 \begin{split}
@@ -778,11 +778,11 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 
 \emph{Bemerkung:} $z_{1-\alpha}$ bezeichnet das $(1-\alpha)$-Quantil.
 
-\subsection{t-Test, Test für Erwartungswerte bei unbekannter Varianz}
+\subsection{t-Test, Test f{\"u}r Erwartungswerte bei unbekannter Varianz}
 
 \begin{equation*}
 \begin{split}
-	\textbf{Annahme:}\quad & E[X_i] = \mu,\ \Var[X_i] = S^2 = \frac{1}{n-1}\sum_{i =1}^n (X_i - \overline{X}_n)^2 \text{ (abgeschätzt) } \\
+	\textbf{Annahme:}\quad & E[X_i] = \mu,\ \Var[X_i] = S^2 = \frac{1}{n-1}\sum_{i =1}^n (X_i - \overline{X}_n)^2 \text{ (abgesch{\"a}tzt) } \\
 	\textbf{Hypothese:}\quad & H_0:\ \mu = \mu_0 \\
 	\textbf{Teststatistik:}\quad & T := \frac{\overline{X}_n - \mu_0}{S/\sqrt{n}} \sim t_{n-1} \qquad \text{($t$-verteilt mit $n-1$ Freiheitsgraden)} \\
 	\textbf{Kritischer Wert:} \quad & c_{\not =} = t_{n-1, 1-\frac{\alpha}{2}} \\
@@ -791,6 +791,6 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 \end{split}
 \end{equation*}
 
-\emph{Bemerkung:} $z_{m, \gamma}$ bezeichnet das $\gamma$-Quantil einer $t_m$-Verteilung. Für diesen Wert gilt $P[X \leq t_{m, \gamma}] = \gamma$.
+\emph{Bemerkung:} $z_{m, \gamma}$ bezeichnet das $\gamma$-Quantil einer $t_m$-Verteilung. F{\"u}r diesen Wert gilt $P[X \leq t_{m, \gamma}] = \gamma$.
 
 \end{document}
