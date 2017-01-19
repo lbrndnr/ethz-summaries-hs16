@@ -281,7 +281,7 @@ Sind die Zufallsvariablen \textbf{unabh{\"a}ngig}, gilt:
 \end{split}
 \end{equation*}
 
-\emph{Veranschaulichung:} F{\"u}r die Zufallsvariablen $X$ und $Y$ beschreibt die gemeinsame Verteilungsfunktion die Wahrscheinlichkeit, dass der Vektor $(X,Y)$ in ein unendliches Rechteck der Form $(-\infty, X] \times (-\infty,y]$ f{\"a}llt.
+\emph{Veranschaulichung:} F{\"u}r die Zufallsvariablen $X$ und $Y$ beschreibt die gemeinsame Verteilungsfunktion die Wahrscheinlichkeit, dass der Vektor $(X,Y)$ in ein unendliches Rechteck der Form $(-\infty, X] \times (-\infty,Y]$ f{\"a}llt.
 
 \subsubsection{Randverteilungen}
 
@@ -293,6 +293,13 @@ Haben $X$ und $Y$ die gemeinsame Verteilungsfunktion $F$, so ist die Verteilungs
 Analog dazu ist die Gewichtsfunktion der Randverteilung von $X$ gleich:
 \begin{equation*}
 	p_X(x) = P[X = x] = \sum_{y_i \in \mathcal{W}(Y)} P[X=x, Y=y_i] = \sum_{y_i \in \mathcal{W}(Y)} p(x, y_i) \text{ f{\"u}r } x \in \mathcal{W}(X)
+\end{equation*}
+
+\subsubsection{Faltung}
+
+Sei $Z = X + Y$, wobei $X$ und $Y$ unabhängig sind, also $p(x,y) = p(x)p(y)$. Dann gilt:
+\begin{equation*}
+	p_Z(z) = \sum_{x_k \in \mathcal{W}(X)} p_X(x_k)p_Y(z-x_k) = \sum_{y_k \in \mathcal{W}(Y)} p_Y(y_k)p_X(z-x_k)
 \end{equation*}
 
 \subsubsection{Unabh{\"a}ngigkeit}
@@ -465,6 +472,25 @@ Die \textbf{gemeinsame Verteilungsfunktion} von $n$ Zufallsvariablen $X_1,...,X_
 	F(x_1,...,x_n) = \int_{-\infty}^{x_1} ... \int_{-\infty}^{x_n} f(t_1,...,t_n)\ dt_n...dt_1
 \end{equation*}
 
+\subsubsection{Randverteilungen}
+
+Haben $X$ und $Y$ die gemeinsame Verteilungsfunktion $F$, so ist die \textbf{Verteilungsfunktion der Randverteilung} von $X$ gleich
+\begin{equation*}
+	F_X(x) := P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y \rightarrow\infty}F(x,y)
+\end{equation*}
+
+Sei weiter $f(x,y)$ die gemeinsame Dichte, so ist analog zur Gewichtsfunktion $p_X$  die \textbf{Dichtefunktion der Randverteilung} von $X$ gleich
+\begin{equation*}
+	f_X(x) = \int_{-\infty}^\infty f(x,y) dy
+\end{equation*}
+
+\subsubsection{Faltung}
+
+Sei $Z = X + Y$, wobei $X$ und $Y$ unabhängig sind, also $p(x,y) = p(x)p(y)$. Dann gilt:
+\begin{equation*}
+	p_Z(z) = \int_{-\infty}^\infty f_X(x)f_Y(z-x)\ dx = \int_{-\infty}^\infty f_Y(y)f_X(z-y)\ dy
+\end{equation*}
+
 Somit ist $f: \mathbb{R}^n \mapsto [0, \infty[$ die \textbf{gemeinsame Dichte} von $X_1,...,X_n$.
 
 \subsection{Transformationen}
@@ -500,18 +526,6 @@ Sei $X$ eine Zufallsvariable mit Verteilungsfunktion $F_X$ und Dichte $f_X$. Bet
 	F_Y(t) & = 1 - F_X(\frac{1}{t}) \\
 	f_Y(t) & = \frac{1}{t^2}f_X(\frac{1}{t})
 \end{split}
-\end{equation*}
-
-\subsection{Randverteilungen}
-
-Haben $X$ und $Y$ die gemeinsame Verteilungsfunktion $F$, so ist die \textbf{Verteilungsfunktion der Randverteilung} von $X$ gleich
-\begin{equation*}
-	F_X(x) := P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y \rightarrow\infty}F(x,y)
-\end{equation*}
-
-Sei weiter $f(x,y)$ die gemeinsame Dichte, so ist analog zur Gewichtsfunktion $p_X$  die \textbf{Dichtefunktion der Randverteilung} von $X$ gleich
-\begin{equation*}
-	f_X(x) = \int_{-\infty}^\infty f(x,y) dy
 \end{equation*}
 
 \section{Wichtige stetige Verteilungen}
@@ -662,7 +676,7 @@ Das heisst, dass mit beliebig grosser Wahrscheinlichkeit $1- \delta$ der Wert vo
 
 \begin{equation*}
 \begin{split}
-	\textbf{gegeben:} \quad & S_{100} = \sum_{i=1}^100 X_i, E[X_i] = \frac{1}{2}, \Var[X_i] = \frac{1}{4} \\
+	\textbf{gegeben:} \quad & S_{100} = \sum_{i=1}^{100} X_i, E[X_i] = \frac{1}{2}, \Var[X_i] = \frac{1}{4} \\
 	\textbf{gesucht:} \quad & P[S_{100} \geq 60] \\
 	\textbf{einsetzen:}\quad & P[S_{100} \geq 60] = P[\frac{S_{100} - 50}{\sqrt{25}} \geq \frac{60 - 50}{5}] = 1 - P[S_{100}^* \leq 2] \approx 1 - \Phi(2)
 \end{split}
@@ -759,9 +773,13 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 	& (c_>, \infty) \qquad\text{f{\"u}r } H_A: \vartheta > \vartheta_0 \text{ (einseitig)} \\
 	\textbf{P-Wert:}\quad & P_{H_0}[|T| > x] = 2(1- \Phi(x)) \\ 
 	& P_{H_0}[T > x] = 1- \Phi(x) \\ 
-	& P_{H_0}[|T| \leq x] = \Phi(x) \\
+	& P_{H_0}[T \leq x] = \Phi(x) \\
 \end{split}
 \end{equation*}
+
+\emph{Bemerkung:} Beim P-Wert handelt es sich um das kleinste Signifikanzniveau $\alpha$, welches das Verwerfen der Nullhypothese impliziert.
+
+\emph{Tipp:} $\Phi(-x) = 1 - \Phi(x)$
 
 \subsection{z-Test, Test f{\"u}r Erwartungswerte bei bekannter Varianz}
 
