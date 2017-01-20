@@ -460,9 +460,9 @@ Sei weiter $X$ und $Y = g(X)$ zwei Zufallsvariablen. Ist $X$ stetig mit Dichte $
 	E[Y] = E[g(X)] = \int_{-\infty}^\infty g(x)f_X(x)\ dx
 \end{equation*} 
 
-Sei $Z = XY$, dann giltet:
+Sei $Z = XY$ mit $f_Z=f_{X,Y}$ für $-\infty < x \leq y < \infty$, dann gilt:
 \begin{equation*}
-	E[Z] = E[XY] = \int_{-\infty}^\infty \int_{-\infty}^\infty x y f_{XY}(x, y)\ dx\ dy
+	E[Z] = E[XY] = \int_{-\infty}^\infty \int_{x}^\infty x y f_{XY}(x, y)\ dx\ dy
 \end{equation*}
 
 \subsection{Gemeinsame Verteilungen, unabh{\"a}ngige Zufallsvariablen}
@@ -761,6 +761,8 @@ Um die Wahrscheinlichkeit eines \textbf{Fehlers 2. Art} zu vermindern, muss man 
 \begin{equation*}
 	\beta: \Theta_A \mapsto [0, 1] \qquad \vartheta \mapsto \beta(\vartheta) := P[T \in K]
 \end{equation*}
+
+Je schwerwiegender die Konsequenzen des Fehlers erster Art, umso geringer sollte man das Signifikanzniveau wählen. Je niedriger das Signifikanzniveau gewählt wird, desto kleiner ist der Ablehnungsbereich der Nullhypothese und umso extremere Werte muß die »Prüfgröße« des jeweiligen Tests aufweisen, damit die Nullhypothese widerlegt wird. In dem Maße, in dem man das Signifikanzniveau verkleinert, nimmt jedoch die Wahrscheinlichkeit des Fehlers zweiter Art zu. Man läuft also zunehmend Gefahr, die »Alternativhypothese« zu widerlegen, obwohl sie eigentlich richtig ist.
 
 \section{Wichtige Tests}
 
