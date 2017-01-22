@@ -501,30 +501,12 @@ Sei $X$ eine Zufallsvariable mit Verteilungsfunktion $F_X$ und Dichte $f_X$. Bet
 	\textbf{Ansatz:}\quad F_Y(t) = P[Y \leq t] = P[g(X) \leq t] = \int_{g(l)}^{g(r)} f_X(g(t))\ dt
 \end{equation*}
 
-\subsubsection{Affin/Linear: $g(x) = ax + b$}
+\subsubsection{Beispiel affin/linear: $g(x) = ax + b$}
 
 \begin{equation*}
 \begin{split}
 	F_Y(t) & = F_X(\frac{t-b}{a}) \\
 	f_Y(t) & = \frac{d}{dt} F_Y(t) = \frac{1}{a}f_X(\frac{t-b}{a})
-\end{split}
-\end{equation*}
-
-\subsubsection{Nichtlinear: $g(x) = x^2$}
-
-\begin{equation*}
-\begin{split}
-	F_Y(t) & = F_X(\sqrt{t}) - F_X(-\sqrt{t}) \\
-	f_Y(t) & = \frac{1}{\sqrt{2\pi}}t^{-\frac{1}{2}}e^{-\frac{1}{2}t} \quad\text{f{\"u}r}\quad t \geq 0
-\end{split}
-\end{equation*}
-
-\subsubsection{Nichtlinear: $g(x) = \frac{1}{x}$}
-
-\begin{equation*}
-\begin{split}
-	F_Y(t) & = 1 - F_X(\frac{1}{t}) \\
-	f_Y(t) & = \frac{1}{t^2}f_X(\frac{1}{t})
 \end{split}
 \end{equation*}
 
